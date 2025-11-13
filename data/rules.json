@@ -8494,7 +8494,7 @@
     ],
     "unlesses": [
       "3~Morpheme~NOM",
-      "0~After~^ā"
+      "0~After~^ā|^äk$|^$"
     ],
     "operations": [
       "0~Change~t→t`"
@@ -9766,41 +9766,6 @@
     ],
     "wording": "Preferably nativize buddha` before NMZ"
   },
-  "VII.7.1": {
-    "id": "VII.7.1",
-    "kind": "phonological",
-    "ifs": [
-      "0~Bha~",
-      "0~Shape~s",
-      "0~Before~[{_C}]`*$"
-    ],
-    "unlesses": [
-      "0~Before~[rs]$"
-    ],
-    "operations": [
-      "0~Prefix~ä"
-    ],
-    "optional": [],
-    "wording": "Add ä- to bha s after C(`) except r/s"
-  },
-  "VII.7.2": {
-    "id": "VII.7.2",
-    "kind": "phonological",
-    "ifs": [
-      "0~Bha~",
-      "0~Shape~s,c",
-      "-1~Class~[{_C}]`*",
-      "0~AfterAnotherMorpheme~"
-    ],
-    "unlesses": [
-      "0~Before~[{_V}]w$"
-    ],
-    "operations": [
-      "0~Prefix~ä"
-    ],
-    "optional": [],
-    "wording": "Add ä- to bha s, c after C(`) (not Vw) of another morpheme"
-  },
   "VII.1.1": {
     "id": "VII.1.1",
     "kind": "phonological",
@@ -10060,6 +10025,39 @@
     ],
     "optional": [],
     "wording": "ṣ → ś before ś, c"
+  },
+  "VII.7.1": {
+    "id": "VII.7.1",
+    "kind": "phonological",
+    "ifs": [
+      "0~Bha~",
+      "0~Shape~s",
+      "0~Before~[{_C}]`*$"
+    ],
+    "unlesses": [
+      "0~Before~[rs]$"
+    ],
+    "operations": [
+      "0~Prefix~ä"
+    ],
+    "optional": [],
+    "wording": "Add ä- to bha s after C(`) except r/s"
+  },
+  "VII.7.2": {
+    "id": "VII.7.2",
+    "kind": "phonological",
+    "ifs": [
+      "0~Bha~",
+      "0~Shape~c",
+      "-1~Shape~c",
+      "0~Morpheme~2"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Prefix~ä"
+    ],
+    "optional": [],
+    "wording": "Add ä- to bha -c of 2 after c"
   },
   "VII.7.3": {
     "id": "VII.7.3",
