@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}{{ payload.lexeme_id }} · Tocharian A{% endblock %}
+
+{% block content %}
+  <a href="/" class="text-sm underline inline-block mb-4">← Back to the list</a>
+
+  <h1 class="text-2xl font-bold mb-2">{{ payload.lexeme_id }}</h1>
+  <div class="text-sm text-gray-600 mb-6">
+    <span class="mr-3">Category: <span class="font-medium">{{ payload.category }}</span></span>
+    {% if lex_row.meaning %}<span class="mr-3">Meaning: <span class="font-medium">{{ lex_row.meaning }}</span></span>{% endif %}
+    {% if lex_row.gendersg or lex_row.genderdu or lex_row.genderpl %}
+      <span class="mr-3">
+        Род: 
+        <span class="font-medium">
+          SG={{ lex_row.gendersg or '—' }}, DU={{ lex_row.genderdu or '—' }}, PL={{ lex_row.genderpl or '—' }}
+        </span>
+      </span>
+    {% endif %}
+  </div>
+
+  {% if payload.error %}
+    <div class="p-4 border rounded bg-yellow-50 text-yellow-800 mb-6">
+      {{ payload.error }} (пока поддерживаем только indeclinable)
+    </div>
+  {% endif %}
+
+  {% if payload.paradigm and not payload.error %}
+    <h2 class="text-xl font-semibold mb-3">Paradigm</h2>
+
+    <div class="overflow-x-auto bg-white border rounded-xl mb-8">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-100 text-left">
+          <tr>
+            <th class="px-4 py-2 w-32">Cell</th>
+            <th class="px-4 py-2">Variants</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cell in payload.paradigm %}
+            <tr class="border-t">
+              <td class="px-4 py-2 font-mono text-sm text-gray-700">{{ cell.cell }}</td>
+              <td class="px-4 py-2">
+                <ul class="flex flex-wrap gap-2">
+                  {% for v in cell.variants %}
+                    <li>
+			<a
+			  href="#"
+			  hx-get="/api/variant/{{ v.variant_id }}/derivation"
+			  hx-target="#derivation-panel"
+ 			 hx-swap="innerHTML"
+ 			 class="inline-flex items-center gap-1 px-3 py-1 rounded-full border text-sm hover:bg-gray-50"
+			>
+ 			 {{ v.surface }}
+ 			 {% if v.is_canonical %}
+  			  <span class="text-yellow-500">★</span>
+  			{% endif %}
+			</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+		<div id="derivation-panel" class="mt-6"></div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
+{% endblock %}

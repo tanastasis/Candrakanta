@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}{{ payload.lexeme_id }} · {{ payload.category|capitalize }}{% endblock %}
+
+{% block content %}
+  {% set back_url = '/' %}
+  {% if current_sub_chain %}
+    {# мы внутри сублексемы: возвращаемся к корню этой лексемы #}
+    {% set back_url = '/lexeme/' ~ root_lexeme_id %}
+  {% else %}
+    {# на корневой лексеме: пусть ссылка остаётся на главную #}
+    {% set back_url = '/' %}
+  {% endif %}
+
+  <a href="{{ back_url }}"
+    class="text-sm underline inline-block mb-4"
+    onclick="if (document.referrer) { history.back(); return false; }">
+    ← Back
+  </a>
+
+  <h1 class="text-2xl font-bold mb-2">{{ payload.lexeme_id }} </h1>
+  <h1 class="text-xl font-bold mb-2">“<span class="font-medium">{{ payload.meaning }}</span>”</h1>
+  <div class="text-sm text-gray-600 mb-4">
+    Category: <span class="font-medium">{{ payload.category }}</span>
+  </div>
+
+  {# Toggle: show only canonical by default #}
+  <div class="mb-4 flex items-center gap-2 text-sm">
+    <input id="toggle-all-variants" type="checkbox" class="h-4 w-4"
+           onchange="document.body.dataset.showAllVariants = this.checked ? '1' : '0'; (window.applyVariantVisibility && applyVariantVisibility());">
+    <label for="toggle-all-variants" class="select-none cursor-pointer">
+      Show all variants
+    </label>
+  </div>
+  <script>
+    window.applyVariantVisibility = function() {
+      const showAll = document.body.dataset.showAllVariants === '1';
+      for (const pill of document.querySelectorAll('.variant-pill')) {
+        const isCanon = pill.getAttribute('data-canonical') === '1';
+        pill.style.display = (showAll || isCanon) ? 'inline-flex' : 'none';
+      }
+    };
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!('showAllVariants' in document.body.dataset)) {
+        document.body.dataset.showAllVariants = '0';
+      }
+      const cb = document.getElementById('toggle-all-variants');
+      if (cb) cb.checked = document.body.dataset.showAllVariants === '1';
+      applyVariantVisibility();
+    });
+  </script>
+
+  {# axes #}
+  {% set row_axis = (payload['axes'] | selectattr('id','equalto','case') | list)[0] %}
+  {% set col_axis = (payload['axes'] | selectattr('id','equalto','col')  | list)[0] %}
+
+  {# "case|col" -> content #}
+  {% set _ = namespace(map={}) %}
+  {% for cell in payload['cells'] %}
+    {% set key = cell['coords']['case'] ~ '|' ~ cell['coords']['col'] %}
+    {% set _ = _.map.update({ key: cell['content'] }) %}
+  {% endfor %}
+
+  <div class="overflow-x-auto bg-white border rounded-xl mb-8">
+    <table class="min-w-full text-sm table-auto border-separate border-spacing-0">
+      <thead class="bg-gray-100 text-left">
+        <tr>
+          <th class="px-4 py-2 w-40 sticky left-0 bg-gray-100 z-10">Case</th>
+          {% for c in col_axis['values'] %}
+            <th class="px-4 py-2">{{ c['label'] }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in row_axis['values'] %}
+          {% set is_fullrow = r['id'] == 'CONSTRUCT_FORM' %}
+          <tr class="align-top">
+            <td class="px-4 py-2 text-xs border-t sticky left-0 bg-white">
+              {{ r['label'] }}
+            </td>
+
+            {% if is_fullrow %}
+              {# одна большая ячейка с формами словарной строки #}
+              {% set first_col = col_axis['values'][0]['id'] %}
+              {% set content = _.map.get(r['id'] ~ '|' ~ first_col) %}
+              <td class="px-4 py-2 border-t" colspan="{{ col_axis['values']|length }}">
+                {% if content and content['type'] == 'form_fullrow' and content['variants'] %}
+                  <ul class="flex flex-wrap gap-2">
+                    {% for v in content['variants'] %}
+                      <span
+                        class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border hover:bg-gray-50"
+                        data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
+                        style="display: {{ 'inline-flex' if v['is_canonical'] else 'none' }};"
+                      >
+                        <a
+                          href="#"
+                          hx-post="/api/variant/{{ v['variant_id'] }}/with_postfix"
+                          hx-vals='js:{"post": "", "show_all": (document.body.dataset.showAllVariants || "0")}'
+                          hx-target="#derivation-panel"
+                          hx-swap="innerHTML"
+                          class="inline-flex items-center gap-1"
+                          title="{{ v['variant_id'] }}"
+                        >
+                          {{ v['surface'] }}
+                        </a>
+                      </span>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <span class="text-gray-400">—</span>
+                {% endif %}
+              </td>
+            {% else %}
+              {# обычная сетка: по одной ячейке на столбец #}
+              {% for c in col_axis['values'] %}
+                {% set content = _.map.get(r['id'] ~ '|' ~ c['id']) %}
+                <td class="px-4 py-2 border-t align-top">
+                  {% if content %}
+                    {% if content['type'] == 'form' and content['variants'] %}
+                      <ul class="flex flex-wrap gap-2">
+                        {% for v in content['variants'] %}
+                          <span
+                            class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border hover:bg-gray-50"
+                            data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
+                            style="display: {{ 'inline-flex' if v['is_canonical'] else 'none' }};"
+                          >
+                            <a
+                              href="#"
+                              hx-post="/api/variant/{{ v['variant_id'] }}/with_postfix"
+                              hx-vals='js:{"post": "", "show_all": (document.body.dataset.showAllVariants || "0")}'
+                              hx-target="#derivation-panel"
+                              hx-swap="innerHTML"
+                              class="inline-flex items-center gap-1"
+                              title="{{ v['variant_id'] }}"
+                            >
+                              {{ v['surface'] }}
+                            </a>
+                          </span>
+                        {% endfor %}
+                      </ul>
+
+                    {% elif content['type'] == 'sublexeme' %}
+                      {# единый тип сублексемы — ссылка добавляет шаг к текущей цепочке #}
+                      {% set step = content['lexeme_ref']['sub_tag'] %}
+                      {% if current_sub_chain %}
+                        {% set next_chain = current_sub_chain ~ '.' ~ step %}
+                      {% else %}
+                        {% set next_chain = step %}
+                      {% endif %}
+                      <a
+                        class="text-blue-600 underline"
+                        href="/lexeme/{{ root_lexeme_id }}?sub={{ next_chain|urlencode }}"
+                        title="Open sublexeme {{ step }}"
+                      >
+                        {{ content['label'] }}
+                      </a>
+
+                    {% else %}
+                      <span class="text-gray-400">—</span>
+                    {% endif %}
+                  {% else %}
+                    <span class="text-gray-400">—</span>
+                  {% endif %}
+                </td>
+              {% endfor %}
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div id="derivation-panel" class="mt-6"></div>
+{% endblock %}

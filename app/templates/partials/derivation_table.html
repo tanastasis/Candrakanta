@@ -1,0 +1,37 @@
+<div class="mt-3">
+  {% if d.steps and d.steps|length > 0 %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm border-separate border-spacing-0 table-auto">
+        <thead class="bg-gray-100 text-left">
+          <tr>
+            <th class="px-3 py-2 w-16">#</th>
+            <th class="px-3 py-2">Form</th>
+            <th class="px-3 py-2">Rule</th>
+            <th class="px-3 py-2 w-24">Pos</th>
+            <th class="px-3 py-2">Wording</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in d.steps %}
+            <tr class="border-t">
+              <td class="px-3 py-2 align-top text-gray-500">{{ loop.index }}</td>
+              <td class="px-3 py-2 align-top whitespace-nowrap">{{ s.form }}</td>
+              <td class="px-3 py-2 align-top">
+                <a class="underline" href="/rule/{{ s.rule_id }}">{{ s.rule_id }}</a>
+                {% if s.opt %}<span class="ml-1 text-xs text-gray-500">[opt]</span>{% endif %}
+              </td>
+              <td class="px-3 py-2 align-top">
+                {% if s.pos is not none and s.pos != '' %}{{ s.pos }}{% else %}<span class="text-gray-400">—</span>{% endif %}
+              </td>
+              <td class="px-3 py-2 align-top text-gray-800">
+                {% if s.wording %}{{ s.wording }}{% else %}<span class="text-gray-400">—</span>{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-gray-500 text-sm">No derivation steps available.</p>
+  {% endif %}
+</div>

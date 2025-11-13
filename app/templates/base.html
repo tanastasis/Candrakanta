@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Tocharian A{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Tailwind сначала -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+    <!-- Затем подключаем шрифт -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+
+    <!-- И уже после — наш CSS, чтобы перебить preflight -->
+    <style>
+      html {
+        font-family: "Source Serif 4", "Times New Roman", Georgia, Times, serif !important;
+        font-kerning: normal;
+        font-variant-ligatures: common-ligatures;
+      }
+      /* моноширинный для форм/вариантов: */
+      .font-mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <header class="px-6 py-4 border-b bg-white">
+      <div class="max-w-6xl mx-auto flex items-center justify-between">
+        <a href="/" class="font-semibold">Ārśi-Candrakānt</a>
+        {% block header_right %}{% endblock %}
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-6">
+      {% block content %}{% endblock %}
+    </main>
+
+    <script>
+      function applyVariantVisibility() {
+        const showAll = document.body.dataset.showAllVariants === '1';
+        document.querySelectorAll('.variant-pill').forEach(el => {
+          const isCanonical = el.dataset.canonical === '1';
+          el.style.display = (showAll || isCanonical) ? 'inline-flex' : 'none';
+        });
+      }
+
+      // apply on load
+      document.addEventListener('DOMContentLoaded', applyVariantVisibility);
+
+      // re-apply after HTMX swaps
+      document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
+
+      // re-apply on toggle
+      document.addEventListener('change', (e) => {
+        if (e.target && e.target.id === 'toggle-all-variants') applyVariantVisibility();
+      });
+    </script>
+  </body>
+</html>

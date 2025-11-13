@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}{{ payload.lexeme_id }} · Verb{% endblock %}
+
+{% block content %}
+  {% set back_url = '/' %}
+  {% if current_sub_chain %}
+    {# мы внутри сублексемы: возвращаемся к корню этой лексемы #}
+    {% set back_url = '/lexeme/' ~ root_lexeme_id %}
+  {% else %}
+    {# на корневой лексеме: пусть ссылка остаётся на главную #}
+    {% set back_url = '/' %}
+  {% endif %}
+
+  <a href="{{ back_url }}"
+    class="text-sm underline inline-block mb-4"
+    onclick="if (document.referrer) { history.back(); return false; }">
+    ← Back
+  </a>
+
+  <h1 class="text-2xl font-bold mb-2">{{ payload.lexeme_id }}</h1>
+  <h1 class="text-xl font-bold mb-2">“<span class="font-medium">{{ payload.meaning }}</span>”</h1>
+  <div class="text-sm text-gray-600 mb-6">
+    Category: <span class="font-medium">{{ payload.category }}</span>
+  </div>
+
+  <div class="mb-4 flex items-center gap-2 text-sm">
+    <input id="toggle-all-variants" type="checkbox" class="h-4 w-4"
+           onchange="document.body.dataset.showAllVariants = this.checked ? '1' : '0'; (window.applyVariantVisibility && applyVariantVisibility());">
+    <label for="toggle-all-variants" class="select-none cursor-pointer">
+      Show all variants
+    </label>
+  </div>
+
+  <script>
+    // default: only canonical (persist across soft navigations)
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!('showAllVariants' in document.body.dataset)) {
+        document.body.dataset.showAllVariants = '0';
+      }
+      const cb = document.getElementById('toggle-all-variants');
+      if (cb) cb.checked = document.body.dataset.showAllVariants === '1';
+      if (window.applyVariantVisibility) applyVariantVisibility();
+    });
+  </script>
+
+  {# axes #}
+  {% set row_axis = (payload['axes'] | selectattr('id','equalto','row') | list)[0] %}
+  {% set col_axis = (payload['axes'] | selectattr('id','equalto','tense') | list)[0] %}
+
+  {# fast index: "row|tense" -> content dict #}
+  {% set _ = namespace(map={}) %}
+  {% for cell in payload['cells'] %}
+    {% set key = cell['coords']['row'] ~ '|' ~ cell['coords']['tense'] %}
+    {% set _ = _.map.update({ key: cell['content'] }) %}
+  {% endfor %}
+
+  <div class="overflow-x-auto bg-white border rounded-xl mb-8">
+    <table class="min-w-full text-sm table-auto border-separate border-spacing-0">
+      <thead class="bg-gray-100 text-left">
+        <tr>
+          <th class="px-4 py-2 w-34 sticky left-0 bg-gray-100 z-10">P.N.V</th>
+          {% for c in col_axis['values'] %}
+            <th class="px-4 py-2">{{ c['label'] }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in row_axis['values'] %}
+          {# у тебя: строки с точкой — финитные формы; без точки — сублексемные строки #}
+          {% set is_sub_row = ('.' not in r['id']) %}
+          <tr class="align-top">
+            <td class="px-4 py-2 text-xs border-t sticky left-0 bg-white">
+              {{ r['label'] }}
+            </td>
+
+            {% if not is_sub_row %}
+              {# finite forms: one cell per tense #}
+              {% for c in col_axis['values'] %}
+                {% set content = _.map.get(r['id'] ~ '|' ~ c['id']) %}
+                <td class="px-4 py-2 border-t">
+                  {% if content and content['type'] == 'form' and content['variants'] %}
+                    <ul class="flex flex-wrap gap-2">
+                      {% for v in content['variants'] %}
+                        <span
+                          class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border hover:bg-gray-50 whitespace-nowrap"
+                          data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
+                          style="display: {{ 'inline-flex' if v['is_canonical'] else 'none' }};"
+                        >
+                          <a
+                            href="#"
+                            hx-post="/api/variant/{{ v['variant_id'] }}/with_postfix"
+                            hx-vals='js:{"post": "", "show_all": document.body.dataset.showAllVariants || "0"}'
+                            hx-target="#derivation-panel"
+                            hx-swap="innerHTML"
+                            class="inline-flex items-center gap-1"
+                            title="{{ v['variant_id'] }}"
+                          >
+                            {{ v['surface'] }}
+                          </a>
+                        </span>
+                      {% endfor %}
+                    </ul>
+                  {% else %}
+                    <span class="text-gray-400">—</span>
+                  {% endif %}
+                </td>
+              {% endfor %}
+
+            {% else %}
+              {# sublexeme row spans all columns #}
+              {% set content = _.map.get(r['id'] ~ '|' ~ col_axis['values'][0]['id']) %}
+              <td class="px-4 py-2 border-t" colspan="{{ col_axis['values']|length }}">
+                {% if content and content['type'] == 'sublexeme' %}
+                  {% set label = (content['label'] or '') | trim %}
+                  {# строим ссылку от корневой лексемы и наращиваем цепочку #}
+                  {% set step = content['lexeme_ref']['sub_tag'] %}
+                  {% if current_sub_chain %}
+                    {% set next_chain = current_sub_chain ~ '.' ~ step %}
+                  {% else %}
+                    {% set next_chain = step %}
+                  {% endif %}
+                  {% if label and label != '—' %}
+                    <a
+                      class="underline text-blue-700"
+                      href="/lexeme/{{ root_lexeme_id }}?sub={{ next_chain|urlencode }}"
+                      title="Open sublexeme {{ step }}"
+                    >
+                      {{ content['label'] }}
+                  </a>
+                  {% else %}
+                    <span class="text-gray-400">—</span>
+                  {% endif %}
+                {% else %}
+                  <span class="text-gray-400">—</span>
+                {% endif %}
+              </td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div id="derivation-panel" class="mt-6"></div>
+{% endblock %}
