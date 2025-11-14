@@ -456,6 +456,7 @@
     "id": "II.3.2",
     "kind": "morphological",
     "ifs": [
+      "0~Short~",
       "1~Morpheme~K",
       "2~Group~Opt"
     ],
@@ -464,7 +465,7 @@
       "0~Color~yellow"
     ],
     "optional": [],
-    "wording": "Verbs are yellow before K+Opt"
+    "wording": "Short verbs are yellow before K+Opt"
   },
   "II.3.3": {
     "id": "II.3.3",
@@ -878,6 +879,7 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~bäk",
+      "1~Morpheme~K",
       "2~Morpheme~GER2"
     ],
     "unlesses": [],
@@ -8500,7 +8502,7 @@
       "0~Change~t→t`"
     ],
     "optional": [],
-    "wording": "-t in Śātă is palatalized before M+SG not before ā"
+    "wording": "-t (not bhe) in Śātă is palatalized before M+SG not before ā"
   },
   "V.8.5": {
     "id": "V.8.5",
@@ -8815,7 +8817,7 @@
     "kind": "phonological",
     "ifs": [
       "0~Shape~ă",
-      "*1~Class~[{_Q}]—1~Shape~`",
+      "0~After~^[{_Q}]",
       "0~Category~causativity"
     ],
     "unlesses": [],
@@ -8823,10 +8825,10 @@
       "0~Shape~`"
     ],
     "optional": [],
-    "wording": "ă → ` in causativities before “` or obstruent”"
+    "wording": "ă → ` in causativities before obstruents"
   },
-  "VI.2.6": {
-    "id": "VI.2.6",
+  "VI.2.7": {
+    "id": "VI.2.7",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ă",
@@ -8839,7 +8841,7 @@
       "0~Shape~`ä"
     ],
     "optional": [],
-    "wording": "ă → `ä in causativities not before nasal consonants"
+    "wording": "ă → `ä in causativities not before nasal"
   },
   "VI.3.1": {
     "id": "VI.3.1",
@@ -9787,16 +9789,15 @@
     "id": "VII.2.1",
     "kind": "phonological",
     "ifs": [
-      "0~Shape~ä"
+      "0~Shape~ä",
+      "0~After~^`[{_V}]"
     ],
-    "unlesses": [
-      "0~After~^`*[{_C}]`*([{_C}]|$).*"
-    ],
+    "unlesses": [],
     "operations": [
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "ä → Ø in open syllables"
+    "wording": "ä → drops before ` + vowel"
   },
   "VII.3.1": {
     "id": "VII.3.1",
@@ -10049,15 +10050,17 @@
     "ifs": [
       "0~Bha~",
       "0~Shape~c",
-      "-1~Shape~c",
+      "-1~Class~[{_C}]",
       "0~Morpheme~2"
     ],
-    "unlesses": [],
+    "unlesses": [
+      "-1~Shape~ṣ"
+    ],
     "operations": [
       "0~Prefix~ä"
     ],
     "optional": [],
-    "wording": "Add ä- to bha -c of 2 after c"
+    "wording": "Add ä- to bha -c of 2 not after C except ṣ"
   },
   "VII.7.3": {
     "id": "VII.7.3",
@@ -10179,6 +10182,21 @@
     ],
     "optional": [],
     "wording": "Bha m → äm after a consonant other than m, r, ñ"
+  },
+  "VII.2.1_1": {
+    "id": "VII.2.1_1",
+    "kind": "phonological",
+    "ifs": [
+      "0~Shape~ä"
+    ],
+    "unlesses": [
+      "0~After~^`*[{_C}]`*([{_C}]|$).*"
+    ],
+    "operations": [
+      "0~Shape~Ø"
+    ],
+    "optional": [],
+    "wording": "ä → Ø in open syllables"
   },
   "VII.8.1": {
     "id": "VII.8.1",
