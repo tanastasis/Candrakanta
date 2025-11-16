@@ -1,0 +1,27 @@
+<div class="p-3 border border-slate-600 rounded-lg bg-slate-800/90 shadow-lg text-slate-300">
+  <div class="mb-2">
+    <div class="inline font-semibold mb-2 text-slate-100">Morphemes:</div>
+    {% if morphemes %}
+      <span class="text-slate-300">
+        {% for m in morphemes %}
+          <a class="text-cyan-400 underline hover:text-amber-300" href="/morphemes#{{ m }}">{{ m }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </span>
+    {% else %}
+      <span class="text-slate-400">None</span>
+    {% endif %}
+  </div>
+
+  <div class="mb-2">
+    <div class="inline font-semibold mb-2 text-slate-100">Lexemes:</div>
+    {% if lexemes %}
+      <span class="text-slate-300">
+        {% for l in lexemes %}
+          <a class="text-amber-400 underline hover:text-amber-300" href="/lexeme/{{ l.name }}">{{ l.dictform }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </span>
+    {% else %}
+      <span class="text-slate-400">None</span>
+    {% endif %}
+  </div>
+</div>

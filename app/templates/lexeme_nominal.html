@@ -12,26 +12,26 @@
   {% endif %}
 
   <a href="{{ back_url }}"
-    class="text-sm underline inline-block mb-4"
+    class="text-sm text-slate-300 underline inline-block mb-4 hover:text-amber-300 transition-colors"
     onclick="if (document.referrer) { history.back(); return false; }">
     ← Back
   </a>
 
-  <h1 class="text-2xl font-bold mb-2">{{ payload.lexeme_id }} </h1>
-  <h1 class="text-xl font-bold mb-2">“<span class="font-medium">{{ payload.meaning }}</span>”</h1>
-  <div class="text-sm text-gray-600 mb-4">
-    Category: <span class="font-medium">{{ payload.category }}</span>
+  <h1 class="text-2xl font-bold mb-2 text-indigo-400">{{ payload.lexeme_id }} </h1>
+  <h1 class="text-xl font-bold mb-2 text-slate-100">“<span class="font-medium text-slate-200">{{ payload.meaning }}</span>”</h1>
+  <div class="text-sm text-slate-400 mb-4">
+    Category: <span class="font-medium text-slate-300">{{ payload.category }}</span>
   </div>
 
   {# Toggle: show only canonical by default #}
-  <div class="mb-4 flex items-center gap-2 text-sm">
-    <input id="toggle-all-variants" type="checkbox" class="h-4 w-4"
+  <div class="mb-4 flex items-center gap-2 text-base">
+    <input id="toggle-all-variants" type="checkbox" class="h-4 w-4 text-amber-500 bg-slate-700 border-slate-600 focus:ring-amber-500 focus:ring-2" 
            onchange="document.body.dataset.showAllVariants = this.checked ? '1' : '0'; (window.applyVariantVisibility && applyVariantVisibility());">
-    <label for="toggle-all-variants" class="select-none cursor-pointer">
+    <label for="toggle-all-variants" class="select-none cursor-pointer text-slate-300">
       Show all variants
     </label>
   </div>
-  <script>
+   <script>
     window.applyVariantVisibility = function() {
       const showAll = document.body.dataset.showAllVariants === '1';
       for (const pill of document.querySelectorAll('.variant-pill')) {
@@ -60,21 +60,21 @@
     {% set _ = _.map.update({ key: cell['content'] }) %}
   {% endfor %}
 
-  <div class="overflow-x-auto bg-white border rounded-xl mb-8">
+  <div class="overflow-x-auto bg-slate-800/50 border border-slate-600 rounded-xl mb-8">  <!-- Полупрозрачный тёмный фон с границей -->
     <table class="min-w-full text-sm table-auto border-separate border-spacing-0">
-      <thead class="bg-gray-100 text-left">
+      <thead class="bg-slate-700 text-left">  <!-- Тёмная голова таблицы -->
         <tr>
-          <th class="px-4 py-2 w-40 sticky left-0 bg-gray-100 z-10">Case</th>
+          <th class="px-4 py-2 w-20 sticky left-0 bg-slate-700 z-10 text-slate-300">Case</th>  <!-- Светлый текст, тёмный bg -->
           {% for c in col_axis['values'] %}
-            <th class="px-4 py-2">{{ c['label'] }}</th>
+            <th class="px-4 py-2 text-slate-300">{{ c['label'] }}</th>  <!-- Светлый текст -->
           {% endfor %}
         </tr>
       </thead>
-      <tbody>
+      <tbody>  <!-- Светлый текст, hover тёмнее -->
         {% for r in row_axis['values'] %}
           {% set is_fullrow = r['id'] == 'CONSTRUCT_FORM' %}
-          <tr class="align-top">
-            <td class="px-4 py-2 text-xs border-t sticky left-0 bg-white">
+          <tr class="align-top border-t border-slate-600 hover:bg-slate-700/50">  <!-- Тёмная граница, hover -->
+            <td class="px-4 py-2 text-sm text-slate-300 border-t sticky left-0 bg-slate-800/50">  <!-- Светлый текст, полупрозрачный bg -->
               {{ r['label'] }}
             </td>
 
@@ -82,12 +82,12 @@
               {# одна большая ячейка с формами словарной строки #}
               {% set first_col = col_axis['values'][0]['id'] %}
               {% set content = _.map.get(r['id'] ~ '|' ~ first_col) %}
-              <td class="px-4 py-2 border-t" colspan="{{ col_axis['values']|length }}">
+              <td class="px-4 py-2 border-t text-slate-300" colspan="{{ col_axis['values']|length }}">  <!-- Светлый текст -->
                 {% if content and content['type'] == 'form_fullrow' and content['variants'] %}
                   <ul class="flex flex-wrap gap-2">
                     {% for v in content['variants'] %}
                       <span
-                        class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border hover:bg-gray-50"
+                        class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-700 hover:bg-slate-600 text-slate-200"
                         data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
                         style="display: {{ 'inline-flex' if v['is_canonical'] else 'none' }};"
                       >
@@ -97,7 +97,7 @@
                           hx-vals='js:{"post": "", "show_all": (document.body.dataset.showAllVariants || "0")}'
                           hx-target="#derivation-panel"
                           hx-swap="innerHTML"
-                          class="inline-flex items-center gap-1"
+                          class="inline-flex items-center gap-1 text-slate-300 hover:text-cyan-300"
                           title="{{ v['variant_id'] }}"
                         >
                           {{ v['surface'] }}
@@ -106,20 +106,20 @@
                     {% endfor %}
                   </ul>
                 {% else %}
-                  <span class="text-gray-400">—</span>
+                  <span class="text-slate-500">—</span>  <!-- Серый для пустого -->
                 {% endif %}
               </td>
             {% else %}
               {# обычная сетка: по одной ячейке на столбец #}
               {% for c in col_axis['values'] %}
                 {% set content = _.map.get(r['id'] ~ '|' ~ c['id']) %}
-                <td class="px-4 py-2 border-t align-top">
+                <td class="px-4 py-2 border-t align-top text-slate-300">  <!-- Светлый текст -->
                   {% if content %}
                     {% if content['type'] == 'form' and content['variants'] %}
                       <ul class="flex flex-wrap gap-2">
                         {% for v in content['variants'] %}
                           <span
-                            class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border hover:bg-gray-50"
+                            class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-700 hover:bg-slate-600 text-slate-200" 
                             data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
                             style="display: {{ 'inline-flex' if v['is_canonical'] else 'none' }};"
                           >
@@ -129,7 +129,7 @@
                               hx-vals='js:{"post": "", "show_all": (document.body.dataset.showAllVariants || "0")}'
                               hx-target="#derivation-panel"
                               hx-swap="innerHTML"
-                              class="inline-flex items-center gap-1"
+                              class="inline-flex items-center gap-1 text-slate-300 hover:text-cyan-300" 
                               title="{{ v['variant_id'] }}"
                             >
                               {{ v['surface'] }}
@@ -147,7 +147,7 @@
                         {% set next_chain = step %}
                       {% endif %}
                       <a
-                        class="text-blue-600 underline"
+                        class="text-[var(--link-color)] underline hover:text-amber-300" 
                         href="/lexeme/{{ root_lexeme_id }}?sub={{ next_chain|urlencode }}"
                         title="Open sublexeme {{ step }}"
                       >
@@ -155,10 +155,10 @@
                       </a>
 
                     {% else %}
-                      <span class="text-gray-400">—</span>
+                      <span class="text-slate-500">—</span>  <!-- Серый для пустого -->
                     {% endif %}
                   {% else %}
-                    <span class="text-gray-400">—</span>
+                    <span class="text-slate-500">—</span>  <!-- Серый для пустого -->
                   {% endif %}
                 </td>
               {% endfor %}

@@ -218,7 +218,7 @@ def build_gram(case, gender=None, number=None, deixis=None):
 # ---- reusable grids ----
 CASES_DEFAULT = ["NOM","ACC","GEN","INS","ALL","LOC","COM","PER","ABL"]
 CASES_PLUS_OBL = ["NOM","ACC","GEN","INS","ALL","LOC","COM","PER","ABL","OBL"]
-CASES_PLUS_ADV = ["NOM","ACC","GEN","INS","ALL","LOC","COM","PER","ABL","ADV"]
+CASES_PLUS_ADV = ["NOM","ACC","GEN","INS","ALL","LOC","COM","PER","ABL","ABL3","ADV"]
 
 # ---- category profiles ----
 class Profile:
@@ -335,7 +335,7 @@ class DoubleProfile(Profile):
     def col_spec(self, lex):
         if lex.name in ["D_esă","D_poke","D_pe"]:
             return ["SG","DU","PL"]
-        return ["SG","DU"]
+        return ["SG","DU","PL"]
     def cell_rule(self, lex, case, col):
         g, n = parse_col(col)
         gr = build_gram(case, g, n)
@@ -355,7 +355,7 @@ class NounProfile(Profile):
         cases = CASES_DEFAULT[:]
         if has_group("Ṣurmă")(lex):
             cases.append("ABL2")
-        if has_group("Anăpr")(lex):
+        if has_group("Anăpr")(lex) or lex.name == "W_käλme":
             cases.append("ABL3")
         if has_group("Saṅkrām")(lex):
             cases.append("LOCAL")    
@@ -367,14 +367,17 @@ class NounProfile(Profile):
             return ["SG","DU","PL"]
         if lex.name == "X_qä":
             return ["—","PL"]
-        if lex.Category == "numberless":
+        if lex.Category in ["numberless","number"]:
             return ["—"]
         if lex.Category == "name" and lex.name not in ["A_śākyamuni","A_upendre"]:
             return ["SG"]
         return ["SG","PL"]
     def cell_rule(self, lex, case, col):
-        if case in ["ABL2","ABL3"] and col == "PL":
+        if case == "ABL3" and lex.name == "W_käλme":
+            if col != "PL":
                 return None
+        elif case in ["ABL2","ABL3"] and col == "PL":
+            return None
         elif lex.name == "X_qä" and col == "PL" and case not in ["NOM","ACC"]:
             return None
         elif col == "—":
@@ -387,18 +390,18 @@ class NounProfile(Profile):
             elif lex.name == "X_ālamwäc":
                 if case == "NOM":
                     return None
-            elif case not in ["NOM"] and lex.Category != "numberless":
+            elif case not in ["NOM"] and lex.Category not in ["numberless","number"]:
                 return None
         g, n = parse_col(col)
         gr = build_gram(case, g, n)
         return {"type":"form","gr":gr}
     def extra_rows(self, lex):
         rows = []
-        if lex.name in ["C_pättāñkät","C_wlāñkät"]:
+        if lex.name in ["C_pättāñkät","C_wlāñkät","C_śriñkät"]:
             return rows
         if has_group("Ywār")(lex):
             rows.append({"kind":"form_fullrow", "label":"Construct form", "gr":Grammeme([])})
-        if lex.Category != "numberless":
+        if lex.Category != "numberless" or has_group("Ksär")(lex):
             rows.append({"kind":"sublexeme", "tag":"ADJ"})
         if has_group("Lānt")(lex):
             rows.append({"kind":"sublexeme", "tag":"F"})
@@ -440,7 +443,7 @@ class AdjectiveProfile(Profile):
                     pass
                 elif case in ["NOM","ACC"] and lex.name in ["V_tärk+PPP","V_kärs+PPP"]:
                     pass
-                elif case == "INS" and lex.name in ["V_näzv+PPP","V_läm+PPP"]:
+                elif case == "INS" and lex.name in ["V_näzv+PPP","V_läm+PPP","V_λāw+PPP"]:
                     pass
                 else:
                     return None
@@ -514,6 +517,8 @@ def export_paradigm_nominal(lex, *, save_to: str|None=None):
 
     cases = profile.row_spec(lex)
     cols  = profile.col_spec(lex)
+    print(f"DEBUG: lex.name={lex.name}, Groups={getattr(lex, 'Groups', [])}, cols={cols}")
+    
 
     axes = [
         {"id":"case","label":"Case","values":[{"id":c,"label":c} for c in cases]},
@@ -700,6 +705,8 @@ def export_paradigm_p3(lex, *, save_to: str | None = None) -> Dict:
     for case in CASES_PLUS_ADV:
         for col in cols:
             if case == "ADV" and col not in ["DIST","PROX","MED"]:
+                continue
+            if case == "ABL3" and col != "DIST":
                 continue
             gender, number, deixis = _parse_p3_col(col)
 

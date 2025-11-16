@@ -1,36 +1,55 @@
 {% extends "base.html" %}
-{% block title %}Tocharian A Lexemes{% endblock %}
+{% block title %}Lexemes · Ārśi-Candrakānt{% endblock %}
+{% set active = 'lexemes' %}
 
 {% block content %}
-  <h1 class="text-2xl font-bold mb-4">List of lexemes</h1>
+  <h1 class="text-2xl font-bold mb-4 text-slate-100">Lexemes</h1>  <!-- Светлый заголовок -->
 
-  <form method="get" action="/" class="mb-4 flex gap-2">
-    <input name="q" class="border px-3 py-2 rounded w-80" placeholder="Search by name/meaning…" value="{{ q }}">
-    <button class="px-3 py-2 rounded bg-black text-white">Find</button>
-    {% if q %}
-      <a class="px-3 py-2 rounded border" href="/">Reset</a>
-    {% endif %}
+  <!-- Поисковая форма: Тёмная тема -->
+  <form method="get" action="/lexemes/" class="mb-4 flex gap-2">
+    <input
+      type="text"
+      name="q"
+      value="{{ q }}"
+      placeholder="Search by meaning/dictionary form/lexeme name..."
+      class="border border-slate-600 rounded px-3 py-1 flex-1 bg-slate-700 text-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+    />
+    <button type="submit" class="px-4 py-1 border border-slate-600 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-amber-300 transition-colors">  <!-- Тёмная кнопка с hover -->
+      Find
+    </button>
   </form>
 
-  <div class="overflow-x-auto bg-white border rounded-xl">
+  <!-- Таблица: Тёмная тема -->
+  <div class="overflow-x-auto bg-slate-800/50 border border-slate-600 rounded-xl">  <!-- Полупрозрачный тёмный фон с границей -->
     <table class="min-w-full text-base">
-      <thead class="bg-gray-100 text-left">
+      <thead class="bg-slate-700 text-left">  <!-- Тёмная голова таблицы -->
         <tr>
           <th class="px-4 py-2">Dictionary form</th>
           <th class="px-4 py-2">Meaning</th>
           <th class="px-4 py-2">Category</th>
           <th class="px-4 py-2">Gender</th>
+          <th class="px-4 py-2">Groups</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody>  <!-- Светлый текст, hover тёмнее -->
         {% for r in lexemes %}
-          <tr class="border-t hover:bg-gray-50">
-            <td class="px-6 py-2">
-              <a href="/lexeme/{{ r.name }}">{{ r.dictform }}</a>
+          <tr class="border-t border-slate-600 hover:bg-slate-700/50">
+            <td class="px-4 py-2" id="{{ r.name }}">
+              <div class="max-w-[9rem] break-words whitespace-normal">
+                <a class="text-[var(--link-color)] underline hover:text-amber-300" href="/lexeme/{{ r.name }}">  <!-- Переменная + hover -->
+                  {{ r.dictform or r.name }}
+                </a>
+              </div>
             </td>
-            <td class="px-4 py-2">{{ r.meaning }}</td>
-            <td class="px-4 py-2">{{ r.category }}</td>
-            <td class="px-4 py-2">{{ r.gender }}</td>
+            <td class="px-4 py-2 text-slate-300">  <!-- Светлый текст -->
+              <div class="max-w-[9rem] break-words whitespace-normal">
+                {{ r.meaning or '—' }}
+              </div>
+            </td>
+            <td class="px-4 py-2 text-slate-300">{{ r.category or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ r.gender or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ r.groups or '—' }}</td>
           </tr>
         {% endfor %}
       </tbody>

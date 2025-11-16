@@ -14,6 +14,7 @@ DATA_DIR = BASE_DIR / "data"
 @dataclass(slots=True, frozen=True)
 class AbstractMorpheme:
     name: str
+    num: Optional[int] = None
     shape: Optional[str] = None
     meaning: Optional[str] = None
     Category: Optional[str] = None
@@ -153,6 +154,7 @@ def load_or_create_morphemes(
             if row.isnull().all():
                 continue
 
+            num = _clean_cell(row.iloc[0])  
             shape = _clean_cell(row.iloc[1])  
             meaning = _clean_cell(row.iloc[2])  
 
@@ -177,6 +179,7 @@ def load_or_create_morphemes(
             entry = {
                 "sheet_index": sheet_index,
                 "sheet_name": sheet_name,
+                "num": num,
                 "shape": shape,
                 "meaning": meaning,
                 "raw_name": name_raw,
@@ -215,6 +218,7 @@ def load_or_create_morphemes(
         groups = p.get("Groups") or []
 
         m = AbstractMorpheme(
+            num=e["num"],
             name=final_name,
             shape=e["shape"],
             meaning=e["meaning"],

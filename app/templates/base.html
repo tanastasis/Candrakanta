@@ -5,40 +5,131 @@
     <title>{% block title %}Tocharian A{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Tailwind сначала -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 
-    <!-- Затем подключаем шрифт -->
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
 
-    <!-- И уже после — наш CSS, чтобы перебить preflight -->
+    <!-- Typography overrides -->
     <style>
       html {
         font-family: "Source Serif 4", "Times New Roman", Georgia, Times, serif !important;
         font-kerning: normal;
         font-variant-ligatures: common-ligatures;
       }
-      /* моноширинный для форм/вариантов: */
       .font-mono {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace !important;
+      }
+      /* Лунно-звёздная тема: Тёмный градиентный фон с звёздами */
+      body {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); /* Тёмно-синий градиент */
+        background-attachment: fixed;
+        position: relative;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),  /* Жёлтая звезда */
+          radial-gradient(2px 2px at 40px 70px, #fbbf24, transparent),
+          radial-gradient(1px 1px at 90px 40px, #fbbf24, transparent),
+          radial-gradient(1px 1px at 130px 80px, #fbbf24, transparent),
+          radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent); /* Ещё звёздочки */
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        opacity: 0.1; /* Полупрозрачные, чтобы не отвлекали */
+        z-index: -1;
+        animation: twinkle 4s ease-in-out infinite alternate; /* Лёгкая анимация мерцания */
+      }
+      @keyframes twinkle {
+        from { opacity: 0.1; }
+        to { opacity: 0.3; }
+      }
+      /* Лунный акцент: Полумесяц в хедере */
+      .header-moon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: #fbbf24; /* Золотисто-жёлтый для луны */
+      }
+      :root {
+      --link-color: #8b96d5;  /* Синий как blue-600, или #fbbf24 для золотистого в твоей теме */
+      }
+      /* Фикс: Золотистый hover для всех ссылок в nav (sidebar) */
+      nav a {
+        transition: color 0.2s ease;  /* Плавный переход */
+      }
+      nav a:hover {
+        color: #fbbf24 !important;  /* amber-300, переопределяет всё */
+      }
+      nav a.active {  /* Для активных — остаётся amber, но hover не меняет */
+        color: #fbbf24;
       }
     </style>
   </head>
-  <body class="min-h-screen bg-gray-50 text-gray-900">
-    <header class="px-6 py-4 border-b bg-white">
-      <div class="max-w-6xl mx-auto flex items-center justify-between">
-        <a href="/" class="font-semibold">Ārśi-Candrakānt</a>
+
+  <body class="min-h-screen text-slate-100 flex flex-col">  <!-- text-slate-100: светлый текст на тёмном фоне -->
+
+    <!-- HEADER: Тёмный с лунным акцентом -->
+    <header class="px-6 py-4 border-b bg-slate-900/80 backdrop-blur-sm">  <!-- Тёмно-серый с размытием -->
+      <div class="max-w-6xl mx-auto flex items-center justify-between relative">
+        <div class="flex items-center">
+          <a href="/" class="font-semibold text-xl ml-2 text-slate-100 hover:text-amber-300">Ārśi-Candrakānta</a>  <!-- Светлый текст, hover золотистый -->
+        </div>
         {% block header_right %}{% endblock %}
       </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-6">
-      {% block content %}{% endblock %}
-    </main>
+    <!-- LAYOUT: sidebar + content -->
+    <div class="flex flex-1 max-w-6xl mx-auto w-full">
 
+      <!-- SIDEBAR: Тёмная, с градиентом -->
+      <aside class="w-48 border-r bg-slate-800/50 backdrop-blur-sm p-4 pt-6 text-base flex-shrink-0">  <!-- Полупрозрачный тёмный -->
+        <nav class="space-y-1">
+          <a href="/"
+             class="block px-3 py-2 rounded hover:bg-slate-700/50 
+                    {% if active == 'intro' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
+            Introduction
+          </a>
+
+          <a href="/lexemes"
+             class="block px-3 py-2 rounded hover:bg-slate-700/50
+                    {% if active == 'lexemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
+            Lexemes
+          </a>
+
+          <a href="/morphemes"
+             class="block px-3 py-2 rounded hover:bg-slate-700/50
+                    {% if active == 'morphemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
+            Morphemes
+          </a>
+
+          <a href="/rules"
+             class="block px-3 py-2 rounded hover:bg-slate-700/50
+                    {% if active == 'rules' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
+            Rules
+          </a>
+        </nav>
+      </aside>
+
+      <!-- MAIN CONTENT: Тёмный фон, светлый текст -->
+      <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20">  <!-- Полупрозрачный тёмный -->
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <!-- VARIANT VISIBILITY SCRIPT -->
     <script>
       function applyVariantVisibility() {
         const showAll = document.body.dataset.showAllVariants === '1';
@@ -48,16 +139,12 @@
         });
       }
 
-      // apply on load
       document.addEventListener('DOMContentLoaded', applyVariantVisibility);
-
-      // re-apply after HTMX swaps
       document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
-
-      // re-apply on toggle
       document.addEventListener('change', (e) => {
         if (e.target && e.target.id === 'toggle-all-variants') applyVariantVisibility();
       });
     </script>
+
   </body>
 </html>

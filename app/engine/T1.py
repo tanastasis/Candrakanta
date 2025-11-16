@@ -161,6 +161,7 @@ def buildForm(lex: "Lexeme", gram: "Grammeme", post: "Postfixeme" = None):
                 l.append(new_letter)
     variants = [Variant(m, l)]
     gl = "-".join([mor.meaning for mor in m])
+    gl = re.sub(" ",".",gl)
     gl2 = "-".join([mor.shape for mor in m])
     variants[0].rules.append(("0","","",gl))
     variants[0].rules.append(("1","","",gl2))
@@ -374,7 +375,7 @@ def satisfy_morph(variant: "Variant", i: int, condition: Any, *, unless: bool = 
         return m[j].shape == "Ø" or m[j].shape == ""
     elif what == "NonEmpty":
         return m[j].shape != "Ø" and m[j].shape != ""
-    elif what == "Wagon":
+    elif what == "wagon":
         return m[j].wagon == int(of[0])
     elif what == "Gender":
         if m[j].Gender:
@@ -530,8 +531,8 @@ _long = 'iuaāeoīūṛ'
 _vowel = 'äăiuaāeoīūṛ'
 _Y = 'yw'
 _N = 'nmñṅṇ'
-_C = 'kctzpgdbqṭḍjhśsṣnmñṅṇλlrywv'
-_T = 'kctzpgdbqṭḍj'
+_C = 'kctzpgdbqṭḍjhśsṣnmñṅṇλlrywvf'
+_T = 'kctzpgdbqṭḍjf'
 _L = 'lr'
 _S = 'śṣs'
 
@@ -540,8 +541,8 @@ replacements = {
     '_long': 'iuaāeoīūṛ',
     '_V': 'äăiuaāeoīūṛ',
     '_L': 'lr',
-    '_Q': 'kctzpgdbqṭḍjhśsṣ',
-    '_C': 'kctzpgdbqṭḍjhśsṣnmñṅṇλlrywv',
+    '_Q': 'kctzpgdbqṭḍjhśsṣf',
+    '_C': 'kctzpgdbqṭḍjhśsṣnmñṅṇλlrywvf',
     '_Y': 'yw',
     '_N': 'nmñṅṇ',
     '_T': 'kctzpgdbqṭḍj',
@@ -1101,8 +1102,11 @@ def sublexeme(lex: "Lexeme", mors: list[str], *, am=am) -> "Lexeme":
     )
 
     last_cat = getattr(added[-1], "Category", None)
-    if last_cat and str(last_cat).lower() not in {"verb", "gender"}:
-        new.Category = last_cat
+    if last_cat:
+        if str(last_cat).lower() == "gender":
+            new.Category = "strong"
+        elif last_cat and str(last_cat).lower() != "verb":
+            new.Category = last_cat
     new.Groups = added[-1].Groups
 
     _append_last_index_to_maps(new)
@@ -1114,7 +1118,11 @@ def dictionary_form(lex: Lexeme, *, every: bool=False) -> str:
         g = Grammeme([am["GER2"],am["NMZ"],am['SG'],am['NOM']])
     elif lex.name == "P_3":
         g = Grammeme([am["DIST"],am['NOM']])
+    elif lex.name == "P_änzaṃ":
+        g = Grammeme([am["M"],am["SG"],am["MED"],am['NOM']])
     elif lex.name in ["N_ṣomă","P_1"] or lex.Category in ["qualitative","relative"]:
+        if lex.name == "R_arkănt":
+            return "arkant-"
         g = Grammeme([am["M"],am['SG'],am['NOM']])
     elif lex.name in ["N_vä","N_täräy"]:
         g = Grammeme([am["M"],am['NOM']])
@@ -1128,6 +1136,8 @@ def dictionary_form(lex: Lexeme, *, every: bool=False) -> str:
     if reg:
         if every:
             return ", ".join([r for r in reg])
+        if "kāsu" in reg:
+            return "kāsu"
         return reg[-1]
     else:
         return "—"
@@ -1143,6 +1153,8 @@ def add_dictionary_form_to_json(json_path: str, output_path: str | None = None):
     updated = 0
 
     for lex_id, raw in data.items():
+        if raw["DictionaryForm"]:
+            break
         lex = lx[lex_id]
 
         try:
@@ -1162,5 +1174,17 @@ def add_dictionary_form_to_json(json_path: str, output_path: str | None = None):
 
     print(f"Saved updated JSON to: {out}")
 
-# add_dictionary_form_to_json("./data/lexemes.json")
+# print('lala')
+# a = "lala"
+add_dictionary_form_to_json("./data/lexemes.json")
 
+
+# a = lx["W_kār"]
+# b = sublexeme(a,["DU"])
+# g = Grammeme([am["NOM"]])
+# g = Grammeme([am["PL"],am["ABL"]])
+# f = buildForm(b, g)
+# phonol(f)
+# pprint(b)
+# print(f.Variants[0].m[1].wagon)
+# print(f)

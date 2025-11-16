@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Rules{% endblock %}
+{% set active = 'rules' %}  <!-- Для золотистого active в sidebar -->
+
+{% block content %}
+
+<h1 class="text-2xl font-bold mb-4 text-slate-100">Rules</h1>
+
+<!-- Ссылки на скачивание: Тёмная тема -->
+<div class="mb-4 flex gap-4">
+  <a href="/candrakanta.pdf" class="px-4 py-2 bg-slate-700 text-slate-200 rounded hover:bg-slate-600 hover:text-amber-300 transition-colors border border-slate-600" target="_blank">
+    Candrakānta (PDF)
+  </a>
+  <a href="/lexemes.xlsx" class="px-4 py-2 bg-slate-700 text-slate-200 rounded hover:bg-slate-600 hover:text-amber-300 transition-colors border border-slate-600">
+    Lexemes (XLSX)
+  </a>
+</div>
+
+<div class="overflow-x-auto bg-slate-800/50 border border-slate-600 rounded-xl">  <!-- Полупрозрачный тёмный фон с границей -->
+  <table class="min-w-full text-base table-auto border-separate border-spacing-0">
+    <thead class="bg-slate-700 text-left">  <!-- Тёмная голова таблицы -->
+      <tr>
+        <th class="px-4 py-2 text-slate-300">Rule</th>  <!-- Светлый текст -->
+        <th class="px-4 py-2 text-slate-300">Wording</th>  <!-- Светлый текст -->
+      </tr>
+    </thead>
+    <tbody>  <!-- Светлый текст, hover тёмнее -->
+      {% for r in rules_list %}
+        <tr class="border-t border-slate-600 hover:bg-slate-700/50" id="rule-{{ r.id }}">
+          <td class="px-4 py-2 text-slate-300">{{ r.id }}</td>  <!-- Светлый текст -->
+          <td class="px-4 py-2 text-slate-300">  <!-- Светлый текст -->
+            {% autoescape false %}{{ r.wording }}{% endautoescape %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- JS для динамических панелей групп -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let activePanel = null;  // Отслеживаем активную панель
+
+    document.addEventListener("click", function(e) {
+        let link = e.target.closest(".group-link");
+        if (!link) {
+            // Если клик не на ссылке группы — закрываем все панели (опционально, можно убрать)
+            closeAllPanels();
+            return;
+        }
+
+        e.preventDefault();  // Предотвращаем стандартное поведение ссылки
+
+        let group = link.dataset.group;
+        let panelId = `group-panel-${group}`;
+
+        // Если панель уже открыта для этой группы — закрываем
+        let existingPanel = document.getElementById(panelId);
+        if (existingPanel) {
+            closePanel(existingPanel);
+            activePanel = null;
+            return;
+        }
+
+        // Закрываем предыдущую активную панель (если есть)
+        closeAllPanels();
+
+        // Создаем новую панель под ссылкой
+        let panel = createPanel(panelId, link);
+        activePanel = panel;
+
+        // Запрашиваем контент через HTMX и вставляем
+        let htmxReq = new XMLHttpRequest();  // Или используй fetch, но HTMX-стиль для consistency
+        htmxReq.open('GET', `/rules/group/${group}`, true);
+        htmxReq.onreadystatechange = function() {
+            if (htmxReq.readyState === 4 && htmxReq.status === 200) {
+                panel.innerHTML = htmxReq.responseText;
+                // Позиционируем после вставки (на случай изменений DOM)
+                positionPanel(panel, link);
+            }
+        };
+        htmxReq.send();
+    });
+
+    function createPanel(panelId, link) {
+        let panel = document.createElement('div');
+        panel.id = panelId;
+        panel.className = 'group-panel fixed bg-slate-800/90 border border-slate-600 rounded-lg shadow-lg z-50 p-3 max-w-md text-slate-300';  <!-- Тёмная панель для темы -->
+        panel.style.minWidth = '250px';  // Минимальная ширина
+        document.body.appendChild(panel);  // Добавляем в body для fixed позиционирования
+        return panel;
+    }
+
+    function positionPanel(panel, link) {
+        let rect = link.getBoundingClientRect();
+        // Позиционируем под ссылкой: left по центру ссылки, top = bottom ссылки + отступ
+        panel.style.left = (rect.left + rect.width / 2 - 125) + 'px';  // 125px ~ половина max-w-md
+        panel.style.top = (rect.bottom + 8) + 'px';  // 8px отступ снизу
+        // Если выходит за экран — корректируем (опционально)
+        let viewportWidth = window.innerWidth;
+        if (parseInt(panel.style.left) + 250 > viewportWidth) {
+            panel.style.left = (viewportWidth - 260) + 'px';
+        }
+    }
+
+    function closePanel(panel) {
+        if (panel && panel.parentNode) {
+            panel.parentNode.removeChild(panel);
+        }
+    }
+
+    function closeAllPanels() {
+        if (activePanel) {
+            closePanel(activePanel);
+            activePanel = null;
+        }
+        // Или найди все .group-panel и удали
+        document.querySelectorAll('.group-panel').forEach(closePanel);
+    }
+
+    // Закрытие по клику вне панели (опционально, улучшает UX)
+    document.addEventListener("click", function(e) {
+        if (activePanel && !e.target.closest('.group-link') && !activePanel.contains(e.target)) {
+            closeAllPanels();
+        }
+    });
+});
+</script>
+
+<style>
+/* Дополнительные стили для панели, если нужно (можно вынести в global CSS) */
+.group-panel::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #334155;
+}
+</style>
+
+{% endblock %}

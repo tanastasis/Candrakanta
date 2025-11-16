@@ -1,30 +1,41 @@
 <div class="mt-3">
   {% if d.steps and d.steps|length > 0 %}
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto bg-slate-800/50 border border-slate-600 rounded">
       <table class="min-w-full text-sm border-separate border-spacing-0 table-auto">
-        <thead class="bg-gray-100 text-left">
+        <thead class="bg-slate-700 text-left">  <!-- Тёмная голова таблицы -->
           <tr>
-            <th class="px-3 py-2 w-16">#</th>
-            <th class="px-3 py-2">Form</th>
-            <th class="px-3 py-2">Rule</th>
-            <th class="px-3 py-2 w-24">Pos</th>
-            <th class="px-3 py-2">Wording</th>
+            <th class="px-3 py-2 w-5 text-slate-300">#</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 text-slate-300">Form</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 text-slate-300">Rule</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 w-24 text-slate-300">Pos</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 text-slate-300">Wording</th>  <!-- Светлый текст -->
           </tr>
         </thead>
-        <tbody>
+        <tbody>  <!-- Светлый текст, hover тёмнее -->
           {% for s in d.steps %}
-            <tr class="border-t">
-              <td class="px-3 py-2 align-top text-gray-500">{{ loop.index }}</td>
-              <td class="px-3 py-2 align-top whitespace-nowrap">{{ s.form }}</td>
-              <td class="px-3 py-2 align-top">
-                <a class="underline" href="/rule/{{ s.rule_id }}">{{ s.rule_id }}</a>
-                {% if s.opt %}<span class="ml-1 text-xs text-gray-500">[opt]</span>{% endif %}
+            <tr class="border-t border-slate-600 hover:bg-slate-700/50">  <!-- Тёмная граница, hover -->
+              <td class="px-3 py-2 align-top text-slate-500">{{ loop.index }}</td>  <!-- Серый для номера -->
+              <td class="px-3 py-2 align-top whitespace-nowrap text-slate-300">  <!-- Светлый текст -->
+                {% if s.form_html %}
+                  {% autoescape false %}{{ s.form_html }}{% endautoescape %}
+                {% else %}
+                  {{ s.form }}
+                {% endif %}
               </td>
-              <td class="px-3 py-2 align-top">
-                {% if s.pos is not none and s.pos != '' %}{{ s.pos }}{% else %}<span class="text-gray-400">—</span>{% endif %}
+              <td class="px-3 py-2 align-top text-slate-300">  <!-- Светлый текст -->
+                <a class="underline text-cyan-400 hover:text-cyan-300" href="/rules#rule-{{ s.rule_id }}">  <!-- Cyan-400 для правил -->
+                  {{ s.rule_id }}
+                </a>
               </td>
-              <td class="px-3 py-2 align-top text-gray-800">
-                {% if s.wording %}{{ s.wording }}{% else %}<span class="text-gray-400">—</span>{% endif %}
+              <td class="px-3 py-2 align-top text-slate-300">  <!-- Светлый текст -->
+                {% if s.pos is not none and s.pos != '' %}{{ s.pos }}{% else %}<span class="text-slate-500">—</span>{% endif %}  <!-- Серый для пустого -->
+              </td>
+              <td class="px-3 py-2 align-top text-slate-300">  <!-- Светлый текст -->
+                {% if s.wording %}
+                  {% autoescape false %}{{ s.wording }}{% endautoescape %}
+                {% else %}
+                  <span class="text-slate-500">—</span>  <!-- Серый для пустого -->
+                {% endif %}
               </td>
             </tr>
           {% endfor %}
@@ -32,6 +43,6 @@
       </table>
     </div>
   {% else %}
-    <p class="text-gray-500 text-sm">No derivation steps available.</p>
+    <p class="text-slate-500 text-sm">No derivation steps available.</p>  <!-- Серый для пустого -->
   {% endif %}
 </div>

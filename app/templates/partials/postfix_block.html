@@ -1,12 +1,12 @@
-<div id="postfix-block-{{ d.variant_id }}" class="mb-3">
-  <div class="font-semibold mb-3">
+<div id="postfix-block-{{ d.variant_id }}" class="mb-3 bg-slate-800/50 border border-slate-600 rounded p-3">  <!-- Полупрозрачный тёмный блок с границей -->
+  <div class="font-semibold mb-3 text-slate-100">  <!-- Светлый заголовок -->
     <span>{{ d.surface }}</span>
   </div>
 
-  <!-- Кнопки из allowed_posts -->
+  <!-- Кнопки из allowed_posts: Тёмная тема -->
   <div class="flex flex-wrap gap-2 mb-3">
     {% for p in d.allowed_posts %}
-      <button class="px-2 py-1 border rounded"
+      <button class="px-2 py-1 border border-slate-600 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-amber-300 transition-colors"
               hx-post="/api/variant/{{ d.variant_id }}/with_postfix"
               hx-vals='js:{"post":"{{ p }}", "show_all": (document.body.dataset.showAllVariants==="1"?"1":"0")}'
               hx-target="#postfix-block-{{ d.variant_id }}"
@@ -19,14 +19,14 @@
   {% if d.variants and d.variants|length > 0 %}
     <ul class="flex flex-wrap gap-2 mb-3">
       {% for v in d.variants %}
-        <span class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border hover:bg-gray-50 whitespace-nowrap"
+        <span class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-700 hover:bg-slate-600 text-slate-300 whitespace-nowrap"  <!-- Тёмная пилюля с hover -->
               data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
               style="display: {{ 'inline-flex' if (show_all=='1') or v['is_canonical'] else 'none' }};">
           <a href="#"
              hx-get="/api/variant/{{ v['variant_id'] }}/derivation"
              hx-target="#postfix-deriv-{{ d.variant_id }}"
              hx-swap="innerHTML"
-             class="inline-flex items-center gap-1"
+             class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300"
              title="{{ v['variant_id'] }}">
             {{ v['surface'] }}
           </a>
@@ -34,7 +34,7 @@
       {% endfor %}
     </ul>
   {% else %}
-    <div class="text-gray-500 mb-3">—</div>
+    <div class="text-slate-500 mb-3">—</div>  <!-- Серый для пустого -->
   {% endif %}
 
   <div id="postfix-deriv-{{ d.variant_id }}" class="mt-3"
