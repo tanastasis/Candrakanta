@@ -17,7 +17,7 @@
     ← Back
   </a>
 
-  <h1 class="text-2xl font-bold mb-2 text-slate-100">{{ payload.lexeme_id }}</h1>
+  <h1 class="text-2xl font-bold mb-2 text-indigo-400">{{ payload.lexeme_id }}</h1>
   <h1 class="text-xl font-bold mb-2 text-slate-100">“<span class="font-medium text-slate-200">{{ payload.meaning }}</span>”</h1>
   <div class="text-sm text-slate-400 mb-6">
     Category: <span class="font-medium text-slate-300">{{ payload.category }}</span>
@@ -82,7 +82,7 @@
                     <ul class="flex flex-wrap gap-2">
                       {% for v in content['variants'] %}
                         <span
-                          class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-700 hover:bg-slate-600 text-slate-200 whitespace-nowrap" 
+                          class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-800 hover:bg-slate-600 text-slate-200 whitespace-nowrap" 
                           data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
                           style="display: {{ 'inline-flex' if v['is_canonical'] else 'none' }};"
                         >
@@ -92,7 +92,7 @@
                             hx-vals='js:{"post": "", "show_all": document.body.dataset.showAllVariants || "0"}'
                             hx-target="#derivation-panel"
                             hx-swap="innerHTML"
-                            class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300" 
+                            class="inline-flex items-center gap-1 text-slate-300 hover:text-cyan-300" 
                             title="{{ v['variant_id'] }}"
                           >
                             {{ v['surface'] }}
