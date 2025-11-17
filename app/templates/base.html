@@ -54,17 +54,31 @@
         from { opacity: 0.1; }
         to { opacity: 0.3; }
       }
-      /* Лунный акцент: Полумесяц в хедере */
-      .header-moon {
+      /* Яркое звездное небо только в хедере */
+      .header-sky::before {
+        content: '';
         position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.5rem;
-        color: #fbbf24; /* Золотисто-жёлтый для луны */
+        inset: 0;
+        background-image:
+          radial-gradient(2px 2px at 10% 20%, #fbbf24, transparent),
+          radial-gradient(2px 2px at 30% 60%, #fbbf24, transparent),
+          radial-gradient(1px 1px at 50% 30%, #fbbf24, transparent),
+          radial-gradient(1px 1px at 70% 80%, #fbbf24, transparent),
+          radial-gradient(2px 2px at 90% 40%, #fbbf24, transparent);
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        opacity: 0.5;              /* ярче, чем у body */
+        z-index: -1;
+        animation: header-twinkle 3s ease-in-out infinite alternate;
       }
+
+      @keyframes header-twinkle {
+        from { opacity: 0.35; transform: translateY(0px); }
+        to   { opacity: 0.7;  transform: translateY(-2px); }
+      }
+
       :root {
-      --link-color: #8b96d5;  /* Синий как blue-600, или #fbbf24 для золотистого в твоей теме */
+      --link-color: #a1aae0;  /* Синий как blue-600, или #fbbf24 для золотистого в твоей теме */
       }
       /* Фикс: Золотистый hover для всех ссылок в nav (sidebar) */
       nav a {
@@ -81,18 +95,25 @@
 
   <body class="min-h-screen text-slate-100 flex flex-col">  <!-- text-slate-100: светлый текст на тёмном фоне -->
 
-    <!-- HEADER: Тёмный с лунным акцентом -->
-    <header class="px-6 py-4 border-b bg-slate-900/80 backdrop-blur-sm">  <!-- Тёмно-серый с размытием -->
-      <div class="max-w-6xl mx-auto flex items-center justify-between relative">
-        <div class="flex items-center">
-          <a href="/" class="font-semibold text-xl ml-2 text-slate-100 hover:text-amber-300">Ārśi-Candrakānta</a>  <!-- Светлый текст, hover золотистый -->
-        </div>
-        {% block header_right %}{% endblock %}
+    <header class="relative flex items-end w-full border-b overflow-hidden header-sky">
+      <div class="w-48 mr-2">
+        <img src="/static/logo1.png" alt="Logo: Buddhist monk under the Moon"
+            class="w-full h-auto object-contain">
+      </div>
+
+      <a href="/" class="font-semibold text-2xl ml-6 mb-[5rem] text-slate-100 hover:text-amber-300">
+        Ārśi-Candrakānta
+      </a>
+      <div class="ml-auto mr-[6rem] flex items-end gap-[3rem]">
+        <img src="/static/logo4.png" alt="Logo: Hunter"
+            class="h-[8rem] w-auto object-contain">
+        <img src="/static/logo3.png" alt="Logo: Six-Tusked Elephant"
+            class="h-[9.5rem] w-auto self-end object-contain">
       </div>
     </header>
 
     <!-- LAYOUT: sidebar + content -->
-    <div class="flex flex-1 max-w-6xl mx-auto w-full">
+    <div class="flex flex-1 w-full">
 
       <!-- SIDEBAR: Тёмная, с градиентом -->
       <aside class="w-48 border-r bg-slate-800/50 backdrop-blur-sm p-4 pt-6 text-base flex-shrink-0">  <!-- Полупрозрачный тёмный -->

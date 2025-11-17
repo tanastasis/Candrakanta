@@ -2153,6 +2153,21 @@
     "id": "II.10.6",
     "kind": "morphological",
     "ifs": [
+      "0~Morpheme~ṣoλākā"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~śoλākā"
+    ],
+    "optional": [
+      "+"
+    ],
+    "wording": "Optionally ślokă → ṣλokă"
+  },
+  "II.10.7": {
+    "id": "II.10.7",
+    "kind": "morphological",
+    "ifs": [
       "0~Morpheme~asaṃkhye"
     ],
     "unlesses": [],
@@ -2164,8 +2179,8 @@
     ],
     "wording": "asaṃkhye → asaṃkhe preferably"
   },
-  "II.10.7": {
-    "id": "II.10.7",
+  "II.10.8": {
+    "id": "II.10.8",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~śoṣäy",
@@ -2180,8 +2195,8 @@
     ],
     "wording": "śoṣäy → śo before ADJ optionally"
   },
-  "II.10.8": {
-    "id": "II.10.8",
+  "II.10.9": {
+    "id": "II.10.9",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ag",
@@ -5117,7 +5132,7 @@
     "unlesses": [
       "1~Morpheme~NOM,GEN",
       "-2~Morpheme~ṣomă",
-      "0~Before~t$",
+      "*-1~Native~—0~Before~t$",
       "*-3~Morpheme~vä,śtwarā—-2~Morpheme~ORD—-1~Morpheme~M",
       "*-1~Morpheme~F—-2~Morpheme~lānt"
     ],
@@ -5125,7 +5140,7 @@
       "0~Shape~än"
     ],
     "optional": [],
-    "wording": "SG → än in ending after gender/name/strong (except after ṣomă, t, vä+ORD+M) not before NOM/GEN"
+    "wording": "SG → än in ending after gender/name/strong (except after ṣomă, native t, vä+ORD+M) not before NOM/GEN"
   },
   "III.7.2": {
     "id": "III.7.2",
@@ -8722,13 +8737,14 @@
       "-1~Shape~y,e"
     ],
     "unlesses": [
-      "1~Shape~ā"
+      "1~Shape~ā",
+      "0~After~^äs"
     ],
     "operations": [
       "0~Shape~y"
     ],
     "optional": [],
-    "wording": "w → y after e/y not before ā"
+    "wording": "w → y after e/y not before ā/äs"
   },
   "VI.1.1": {
     "id": "VI.1.1",
@@ -9136,7 +9152,7 @@
     "id": "VI.11.2",
     "kind": "phonological",
     "ifs": [
-      "1~Class~[{_C}]",
+      "*1~Class~[{_C}]—0~After~^äl",
       "0~Shape~`",
       "-1~Shape~p",
       "-2~Shape~y"
@@ -9147,7 +9163,7 @@
       "-1~Shape~Ø"
     ],
     "optional": [],
-    "wording": "yp` → ya before C"
+    "wording": "yp` → ya before C and äl"
   },
   "VI.12.1": {
     "id": "VI.12.1",
@@ -10080,7 +10096,7 @@
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "ä → Ø in open syllables"
+    "wording": "ä drops unless what’s after it after deletion of all ` starts with “consonant not before vowel”"
   },
   "VII.9.1": {
     "id": "VII.9.1",
@@ -10114,7 +10130,8 @@
       "-1~Morpheme~F",
       "-2~Shape~n",
       "-3~Shape~i",
-      "-2~Before~[{_V}][{_C}`]*[{_V}]"
+      "-2~Before~[{_V}][{_C}`]*[{_V}]",
+      "-2~Morpheme~ADJ"
     ],
     "unlesses": [],
     "operations": [
@@ -10124,7 +10141,7 @@
     "optional": [
       "+"
     ],
-    "wording": "Optionally ān → Ø after in (not of qualitative roots) not in the second syllable, if ā is part of F"
+    "wording": "Optionally ān → Ø after in of ADJ not in the second syllable, if ā is part of F"
   },
   "VII.9.3": {
     "id": "VII.9.3",
@@ -10169,7 +10186,7 @@
     "id": "VII.9.5",
     "kind": "phonological",
     "ifs": [
-      "0~Shape~n",
+      "0~Shape~n,ṇ",
       "1~Shape~n",
       "1~Morpheme~SG"
     ],
@@ -10180,7 +10197,7 @@
     "optional": [
       "+"
     ],
-    "wording": "n optionally drops before n of SG"
+    "wording": "n/ṇ optionally drops before n of SG"
   },
   "VII.10.1": {
     "id": "VII.10.1",
@@ -10494,7 +10511,7 @@
     "id": "VII.20.1",
     "kind": "phonological",
     "ifs": [
-      "0~Shape~l,r",
+      "0~Shape~l,r,λ",
       "-1~Class~[{_C}]",
       "1~Class~[{_C}]"
     ],
@@ -10507,7 +10524,7 @@
       "0~Prefix~ä"
     ],
     "optional": [],
-    "wording": "Add ä after С before r/l + C (except rrC)"
+    "wording": "Add ä after С before “liquid + C” (except rrC)"
   },
   "VII.20.2": {
     "id": "VII.20.2",
@@ -10598,6 +10615,21 @@
     "optional": [],
     "wording": "VC1ñC2 → VC1äñC2 unless 1) C1 = ñ, 2) C1 = stop and C2 is l/m"
   },
+  "VII.22.1": {
+    "id": "VII.22.1",
+    "kind": "phonological",
+    "ifs": [
+      "0~Shape~y",
+      "*1~Class~[{_C}]—0~After~^$",
+      "-1~Class~[{_C}]"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~i"
+    ],
+    "optional": [],
+    "wording": "y → i after C before C/word-finally"
+  },
   "VIII.1.1": {
     "id": "VIII.1.1",
     "kind": "phonological",
@@ -10685,21 +10717,6 @@
     "id": "VIII.3.1",
     "kind": "phonological",
     "ifs": [
-      "0~Shape~y",
-      "*1~Class~[{_C}]—0~After~^$",
-      "-1~Class~[{_C}]"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~i"
-    ],
-    "optional": [],
-    "wording": "y → i after C before C/word-finally"
-  },
-  "VIII.4.1": {
-    "id": "VIII.4.1",
-    "kind": "phonological",
-    "ifs": [
       "0~Shape~t",
       "1~Shape~c"
     ],
@@ -10710,8 +10727,8 @@
     "optional": [],
     "wording": "tc → cc"
   },
-  "VIII.4.2": {
-    "id": "VIII.4.2",
+  "VIII.3.2": {
+    "id": "VIII.3.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~wäl"
@@ -10723,8 +10740,8 @@
     "optional": [],
     "wording": "ln → ll in wäl"
   },
-  "VIII.4.3": {
-    "id": "VIII.4.3",
+  "VIII.3.3": {
+    "id": "VIII.3.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~s",
@@ -10739,8 +10756,8 @@
     "optional": [],
     "wording": "s → ṣ before ṣ not of ADJ"
   },
-  "VIII.4.4": {
-    "id": "VIII.4.4",
+  "VIII.3.4": {
+    "id": "VIII.3.4",
     "kind": "phonological",
     "ifs": [
       "0~Shape~p",
@@ -10756,8 +10773,8 @@
     ],
     "wording": "p assimilates to ṣ/w/z/c after m preferably"
   },
-  "VIII.4.5": {
-    "id": "VIII.4.5",
+  "VIII.3.5": {
+    "id": "VIII.3.5",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~śäw,bäk",
@@ -10771,8 +10788,8 @@
     "optional": [],
     "wording": "In śäw/bäk~PPP tp, pk → pp, kk"
   },
-  "VIII.4.6": {
-    "id": "VIII.4.6",
+  "VIII.3.6": {
+    "id": "VIII.3.6",
     "kind": "phonological",
     "ifs": [
       "0~Shape~y",
@@ -10787,8 +10804,8 @@
     ],
     "wording": "Preferably ñy → ññ"
   },
-  "VIII.4.7": {
-    "id": "VIII.4.7",
+  "VIII.3.7": {
+    "id": "VIII.3.7",
     "kind": "phonological",
     "ifs": [
       "0~Shape~k",
@@ -10803,11 +10820,11 @@
     ],
     "wording": "k → ṣ preferably in wärkṣäl"
   },
-  "VIII.4.8": {
-    "id": "VIII.4.8",
+  "VIII.3.8": {
+    "id": "VIII.3.8",
     "kind": "phonological",
     "ifs": [
-      "0~Class~[{_N}]",
+      "*0~Class~[{_N}]—0~Shape~p",
       "-1~Shape~m",
       "0~After~^[śṣsc]"
     ],
@@ -10816,10 +10833,10 @@
       "0~Assim~"
     ],
     "optional": [],
-    "wording": "After m, nasals assimilate to sibilant and c"
+    "wording": "After m, nasals/p assimilate to sibilant and c"
   },
-  "VIII.4.9": {
-    "id": "VIII.4.9",
+  "VIII.3.9": {
+    "id": "VIII.3.9",
     "kind": "phonological",
     "ifs": [
       "0~Shape~t",
@@ -10834,8 +10851,8 @@
     ],
     "wording": "Marginally tq → qq"
   },
-  "VIII.4.10": {
-    "id": "VIII.4.10",
+  "VIII.3.10": {
+    "id": "VIII.3.10",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~anśuk"
@@ -10849,8 +10866,8 @@
     ],
     "wording": "Optionally nś → śś in anśuk"
   },
-  "VIII.4.11": {
-    "id": "VIII.4.11",
+  "VIII.3.11": {
+    "id": "VIII.3.11",
     "kind": "phonological",
     "ifs": [
       "0~Shape~z",
@@ -10866,8 +10883,8 @@
     ],
     "wording": "z → optionally ṣ before ṣar"
   },
-  "VIII.4.12": {
-    "id": "VIII.4.12",
+  "VIII.3.12": {
+    "id": "VIII.3.12",
     "kind": "phonological",
     "ifs": [
       "0~Shape~r",
@@ -10883,8 +10900,8 @@
     ],
     "wording": "r → optionally ś before śkan"
   },
-  "VIII.4.13": {
-    "id": "VIII.4.13",
+  "VIII.3.13": {
+    "id": "VIII.3.13",
     "kind": "phonological",
     "ifs": [
       "0~Shape~s",
@@ -10898,8 +10915,8 @@
     "optional": [],
     "wording": "s → Ø before śś"
   },
-  "VIII.4.14": {
-    "id": "VIII.4.14",
+  "VIII.3.14": {
+    "id": "VIII.3.14",
     "kind": "phonological",
     "ifs": [
       "0~Shape~h",
@@ -10915,8 +10932,8 @@
     ],
     "wording": "Marginally hm → mm in brāhmăṇā"
   },
-  "VIII.4.15": {
-    "id": "VIII.4.15",
+  "VIII.3.15": {
+    "id": "VIII.3.15",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~pās",
@@ -10932,8 +10949,8 @@
     ],
     "wording": "Marginally pṣ → ṣṣ in W_pāpṣune"
   },
-  "VIII.5.1": {
-    "id": "VIII.5.1",
+  "VIII.4.1": {
+    "id": "VIII.4.1",
     "kind": "phonological",
     "ifs": [
       "0~BeforeSimilar~"
@@ -10947,8 +10964,8 @@
     "optional": [],
     "wording": "Degeminate consonants not before vowel or r"
   },
-  "VIII.6.1": {
-    "id": "VIII.6.1",
+  "VIII.5.1": {
+    "id": "VIII.5.1",
     "kind": "phonological_right",
     "ifs": [
       "0~Shape~c",
@@ -10963,8 +10980,8 @@
     "optional": [],
     "wording": "Sibilant + c → śś in native morphemes"
   },
-  "VIII.7.1": {
-    "id": "VIII.7.1",
+  "VIII.6.1": {
+    "id": "VIII.6.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -10981,8 +10998,8 @@
     ],
     "wording": "In verse -räs → -rs"
   },
-  "VIII.7.2": {
-    "id": "VIII.7.2",
+  "VIII.6.2": {
+    "id": "VIII.6.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -10998,8 +11015,8 @@
     ],
     "wording": "In verse ä drops not in the last syllable if its deletion doesn’t cause an impermissible cluster"
   },
-  "VIII.7.3": {
-    "id": "VIII.7.3",
+  "VIII.6.3": {
+    "id": "VIII.6.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~e",
@@ -11018,8 +11035,8 @@
     ],
     "wording": "In verse e drops and y + vowel other than ä if its deletion doesn’t cause an impermissible cluster"
   },
-  "VIII.7.4": {
-    "id": "VIII.7.4",
+  "VIII.6.4": {
+    "id": "VIII.6.4",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ime,eśe"
@@ -11033,8 +11050,8 @@
     ],
     "wording": "i- → y- in ime, eśe in verse"
   },
-  "VIII.8.1": {
-    "id": "VIII.8.1",
+  "VIII.7.1": {
+    "id": "VIII.7.1",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~V"
@@ -11046,8 +11063,8 @@
     "optional": [],
     "wording": "äñ → iñ in V"
   },
-  "VIII.8.2": {
-    "id": "VIII.8.2",
+  "VIII.7.2": {
+    "id": "VIII.7.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~kapśăñyā,cäñcäră"
@@ -11061,8 +11078,8 @@
     ],
     "wording": "äñ → iñ preferably in kapśăñyā,cäñcäră"
   },
-  "VIII.9.1": {
-    "id": "VIII.9.1",
+  "VIII.8.1": {
+    "id": "VIII.8.1",
     "kind": "phonological",
     "ifs": [
       "0~Class~[{_C}]",
@@ -11078,8 +11095,8 @@
     "optional": [],
     "wording": "Degeminate consonants (except pp) word-initially"
   },
-  "VIII.10.1": {
-    "id": "VIII.10.1",
+  "VIII.9.1": {
+    "id": "VIII.9.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~y",
@@ -11093,8 +11110,8 @@
     "optional": [],
     "wording": "iy → i before C"
   },
-  "VIII.10.2": {
-    "id": "VIII.10.2",
+  "VIII.9.2": {
+    "id": "VIII.9.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~w",
@@ -11109,8 +11126,8 @@
     "optional": [],
     "wording": "äw → u before C"
   },
-  "VIII.11.1": {
-    "id": "VIII.11.1",
+  "VIII.10.1": {
+    "id": "VIII.10.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11128,8 +11145,8 @@
     ],
     "wording": "är → rä (not after r) optionally at word-end"
   },
-  "VIII.12.1": {
-    "id": "VIII.12.1",
+  "VIII.11.1": {
+    "id": "VIII.11.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11143,8 +11160,8 @@
     "optional": [],
     "wording": "ä → u after q of säqă"
   },
-  "VIII.13.1": {
-    "id": "VIII.13.1",
+  "VIII.12.1": {
+    "id": "VIII.12.1",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PER"
@@ -11156,8 +11173,8 @@
     "optional": [],
     "wording": "o → ā in PER"
   },
-  "VIII.13.2": {
-    "id": "VIII.13.2",
+  "VIII.12.2": {
+    "id": "VIII.12.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ABL",
@@ -11174,8 +11191,8 @@
     ],
     "wording": "Optionally aṣ → äṣ after F+SG+deixis"
   },
-  "VIII.13.3": {
-    "id": "VIII.13.3",
+  "VIII.12.3": {
+    "id": "VIII.12.3",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ABL"
@@ -11189,8 +11206,8 @@
     "optional": [],
     "wording": "aṣ → äṣ in ABL"
   },
-  "VIII.14.1": {
-    "id": "VIII.14.1",
+  "VIII.13.1": {
+    "id": "VIII.13.1",
     "kind": "morphological",
     "ifs": [
       "0~Pattern~^wo[{_C}]$",
@@ -11205,8 +11222,8 @@
     "optional": [],
     "wording": "woC → waC before u PPP"
   },
-  "VIII.14.2": {
-    "id": "VIII.14.2",
+  "VIII.13.2": {
+    "id": "VIII.13.2",
     "kind": "morphological",
     "ifs": [
       "0~Pattern~^wo",
@@ -11221,8 +11238,8 @@
     "optional": [],
     "wording": "woC → waC in wätg before K + weak PPP"
   },
-  "VIII.14.3": {
-    "id": "VIII.14.3",
+  "VIII.13.3": {
+    "id": "VIII.13.3",
     "kind": "morphological",
     "ifs": [
       "0~Pattern~^wo",
@@ -11240,8 +11257,8 @@
     ],
     "wording": "woC → waC in wätg before u PPP optionally"
   },
-  "VIII.15.1": {
-    "id": "VIII.15.1",
+  "VIII.14.1": {
+    "id": "VIII.14.1",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~āñcämă"
@@ -11253,8 +11270,8 @@
     "optional": [],
     "wording": "ñcm → ñm in āñcämă"
   },
-  "VIII.15.2": {
-    "id": "VIII.15.2",
+  "VIII.14.2": {
+    "id": "VIII.14.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~āñcämă"
@@ -11268,8 +11285,8 @@
     ],
     "wording": "ñm → ym optionally in āñcämă"
   },
-  "VIII.15.3": {
-    "id": "VIII.15.3",
+  "VIII.14.3": {
+    "id": "VIII.14.3",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~āñcämă"
@@ -11283,8 +11300,8 @@
     ],
     "wording": "ñm → λm optionally in āñcämă"
   },
-  "VIII.15.4": {
-    "id": "VIII.15.4",
+  "VIII.14.4": {
+    "id": "VIII.14.4",
     "kind": "phonological",
     "ifs": [
       "0~Shape~t",
@@ -11299,8 +11316,8 @@
     "optional": [],
     "wording": "ntss → nss"
   },
-  "VIII.15.5": {
-    "id": "VIII.15.5",
+  "VIII.14.5": {
+    "id": "VIII.14.5",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11317,8 +11334,8 @@
     ],
     "wording": "Optionally nt- → t- before PER"
   },
-  "VIII.15.6": {
-    "id": "VIII.15.6",
+  "VIII.14.6": {
+    "id": "VIII.14.6",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11335,8 +11352,8 @@
     ],
     "wording": "Preferably nC- → änC- in Q"
   },
-  "VIII.15.7": {
-    "id": "VIII.15.7",
+  "VIII.14.7": {
+    "id": "VIII.14.7",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11349,8 +11366,8 @@
     "optional": [],
     "wording": "nc → ñc"
   },
-  "VIII.15.8": {
-    "id": "VIII.15.8",
+  "VIII.14.8": {
+    "id": "VIII.14.8",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n,ṅ",
@@ -11366,8 +11383,8 @@
     "optional": [],
     "wording": "n/ṅ → ñ before ñ/ś after V not in kroṅśe"
   },
-  "VIII.15.9": {
-    "id": "VIII.15.9",
+  "VIII.14.9": {
+    "id": "VIII.14.9",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ñ",
@@ -11381,8 +11398,8 @@
     "optional": [],
     "wording": "ñtr → ntr"
   },
-  "VIII.15.10": {
-    "id": "VIII.15.10",
+  "VIII.14.10": {
+    "id": "VIII.14.10",
     "kind": "phonological",
     "ifs": [
       "0~Shape~s",
@@ -11396,8 +11413,8 @@
     "optional": [],
     "wording": "s → z after Q"
   },
-  "VIII.15.11": {
-    "id": "VIII.15.11",
+  "VIII.14.11": {
+    "id": "VIII.14.11",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~pintwāt"
@@ -11411,8 +11428,8 @@
     ],
     "wording": "Optionally ntw → nw in pintwāt"
   },
-  "VIII.15.12": {
-    "id": "VIII.15.12",
+  "VIII.14.12": {
+    "id": "VIII.14.12",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ch",
@@ -11428,8 +11445,8 @@
     ],
     "wording": "Optionally rchn → rckn"
   },
-  "VIII.15.13": {
-    "id": "VIII.15.13",
+  "VIII.14.13": {
+    "id": "VIII.14.13",
     "kind": "phonological",
     "ifs": [
       "0~Shape~s",
@@ -11445,8 +11462,8 @@
     ],
     "wording": "Optionally rsr→ rzr"
   },
-  "VIII.15.14": {
-    "id": "VIII.15.14",
+  "VIII.14.14": {
+    "id": "VIII.14.14",
     "kind": "phonological",
     "ifs": [
       "0~Shape~c",
@@ -11462,8 +11479,8 @@
     ],
     "wording": "Marginally rck → rśk"
   },
-  "VIII.16.1": {
-    "id": "VIII.16.1",
+  "VIII.15.1": {
+    "id": "VIII.15.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~i",
@@ -11481,8 +11498,8 @@
     ],
     "wording": "Marginally iy → y before V"
   },
-  "VIII.16.2": {
-    "id": "VIII.16.2",
+  "VIII.15.2": {
+    "id": "VIII.15.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~i",
@@ -11499,8 +11516,8 @@
     ],
     "wording": "Optionally iy → y before V in Ṣiyak"
   },
-  "VIII.17.1": {
-    "id": "VIII.17.1",
+  "VIII.16.1": {
+    "id": "VIII.16.1",
     "kind": "phonological",
     "ifs": [
       "0~Class~[{_C}]",
@@ -11516,8 +11533,8 @@
     "optional": [],
     "wording": "Degeminate consonants not before vowel"
   },
-  "VIII.18.1": {
-    "id": "VIII.18.1",
+  "VIII.17.1": {
+    "id": "VIII.17.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n,ṇ",
@@ -11531,8 +11548,8 @@
     "optional": [],
     "wording": "n/ṇ → ṃ after V word-finally and before sibilant"
   },
-  "VIII.18.2": {
-    "id": "VIII.18.2",
+  "VIII.17.2": {
+    "id": "VIII.17.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11548,8 +11565,8 @@
     ],
     "wording": "Preferably n → ṃ before z/p"
   },
-  "VIII.18.3": {
-    "id": "VIII.18.3",
+  "VIII.17.3": {
+    "id": "VIII.17.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ñ",
@@ -11566,8 +11583,8 @@
     ],
     "wording": "Preferably ñ → ṃ before śV"
   },
-  "VIII.18.4": {
-    "id": "VIII.18.4",
+  "VIII.17.4": {
+    "id": "VIII.17.4",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ñ",
@@ -11585,8 +11602,8 @@
     ],
     "wording": "Optionally ñ → ṃ before ś"
   },
-  "VIII.18.5": {
-    "id": "VIII.18.5",
+  "VIII.17.5": {
+    "id": "VIII.17.5",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11602,8 +11619,8 @@
     ],
     "wording": "Optionally n → ṃ before ADV"
   },
-  "VIII.18.6": {
-    "id": "VIII.18.6",
+  "VIII.17.6": {
+    "id": "VIII.17.6",
     "kind": "phonological",
     "ifs": [
       "0~Class~[{_N}]",
@@ -11620,8 +11637,8 @@
     ],
     "wording": "Optionally nasal → ṃ before consonant if both belong to Arämpāt."
   },
-  "VIII.18.7": {
-    "id": "VIII.18.7",
+  "VIII.17.7": {
+    "id": "VIII.17.7",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11638,8 +11655,8 @@
     ],
     "wording": "ntk → ṃtk after V preferably"
   },
-  "VIII.19.1": {
-    "id": "VIII.19.1",
+  "VIII.18.1": {
+    "id": "VIII.18.1",
     "kind": "phonological",
     "ifs": [
       "0~BeforeSimilar~",
@@ -11655,13 +11672,13 @@
     "optional": [],
     "wording": "Degeminate consonants after a consonant except tt after n"
   },
-  "VIII.19.2": {
-    "id": "VIII.19.2",
+  "VIII.18.2": {
+    "id": "VIII.18.2",
     "kind": "phonological",
     "ifs": [
       "0~BeforeSimilar~",
       "0~Shape~r",
-      "1~Class~[{_T}]"
+      "1~Class~[{_T}w]"
     ],
     "unlesses": [],
     "operations": [
@@ -11670,10 +11687,10 @@
     "optional": [
       "P"
     ],
-    "wording": "Degeminate stops preferably after r"
+    "wording": "Degeminate stops/w preferably after r"
   },
-  "VIII.19.3": {
-    "id": "VIII.19.3",
+  "VIII.18.3": {
+    "id": "VIII.18.3",
     "kind": "phonological",
     "ifs": [
       "0~BeforeSimilar~",
@@ -11689,8 +11706,8 @@
     ],
     "wording": "Degeminate sibilants marginally after r"
   },
-  "VIII.20.1": {
-    "id": "VIII.20.1",
+  "VIII.19.1": {
+    "id": "VIII.19.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ṅ",
@@ -11704,8 +11721,8 @@
     "optional": [],
     "wording": "lṅk → lk"
   },
-  "VIII.20.2": {
-    "id": "VIII.20.2",
+  "VIII.19.2": {
+    "id": "VIII.19.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~z",
@@ -11721,8 +11738,8 @@
     ],
     "wording": "Preferably lzk → lsk"
   },
-  "VIII.20.3": {
-    "id": "VIII.20.3",
+  "VIII.19.3": {
+    "id": "VIII.19.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11738,8 +11755,8 @@
     ],
     "wording": "Marginally knz → kz"
   },
-  "VIII.21.1": {
-    "id": "VIII.21.1",
+  "VIII.20.1": {
+    "id": "VIII.20.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11752,8 +11769,8 @@
     "optional": [],
     "wording": "ä → u before “any number of C + q”"
   },
-  "VIII.21.2": {
-    "id": "VIII.21.2",
+  "VIII.20.2": {
+    "id": "VIII.20.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11768,8 +11785,8 @@
     ],
     "wording": "ä → u after q optionally"
   },
-  "VIII.21.3": {
-    "id": "VIII.21.3",
+  "VIII.20.3": {
+    "id": "VIII.20.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~q",
@@ -11782,8 +11799,8 @@
     "optional": [],
     "wording": "Cq- → Cᵤk-"
   },
-  "VIII.21.4": {
-    "id": "VIII.21.4",
+  "VIII.20.4": {
+    "id": "VIII.20.4",
     "kind": "phonological",
     "ifs": [
       "0~Shape~q",
@@ -11797,8 +11814,8 @@
     "optional": [],
     "wording": "qC- → kᵤC-"
   },
-  "VIII.21.5": {
-    "id": "VIII.21.5",
+  "VIII.20.5": {
+    "id": "VIII.20.5",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11811,8 +11828,8 @@
     "optional": [],
     "wording": "qä- → qu-"
   },
-  "VIII.21.6": {
-    "id": "VIII.21.6",
+  "VIII.20.6": {
+    "id": "VIII.20.6",
     "kind": "phonological",
     "ifs": [
       "0~Shape~q"
@@ -11824,8 +11841,8 @@
     "optional": [],
     "wording": "q → k"
   },
-  "VIII.22.1": {
-    "id": "VIII.22.1",
+  "VIII.21.1": {
+    "id": "VIII.21.1",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~pyāpyā"
@@ -11839,8 +11856,8 @@
     ],
     "wording": "In pyāpyā optionally āpy → āppy"
   },
-  "VIII.22.2": {
-    "id": "VIII.22.2",
+  "VIII.21.2": {
+    "id": "VIII.21.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~upādhyā`"
@@ -11854,8 +11871,8 @@
     ],
     "wording": "Optionally u → ᵤ in upādhyā`"
   },
-  "VIII.23.1": {
-    "id": "VIII.23.1",
+  "VIII.22.1": {
+    "id": "VIII.22.1",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~brāhmăṇā"
@@ -11869,8 +11886,8 @@
     ],
     "wording": "In brāhmăṇā preferably h → Ø"
   },
-  "VIII.23.2": {
-    "id": "VIII.23.2",
+  "VIII.22.2": {
+    "id": "VIII.22.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~hā"
@@ -11884,8 +11901,8 @@
     ],
     "wording": "In hā marginally h drops"
   },
-  "VIII.23.3": {
-    "id": "VIII.23.3",
+  "VIII.22.3": {
+    "id": "VIII.22.3",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~brāhmăṇā"
@@ -11899,8 +11916,8 @@
     ],
     "wording": "In brāhmăṇā preferably ṇ → n"
   },
-  "VIII.24.1": {
-    "id": "VIII.24.1",
+  "VIII.23.1": {
+    "id": "VIII.23.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~n",
@@ -11917,8 +11934,8 @@
     ],
     "wording": "Marginally n of PL drops after y/l before t"
   },
-  "VIII.24.2": {
-    "id": "VIII.24.2",
+  "VIII.23.2": {
+    "id": "VIII.23.2",
     "kind": "phonological",
     "ifs": [
       "0~Class~[{_T}]",
@@ -11935,8 +11952,8 @@
     ],
     "wording": "Marginally stops are geminated after V before rV"
   },
-  "VIII.24.3": {
-    "id": "VIII.24.3",
+  "VIII.23.3": {
+    "id": "VIII.23.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~t",
@@ -11953,8 +11970,8 @@
     ],
     "wording": "Marginally t is geminated after Vr before V"
   },
-  "VIII.25.1": {
-    "id": "VIII.25.1",
+  "VIII.24.1": {
+    "id": "VIII.24.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~y",
@@ -11973,8 +11990,8 @@
     ],
     "wording": "-ay → -ai optionally in foreign morphemes"
   },
-  "VIII.26.1": {
-    "id": "VIII.26.1",
+  "VIII.25.1": {
+    "id": "VIII.25.1",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11987,8 +12004,8 @@
     "optional": [],
     "wording": "ä drops after V"
   },
-  "VIII.27.1": {
-    "id": "VIII.27.1",
+  "VIII.26.1": {
+    "id": "VIII.26.1",
     "kind": "phonological",
     "ifs": [
       "-1~Shape~λ",
@@ -12001,8 +12018,8 @@
     "optional": [],
     "wording": "λy, λλ → λ"
   },
-  "VIII.27.2": {
-    "id": "VIII.27.2",
+  "VIII.26.2": {
+    "id": "VIII.26.2",
     "kind": "phonological",
     "ifs": [
       "0~Shape~λ"

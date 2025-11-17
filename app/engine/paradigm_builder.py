@@ -125,7 +125,7 @@ def _build_row_values() -> List[Dict[str, str]]:
     return values
 
 def export_paradigm_verb(lex: Lexeme, *, save_to: str | None = None) -> Dict:
-    if getattr(lex, "Category", None) != "verb":
+    if getattr(lex, "Category", None) not in ["verb"]:
         raise ValueError(f"Lexeme {lex.name} is not 'verb'")
 
     axes = [
@@ -376,7 +376,7 @@ class NounProfile(Profile):
         if case == "ABL3" and lex.name == "W_käλme":
             if col != "PL":
                 return None
-        elif case in ["ABL2","ABL3"] and col == "PL":
+        elif case in ["ABL2","ABL3","LOCAL"] and col == "PL":
             return None
         elif lex.name == "X_qä" and col == "PL" and case not in ["NOM","ACC"]:
             return None
@@ -516,9 +516,7 @@ def export_paradigm_nominal(lex, *, save_to: str|None=None):
     profile = PROFILES.get(category, DEFAULT_PROFILE)
 
     cases = profile.row_spec(lex)
-    cols  = profile.col_spec(lex)
-    print(f"DEBUG: lex.name={lex.name}, Groups={getattr(lex, 'Groups', [])}, cols={cols}")
-    
+    cols  = profile.col_spec(lex)    
 
     axes = [
         {"id":"case","label":"Case","values":[{"id":c,"label":c} for c in cases]},

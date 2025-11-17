@@ -4,33 +4,33 @@
       <table class="min-w-full text-sm border-separate border-spacing-0 table-auto">
         <thead class="bg-slate-700 text-left">  <!-- Тёмная голова таблицы -->
           <tr>
-            <th class="px-3 py-2 w-5 text-slate-300">#</th>  <!-- Светлый текст -->
-            <th class="px-3 py-2 text-slate-300">Form</th>  <!-- Светлый текст -->
-            <th class="px-3 py-2 text-slate-300">Rule</th>  <!-- Светлый текст -->
-            <th class="px-3 py-2 w-24 text-slate-300">Pos</th>  <!-- Светлый текст -->
-            <th class="px-3 py-2 text-slate-300">Wording</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 w-5 text-slate-400">#</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 text-slate-400">Form</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 text-slate-400">Rule</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 w-24 text-slate-400">Pos</th>  <!-- Светлый текст -->
+            <th class="px-3 py-2 text-slate-400">Wording</th>  <!-- Светлый текст -->
           </tr>
         </thead>
         <tbody>  <!-- Светлый текст, hover тёмнее -->
           {% for s in d.steps %}
             <tr class="border-t border-slate-600 hover:bg-slate-700/50">  <!-- Тёмная граница, hover -->
               <td class="px-3 py-2 align-top text-slate-500">{{ loop.index }}</td>  <!-- Серый для номера -->
-              <td class="px-3 py-2 align-top whitespace-nowrap text-slate-300">  <!-- Светлый текст -->
+              <td class="px-3 py-2 align-top whitespace-nowrap text-slate-400">  <!-- Светлый текст -->
                 {% if s.form_html %}
                   {% autoescape false %}{{ s.form_html }}{% endautoescape %}
                 {% else %}
                   {{ s.form }}
                 {% endif %}
               </td>
-              <td class="px-3 py-2 align-top text-slate-300">  <!-- Светлый текст -->
+              <td class="px-3 py-2 align-top text-slate-400">  <!-- Светлый текст -->
                 <a class="underline text-cyan-400 hover:text-cyan-300" href="/rules#rule-{{ s.rule_id }}">  <!-- Cyan-400 для правил -->
                   {{ s.rule_id }}
                 </a>
               </td>
-              <td class="px-3 py-2 align-top text-slate-300">  <!-- Светлый текст -->
+              <td class="px-3 py-2 align-top text-slate-400">  <!-- Светлый текст -->
                 {% if s.pos is not none and s.pos != '' %}{{ s.pos }}{% else %}<span class="text-slate-500">—</span>{% endif %}  <!-- Серый для пустого -->
               </td>
-              <td class="px-3 py-2 align-top text-slate-300">  <!-- Светлый текст -->
+              <td class="px-3 py-2 align-top text-slate-400">  <!-- Светлый текст -->
                 {% if s.wording %}
                   {% autoescape false %}{{ s.wording }}{% endautoescape %}
                 {% else %}

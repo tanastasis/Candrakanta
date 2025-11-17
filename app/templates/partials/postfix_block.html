@@ -19,7 +19,7 @@
   {% if d.variants and d.variants|length > 0 %}
     <ul class="flex flex-wrap gap-2 mb-3">
       {% for v in d.variants %}
-        <span class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-700 hover:bg-slate-600 text-slate-300 whitespace-nowrap"  <!-- Тёмная пилюля с hover -->
+        <span class="variant-pill inline-flex items-center gap-1 px-2 py-1 rounded-full border border-slate-600 bg-slate-700 hover:bg-slate-600 text-slate-300 whitespace-nowrap" 
               data-canonical="{{ '1' if v['is_canonical'] else '0' }}"
               style="display: {{ 'inline-flex' if (show_all=='1') or v['is_canonical'] else 'none' }};">
           <a href="#"
