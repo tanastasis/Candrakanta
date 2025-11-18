@@ -409,7 +409,7 @@ class NounProfile(Profile):
             rows.append({"kind":"sublexeme", "tag":"NMZ"})
         if has_group("Asurā")(lex):
             rows.append({"kind":"sublexeme", "tag":"POS"})
-        if has_group("Kñuk")(lex):
+        if has_group("Kñuk")(lex) and not lex.name.endswith("BAH1+NMZ"):
             rows.append({"kind":"sublexeme", "tag":"BAH1"})
         if has_group("Pälzäk")(lex):
             rows.append({"kind":"sublexeme", "tag":"BAH2"})
@@ -463,7 +463,7 @@ class AdjectiveProfile(Profile):
         if has_group("Ksär")(lex):
             rows.append({"kind":"sublexeme", "tag":"ADJ"})
         if lex.Category == "qualitative" or \
-            has_group("Riṣak")(lex) or lex.name in ["V_knās+PPM","V_knās+PPM+NMZ+BAH1"]:
+            has_group("Riṣak")(lex) or lex.name in ["V_knās+PPM"] or lex.name.endswith("NMZ+BAH1"):
                 rows.append({"kind":"sublexeme", "tag":"NMZ"})
                 return rows
 
