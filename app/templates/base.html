@@ -82,38 +82,34 @@
        class="fixed inset-0 bg-black/70 z-40 md:hidden" x-transition.opacity></div>
 
   <!-- Header — теперь звёздное небо всегда будет -->
-  <header class="relative flex items-center justify-between w-full px-4 py-3 border-b overflow-hidden header-sky md:px-6 md:py-4">
-    <!-- Левый логотип + название (всегда видно) -->
-    <div class="flex items-center gap-3 md:gap-4 z-10">
-      <!-- Логотип монаха — уменьшаем на мобильных -->
-      <div class="w-12 md:w-16 lg:w-48 flex-shrink-0">
-        <img src="/static/logo1.png" 
-            alt="Buddhist monk under the Moon" 
-            class="w-full h-auto object-contain drop-shadow-lg">
-      </div>
+  <header class="relative w-full border-b overflow-hidden header-sky">
 
-      <!-- Название сайта — прячем на очень маленьких экранах, если критично -->
-      <a href="/" class="font-bold text-lg md:text-2xl lg:text-3xl text-slate-100 hover:text-amber-300 transition-colors whitespace-nowrap">
+    <!-- Мобильная версия: только монах + надпись -->
+    <div class="flex items-center justify-center px-4 py-3 md:hidden">
+      <div class="w-24 mr-2">
+        <img src="/static/logo1.png"
+            alt="Buddhist monk under the Moon"
+            class="w-full h-auto object-contain">
+      </div>
+      <a href="/" class="font-semibold text-xl text-slate-100 hover:text-amber-300">
         Ārśi-Candrakānta
       </a>
     </div>
 
-    <!-- Правые логотипы — показываем только от планшета и выше -->
-    <div class="hidden md:flex items-end gap-6 lg:gap-12 mr-4 lg:mr-12">
-      <img src="/static/logo4.png" alt="Hunter" 
-          class="h-20 lg:h-28 w-auto object-contain drop-shadow-lg">
-      <img src="/static/logo3.png" alt="Six-Tusked Elephant" 
-          class="h-24 lg:h-32 w-auto object-contain drop-shadow-lg">
+    <!-- Десктопная версия: АБСОЛЮТНО как раньше -->
+    <div class="hidden md:flex items-end w-full">
+      <div class="w-48 mr-2">
+        <img src="/static/logo1.png" alt="Buddhist monk under the Moon" class="w-full h-auto object-contain">
+      </div>
+      <a href="/" class="font-semibold text-2xl ml-6 mb-[5rem] text-slate-100 hover:text-amber-300">
+        Ārśi-Candrakānta
+      </a>
+      <div class="ml-auto mr-[6rem] flex items-end gap-[3rem]">
+        <img src="/static/logo4.png" alt="Hunter" class="h-[8rem] w-auto object-contain">
+        <img src="/static/logo3.png" alt="Six-Tusk Elephant" class="h-[9.5rem] w-auto self-end object-contain">
+      </div>
     </div>
 
-    <!-- На сверхмаленьких экранах (≤360px) можно вообще убрать название, оставив только логотип -->
-    <!-- Раскомментируй, если нужно:
-    <style>
-      @media (max-width: 360px) {
-        header a[href="/"] span { display: none; }
-      }
-    </style>
-    -->
   </header>
 
   <!-- Остальное — как было (сайдбар, main, скрипты) -->
