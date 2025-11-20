@@ -7,6 +7,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <!-- Alpine.js — обязательно defer! -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,14 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
 
   <style>
-      html {
-    font-family: "Source Serif 4", "Times New Roman", Georgia, Times, serif !important;
-    font-kerning: normal;
-    font-variant-ligatures: common-ligatures;
-  }
-
-    .font-mono { font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; }
-
+    html { font-family: "Source Serif 4", Georgia, serif !important;
+          font-kerning: normal;
+          font-variant-ligatures: common-ligatures; }
     body {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
       background-attachment: fixed;
@@ -58,12 +54,13 @@
   </style>
 </head>
 
-<body class="min-h-screen text-slate-100 flex flex-col" x-data>
+<!-- Главное: x-data на body + инициализация sidebarOpen -->
+<body x-data="{ sidebarOpen: false }" class="min-h-screen text-slate-100 flex flex-col">
 
   <!-- Кнопка-гамбургер (только на мобильных) -->
   <button @click="sidebarOpen = !sidebarOpen"
           class="fixed top-4 left-4 z-50 md:hidden p-3 rounded-lg bg-slate-800/90 backdrop-blur hover:bg-slate-700 transition">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path x-show="!sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M4 6h16M4 12h16M4 18h16"/>
       <path x-show="sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -71,7 +68,7 @@
     </svg>
   </button>
 
-  <!-- Тёмный оверлей при открытом меню -->
+  <!-- Оверлей -->
   <div x-show="sidebarOpen" @click="sidebarOpen = false"
        class="fixed inset-0 bg-black/70 z-40 md:hidden"
        x-transition.opacity></div>
@@ -90,12 +87,11 @@
     </div>
   </header>
 
-  <!-- Основная обёртка -->
+  <!-- Основной layout -->
   <div class="flex flex-1 w-full">
 
-    <!-- САЙДБАР: выдвижной на мобильных, фиксированный на десктопе -->
-    <aside x-data="{ sidebarOpen: false }"
-           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+    <!-- Сайдбар — использует то же x-data из body -->
+    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
            class="fixed inset-y-0 left-0 w-48 bg-slate-800/50 backdrop-blur-sm border-r p-4 pt-6 z-40
                   transition-transform duration-300 ease-in-out
                   md:translate-x-0 md:static md:z-auto flex-shrink-0">
@@ -107,13 +103,13 @@
       </nav>
     </aside>
 
-    <!-- Основной контент -->
-    <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20 md:ml-0">
+    <!-- Контент -->
+    <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20">
       {% block content %}{% endblock %}
     </main>
   </div>
 
-  <!-- Скрипт для переключения видимости вариантов -->
+  <!-- Скрипт для вариантов -->
   <script>
     function applyVariantVisibility() {
       const showAll = document.body.dataset.showAllVariants === '1';
@@ -124,17 +120,13 @@
     }
     document.addEventListener('DOMContentLoaded', applyVariantVisibility);
     document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
-    document.addEventListener('change', e => { if (e.target?.id === 'toggle-all-variants') applyVariantVisibility(); });
   </script>
 
-  <!-- Автоматически открывать сайдбар на десктопе -->
+  <!-- Авто-открытие на десктопе -->
   <script>
-    document.addEventListener('alpine:init', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       if (window.innerWidth >= 768) {
-        Alpine.nextTick(() => {
-          const aside = document.querySelector('aside');
-          if (aside) aside.__x.$data.sidebarOpen = true;
-        });
+        document.body.__x.$data.sidebarOpen = true;
       }
     });
   </script>
