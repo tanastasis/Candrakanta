@@ -26,29 +26,6 @@
       position: relative;
       overflow-x: hidden;
     }
-    body::before {
-      content: ''; position: fixed; inset: 0; z-index: -1;
-      background-image: radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),
-                        radial-gradient(2px 2px at 40px 70px, #fbbf24, transparent),
-                        radial-gradient(1px 1px at 90px 40px, #fbbf24, transparent),
-                        radial-gradient(1px 1px at 130px 80px, #fbbf24, transparent),
-                        radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent);
-      background-repeat: repeat; background-size: 200px 200px; opacity: 0.1;
-      animation: twinkle 4s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.3; } }
-
-    .header-sky::before {
-      content: ''; position: absolute Free; inset: 0; z-index: -1;
-      background-image: radial-gradient(2px 2px at 10% 20%, #fbbf24, transparent),
-                        radial-gradient(2px 2px at 30% 60%, #fbbf24, transparent),
-                        radial-gradient(1px 1px at 50% 30%, #fbbf24, transparent),
-                        radial-gradient(1px 1px at 70% 80%, #fbbf24, transparent),
-                        radial-gradient(2px 2px at 90% 40%, #fbbf24, transparent);
-      background-repeat: repeat; background-size: 200px 200px; opacity: 0.5;
-      animation: header-twinkle 3s ease-in-out infinite alternate;
-    }
-    @keyframes header-twinkle { from { opacity: 0.35; } to { opacity: 0.7; } }
 
     :root { --link-color: #a1aae0; }
     nav a:hover { color: #fbbf24 !important; }
@@ -115,5 +92,78 @@
       }
     });
   </script>
+
+<!-- ФИКС СТИЛЕЙ ПОСЛЕ HTMX (главное!) -->
+<script>
+  // Функция, которая возвращает всё в правильный вид
+  function applyGlobalStyles() {
+    // 1. Градиент + звёзды на body
+    document.body.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)';
+    document.body.style.backgroundAttachment = 'fixed';
+
+    // 2. Звёздочки на body (удаляем старые, если были, и добавляем новые)
+    let stars = document.body.querySelector('::before');
+    if (!stars) {
+      const style = document.createElement('style');
+      style.textContent = `
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          background-image: 
+            radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),
+            radial-gradient(2px 2px at 40px 70px, #fbbf24, transparent),
+            radial-gradient(1px 1px at 90px 40px, #fbbf24, transparent),
+            radial-gradient(1px 1px at 130px 80px, #fbbf24, transparent),
+            radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent);
+          background-repeat: repeat;
+          background-size: 200px 200px;
+          opacity: 0.1;
+          animation: twinkle 4s ease-in-out infinite alternate;
+          pointer-events: none;
+        }
+        @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.3; } }
+
+        .header-sky::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          background-image: 
+            radial-gradient(2px 2px at 10% 20%, #fbbf24, transparent),
+            radial-gradient(2px 2px at 30% 60%, #fbbf24, transparent),
+            radial-gradient(1px 1px at 50% 30%, #fbbf24, transparent),
+            radial-gradient(1px 1px at 70% 80%, #fbbf24, transparent),
+            radial-gradient(2px 2px at 90% 40%, #fbbf24, transparent);
+          background-repeat: repeat;
+          background-size: 200px 200px;
+          opacity: 0.5;
+          animation: header-twinkle 3s ease-in-out infinite alternate;
+        }
+        @keyframes header-twinkle { from { opacity: 0.35; } to { opacity: 0.7; } }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // 3. Принудительно перерисовываем header-sky
+    document.querySelectorAll('.header-sky').forEach(el => {
+      el.classList.remove('header-sky');
+      void el.offsetWidth; // магия перерисовки
+      el.classList.add('header-sky');
+    });
+  }
+
+  // При загрузке страницы
+  document.addEventListener('DOMContentLoaded', applyGlobalStyles);
+
+  // После КАЖДОГО HTMX-свопа — это самое важное!
+  document.body.addEventListener('htmx:afterSwap', applyGlobalStyles);
+
+  // На всякий случай — при ресайзе тоже
+  window.addEventListener('resize', applyGlobalStyles);
+</script>
+
+
 </body>
 </html>
