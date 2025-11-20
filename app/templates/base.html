@@ -133,9 +133,18 @@
 
   <!-- Скрипты (как раньше) -->
   <script>
-    function applyVariantVisibility() { /* ... твой код ... */ }
-    document.addEventListener('DOMContentLoaded', applyVariantVisibility);
-    document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
+    // Вызываем, только если страница её определила
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.applyVariantVisibility) {
+        window.applyVariantVisibility();
+      }
+    });
+
+    document.body.addEventListener('htmx:afterSwap', () => {
+      if (window.applyVariantVisibility) {
+        window.applyVariantVisibility();
+      }
+    });
   </script>
 
   <script>
