@@ -1,28 +1,27 @@
 {% extends "base.html" %}
 {% block title %}Morphemes · Ārśi-Candrakānt{% endblock %}
-{% set active = 'morphemes' %}
+{% set active = 'morphemes' %}  <!-- Для золотистого active в sidebar -->
 
 {% block content %}
-  <h1 class="text-2xl font-bold mb-4 text-slate-100">Morphemes</h1>
+  <h1 class="text-2xl font-bold mb-4 text-slate-100">Morphemes</h1>  <!-- Светлый заголовок -->
 
   <!-- Поисковая форма: Тёмная тема -->
-  <form method="get" action="/morphemes/" class="mb-4 flex gap-2 w-full">  <!-- w-full: полная ширина -->
+  <form method="get" action="/morphemes/" class="mb-4 flex gap-2">
     <input
       type="text"
       name="q"
       value="{{ q }}"
       placeholder="Search by shape or meaning..."
-      class="border border-slate-600 rounded px-3 py-1 flex-1 bg-slate-700 text-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+      class="border border-slate-600 rounded px-3 py-1 flex-1 bg-slate-700 text-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent" 
     />
-    <button type="submit" class="px-4 py-1 border border-slate-600 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-amber-300 transition-colors">
+    <button type="submit" class="px-4 py-1 border border-slate-600 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-amber-300 transition-colors">  <!-- Тёмная кнопка с hover -->
       Find
     </button>
   </form>
 
-  <!-- Таблица: Полная ширина с горизонтальным скроллом, тёмный фон -->
-  <div class="w-full overflow-x-auto bg-slate-800/50 border border-slate-600 rounded-xl mb-8">  <!-- w-full: занимает всю ширину, overflow-x-auto для скролла -->
-    <table class="min-w-full text-sm table-auto border-separate border-spacing-0 whitespace-nowrap">  <!-- min-w-full: таблица не сжимается, whitespace-nowrap: текст не переносится -->
-      <thead class="bg-slate-700 text-left sticky top-0 z-10">  <!-- sticky: голова таблицы при скролле -->
+  <div class="table-scroll-container overflow-x-auto bg-slate-800/50 border border-slate-600 rounded-xl mb-8 w-full">  <!-- Добавь table-scroll-container и w-full -->
+    <table class="min-w-[1200px] text-sm">  <!-- min-w-[1200px]: фиксированная минимальная ширина, чтобы скролл всегда был -->
+      <thead class="bg-slate-700 text-left">  <!-- Тёмная голова таблицы -->
         <tr>
           <th class="px-4 py-2">Shape</th>
           <th class="px-4 py-2">Meaning</th>
@@ -37,38 +36,39 @@
         </tr>
       </thead>
 
-      <tbody class="divide-y divide-slate-600">  <!-- divide-y: горизонтальные линии между строками -->
+      <tbody>  <!-- Светлый текст, hover тёмнее -->
         {% for m in items %}
-          <tr class="hover:bg-slate-700/50">  <!-- hover для десктопа/таблетов -->
-            <td class="px-4 py-2 text-slate-300 min-w-[8rem]">  <!-- min-w-[8rem]: минимальная ширина столбца -->
-              <div class="break-words">
+          <tr id="{{m.name}}" class="border-t border-slate-600 hover:bg-slate-700/50">
+            <td class="px-4 py-2 text-slate-300">  <!-- Светлый текст -->
+              <div class="max-w-[9rem] break-words whitespace-normal">
                 {% if m.shape %}
-                  <a class="text-[var(--link-color)] underline hover:text-amber-300" 
-                     href="#" data-morpheme="{{ m.name }}" class="morpheme-link">
-                    {{ m.shape }}
-                  </a>
+                    <a href="#" 
+                      class="text-[var(--link-color)] underline morpheme-link hover:text-amber-300"
+                      data-morpheme="{{ m.name }}">
+                      {{ m.shape }}
+                    </a>
                 {% else %}
-                  <span class="text-slate-500">—</span>
+                  —
                 {% endif %}
               </div>
             </td>
-            <td class="px-4 py-2 text-slate-300 min-w-[10rem]">  <!-- min-w для meaning, чтобы не сжимался -->
-              <div class="break-words">
-                {{ m.meaning or '<span class="text-slate-500">—</span>' }}
+            <td class="px-4 py-2 text-slate-300">  <!-- Светлый текст -->
+              <div class="max-w-[9rem] break-words whitespace-normal">
+                {{ m.meaning or '—' }}
               </div>
             </td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Category or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Gender or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Language or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Color or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Transitivity or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Voice or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">{{ m.Causativity or '<span class="text-slate-500">—</span>' }}</td>
-            <td class="px-4 py-2 text-slate-300">  <!-- Groups: может быть длинным, так что min-w -->
+            <td class="px-4 py-2 text-slate-300">{{ m.Category or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ m.Gender or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ m.Language or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ m.Color or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ m.Transitivity or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ m.Voice or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">{{ m.Causativity or '—' }}</td>
+            <td class="px-4 py-2 text-slate-300">  <!-- Светлый текст -->
               {% if m.Groups %}
-                {{ m.Groups|join('; ') }}
+                {{ m.Groups|join("; ") }}
               {% else %}
-                <span class="text-slate-500">—</span>
+                —
               {% endif %}
             </td>
           </tr>
@@ -77,99 +77,108 @@
     </table>
   </div>
 
-  <!-- JS для панелей морфем (без изменений) -->
+  <!-- JS для динамических панелей морфем (остается как был) -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      let activePanel = null;
+        let activePanel = null;  // Отслеживаем активную панель
 
-      document.addEventListener("click", function(e) {
-        let link = e.target.closest(".morpheme-link");
-        if (!link) {
-          closeAllPanels();
-          return;
+        document.addEventListener("click", function(e) {
+            let link = e.target.closest(".morpheme-link");
+            if (!link) {
+                // Опционально: закрывать панели при клике вне ссылок
+                closeAllPanels();
+                return;
+            }
+
+            e.preventDefault();
+
+            let morpheme = link.dataset.morpheme;
+            let panelId = `morpheme-panel-${morpheme}`;
+
+            // Если панель уже открыта — закрываем
+            let existingPanel = document.getElementById(panelId);
+            if (existingPanel) {
+                closePanel(existingPanel);
+                activePanel = null;
+                return;
+            }
+
+            // Закрываем предыдущую
+            closeAllPanels();
+
+            // Создаем новую
+            let panel = createPanel(panelId, link);
+            activePanel = panel;
+
+            // Загружаем контент
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', `/morphemes/${morpheme}/lexemes`, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    panel.innerHTML = xhr.responseText;
+                    positionPanel(panel, link);
+                } else if (xhr.readyState === 4) {
+                    panel.innerHTML = '<div class="text-red-500">Error loading lexemes</div>';
+                }
+            };
+            xhr.send();
+        });
+
+        function createPanel(panelId, link) {
+            let panel = document.createElement('div');
+            panel.id = panelId;
+            panel.className = 'morpheme-panel fixed bg-slate-800/90 border border-slate-600 rounded-lg shadow-lg z-50 p-3 max-w-md text-slate-300';  <!-- Тёмная панель для темы -->
+            panel.style.minWidth = '250px';
+            document.body.appendChild(panel);
+            return panel;
         }
 
-        e.preventDefault();
-
-        let morpheme = link.dataset.morpheme;
-        let panelId = `morpheme-panel-${morpheme}`;
-
-        let existingPanel = document.getElementById(panelId);
-        if (existingPanel) {
-          closePanel(existingPanel);
-          activePanel = null;
-          return;
+        function positionPanel(panel, link) {
+            let rect = link.getBoundingClientRect();
+            panel.style.left = (rect.left + rect.width / 2 - 125) + 'px';
+            panel.style.top = (rect.bottom + 8) + 'px';
+            // Корректировка, если выходит за экран
+            let viewportWidth = window.innerWidth;
+            if (parseInt(panel.style.left) + 250 > viewportWidth) {
+                panel.style.left = (viewportWidth - 260) + 'px';
+            }
         }
 
-        closeAllPanels();
-
-        let panel = createPanel(panelId, link);
-        activePanel = panel;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', `/morphemes/${morpheme}/lexemes`, true);
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            panel.innerHTML = xhr.responseText;
-            positionPanel(panel, link);
-          } else if (xhr.readyState === 4) {
-            panel.innerHTML = '<div class="text-red-500">Error loading lexemes</div>';
-          }
-        };
-        xhr.send();
-      });
-
-      function createPanel(panelId, link) {
-        let panel = document.createElement('div');
-        panel.id = panelId;
-        panel.className = 'morpheme-panel fixed bg-slate-800/90 border border-slate-600 rounded-lg shadow-lg z-50 p-3 max-w-md text-slate-300';
-        panel.style.minWidth = '250px';
-        document.body.appendChild(panel);
-        return panel;
-      }
-
-      function positionPanel(panel, link) {
-        let rect = link.getBoundingClientRect();
-        panel.style.left = (rect.left + rect.width / 2 - 125) + 'px';
-        panel.style.top = (rect.bottom + 8) + 'px';
-        let viewportWidth = window.innerWidth;
-        if (parseInt(panel.style.left) + 250 > viewportWidth) {
-          panel.style.left = (viewportWidth - 260) + 'px';
+        function closePanel(panel) {
+            if (panel && panel.parentNode) {
+                panel.parentNode.removeChild(panel);
+            }
         }
-      }
 
-      function closePanel(panel) {
-        if (panel && panel.parentNode) {
-          panel.parentNode.removeChild(panel);
+        function closeAllPanels() {
+            if (activePanel) {
+                closePanel(activePanel);
+                activePanel = null;
+            }
+            document.querySelectorAll('.morpheme-panel').forEach(closePanel);
         }
-      }
 
-      function closeAllPanels() {
-        if (activePanel) {
-          closePanel(activePanel);
-          activePanel = null;
-        }
-        document.querySelectorAll('.morpheme-panel').forEach(closePanel);
-      }
-
-      document.addEventListener("click", function(e) {
-        if (activePanel && !e.target.closest('.morpheme-link') && !activePanel.contains(e.target)) {
-          closeAllPanels();
-        }
-      });
+        // Закрытие по клику вне (опционально)
+        document.addEventListener("click", function(e) {
+            if (activePanel && !e.target.closest('.morpheme-link') && !activePanel.contains(e.target)) {
+                closeAllPanels();
+            }
+        });
     });
   </script>
 
   <style>
+    /* Стрелочка для панели: Адаптирована под тёмную тему */
     .morpheme-panel::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid #334155;
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #334155;  /* Тёмно-серый для bg-slate-800 */
     }
   </style>
+
 {% endblock %}

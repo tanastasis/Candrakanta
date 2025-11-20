@@ -30,6 +30,42 @@
     :root { --link-color: #a1aae0; }
     nav a:hover { color: #fbbf24 !important; }
     nav a.active { color: #fbbf24; }
+
+      /* ... твои существующие стили ... */
+
+    /* Фикс для iOS Safari: Горизонтальный скролл таблиц без белого фона */
+    .table-scroll-container {
+      -webkit-overflow-scrolling: touch;  /* Плавный скролл на iOS */
+      overscroll-behavior-x: contain;  /* Предотвращает bounce и цепной скролл */
+      background: inherit;  /* Наследует фон от body */
+      background-attachment: fixed;  /* Фон не скроллится с таблицей */
+    }
+
+    .table-scroll-container::-webkit-scrollbar {
+      display: none;  /* Скрываем скроллбар на iOS, но скролл работает */
+    }
+
+    /* Принудительно для всех таблиц с overflow */
+    [class*="overflow-x-auto"] {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+    }
+
+    /* Обновлённый body::before для покрытия скролла */
+    body::before {
+      content: '';
+      position: fixed;  /* fixed — покрывает даже скролл-области */
+      inset: 0;
+      z-index: -1;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),
+        /* ... твои звёзды ... */;
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      opacity: 0.1;
+      animation: twinkle 4s ease-in-out infinite alternate;
+      pointer-events: none;  /* Не мешает кликам */
+    }
   </style>
 
   <!-- Кнопка-гамбургер -->
@@ -71,7 +107,6 @@
         <a href="/morphemes" class="block px-3 py-2 rounded hover:bg-slate-700/50 {% if active == 'morphemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">Morphemes</a>
         <a href="/rules" class="block px-3 py-2 rounded hover:bg-slate-700/50 {% if active == 'rules' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">Rules</a>
       </nav>
-      
     </aside>
 
     <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20">
