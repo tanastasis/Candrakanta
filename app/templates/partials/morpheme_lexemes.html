@@ -1,7 +1,12 @@
-<div class="p-3 border border-slate-600 rounded-lg bg-slate-800/90 shadow-lg text-slate-200">
+<div
+  class="p-3 border border-slate-600 rounded-lg bg-slate-800/90 shadow-lg text-slate-200
+         max-w-[90vw] sm:max-w-md w-full
+         max-h-[80vh] overflow-y-auto"
+>
   <div class="font-semibold mb-2 text-slate-100">Lexemes:</div>
 
-  <div class="mb-3 max-h-32 overflow-y-auto">  <!-- Уменьшил высоту, чтобы места хватило на Rules -->
+  <!-- просто mb-3, без max-h-32, скролл уже на всём попапе -->
+  <div class="mb-3">
     {% if lexemes %}
       <div class="flex flex-wrap gap-1 text-base">
         {% for l in lexemes %}
@@ -19,11 +24,13 @@
     {% endif %}
   </div>
 
-  <div class="border-t border-slate-600 pt-2">  <!-- Разделитель -->
+  <div class="border-t border-slate-600 pt-2">
     <div class="font-semibold mb-2 text-slate-100">Rules:</div>
-    <div class="max-h-32 overflow-y-auto text-base">  <!-- Скролл для правил, если много -->
+
+    <!-- тоже без max-h-32, скролл общий -->
+    <div class="text-base">
       {% if rules %}
-        <div class="flex flex-wrap gap-1">  <!-- Как для лексем: badges через gap (как запятые) -->
+        <div class="flex flex-wrap gap-1">
           {% for ru in rules %}
             <span class="inline-flex items-center px-2 py-1 bg-slate-700 border border-slate-600 rounded text-slate-200">
               <a class="underline hover:text-amber-300" 
