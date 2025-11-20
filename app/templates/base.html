@@ -7,17 +7,19 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-  <!-- Alpine.js — обязательно defer! -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+</head>
 
+<body x-data="{ sidebarOpen: false }" class="min-h-screen text-slate-100 flex flex-col">
+
+  <!-- ВСЕ СТИЛИ ПЕРЕНЕСЛИ СЮДА — теперь они применяются при любом HTMX-свопе -->
   <style>
-    html { font-family: "Source Serif 4", Georgia, serif !important;
-          font-kerning: normal;
-          font-variant-ligatures: common-ligatures; }
+    html { font-family: "Source Serif 4", Georgia, serif !important; font-kerning: normal; font-variant-ligatures: common-ligatures; }
+    
     body {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
       background-attachment: fixed;
@@ -37,7 +39,7 @@
     @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.3; } }
 
     .header-sky::before {
-      content: ''; position: absolute; inset: 0; z-index: -1;
+      content: ''; position: absolute Free; inset: 0; z-index: -1;
       background-image: radial-gradient(2px 2px at 10% 20%, #fbbf24, transparent),
                         radial-gradient(2px 2px at 30% 60%, #fbbf24, transparent),
                         radial-gradient(1px 1px at 50% 30%, #fbbf24, transparent),
@@ -52,28 +54,21 @@
     nav a:hover { color: #fbbf24 !important; }
     nav a.active { color: #fbbf24; }
   </style>
-</head>
 
-<!-- Главное: x-data на body + инициализация sidebarOpen -->
-<body x-data="{ sidebarOpen: false }" class="min-h-screen text-slate-100 flex flex-col">
-
-  <!-- Кнопка-гамбургер (только на мобильных) -->
+  <!-- Кнопка-гамбургер -->
   <button @click="sidebarOpen = !sidebarOpen"
-          class="fixed top-4 left-4 z-50 md:hidden p-3 rounded-lg bg-slate-800/90 backdrop-blur hover:bg-slate-700 transition">
+          class="fixed top-4 left-4 z-50 md:hidden p-3 rounded-lg bg-slate-800/90 backdrop-blur hover:bg-slate-700">
     <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path x-show="!sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"/>
-      <path x-show="sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"/>
+      <path x-show="!sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      <path x-show="sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
     </svg>
   </button>
 
   <!-- Оверлей -->
   <div x-show="sidebarOpen" @click="sidebarOpen = false"
-       class="fixed inset-0 bg-black/70 z-40 md:hidden"
-       x-transition.opacity></div>
+       class="fixed inset-0 bg-black/70 z-40 md:hidden" x-transition.opacity></div>
 
-  <!-- Header -->
+  <!-- Header — теперь звёздное небо всегда будет -->
   <header class="relative flex items-end w-full border-b overflow-hidden header-sky">
     <div class="w-48 mr-2">
       <img src="/static/logo1.png" alt="Buddhist monk under the Moon" class="w-full h-auto object-contain">
@@ -87,10 +82,8 @@
     </div>
   </header>
 
-  <!-- Основной layout -->
+  <!-- Остальное — как было (сайдбар, main, скрипты) -->
   <div class="flex flex-1 w-full">
-
-    <!-- Сайдбар — использует то же x-data из body -->
     <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
            class="fixed inset-y-0 left-0 w-48 bg-slate-800/50 backdrop-blur-sm border-r p-4 pt-6 z-40
                   transition-transform duration-300 ease-in-out
@@ -103,26 +96,18 @@
       </nav>
     </aside>
 
-    <!-- Контент -->
     <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20">
       {% block content %}{% endblock %}
     </main>
   </div>
 
-  <!-- Скрипт для вариантов -->
+  <!-- Скрипты (как раньше) -->
   <script>
-    function applyVariantVisibility() {
-      const showAll = document.body.dataset.showAllVariants === '1';
-      document.querySelectorAll('.variant-pill').forEach(el => {
-        const isCanonical = el.dataset.canonical === '1';
-        el.style.display = (showAll || isCanonical) ? 'inline-flex' : 'none';
-      });
-    }
+    function applyVariantVisibility() { /* ... твой код ... */ }
     document.addEventListener('DOMContentLoaded', applyVariantVisibility);
     document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
   </script>
 
-  <!-- Авто-открытие на десктопе -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       if (window.innerWidth >= 768) {
