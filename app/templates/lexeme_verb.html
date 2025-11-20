@@ -32,15 +32,26 @@
   </div>
 
   <script>
-    // default: only canonical (persist across soft navigations)
-    document.addEventListener('DOMContentLoaded', () => {
+    window.applyVariantVisibility = function() {
+      // значение по умолчанию
       if (!('showAllVariants' in document.body.dataset)) {
         document.body.dataset.showAllVariants = '0';
       }
+
+      const showAll = document.body.dataset.showAllVariants === '1';
+
+      // синхронизируем состояние чекбокса с dataset
       const cb = document.getElementById('toggle-all-variants');
-      if (cb) cb.checked = document.body.dataset.showAllVariants === '1';
-      if (window.applyVariantVisibility) applyVariantVisibility();
-    });
+      if (cb) {
+        cb.checked = showAll;
+      }
+
+      // показываем/скрываем варианты
+      for (const pill of document.querySelectorAll('.variant-pill')) {
+        const isCanon = pill.getAttribute('data-canonical') === '1';
+        pill.style.display = (showAll || isCanon) ? 'inline-flex' : 'none';
+      }
+    };
   </script>
 
   {# axes #}
