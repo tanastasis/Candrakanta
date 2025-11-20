@@ -1,171 +1,142 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{% block title %}Tocharian A{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Ārśi-Candrakānta{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
 
-    <!-- Typography overrides -->
-    <style>
+  <style>
       html {
-        font-family: "Source Serif 4", "Times New Roman", Georgia, Times, serif !important;
-        font-kerning: normal;
-        font-variant-ligatures: common-ligatures;
-      }
-      .font-mono {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace !important;
-      }
-      /* Лунно-звёздная тема: Тёмный градиентный фон с звёздами */
-      body {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); /* Тёмно-синий градиент */
-        background-attachment: fixed;
-        position: relative;
-        overflow-x: hidden;
-      }
-      body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),  /* Жёлтая звезда */
-          radial-gradient(2px 2px at 40px 70px, #fbbf24, transparent),
-          radial-gradient(1px 1px at 90px 40px, #fbbf24, transparent),
-          radial-gradient(1px 1px at 130px 80px, #fbbf24, transparent),
-          radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent); /* Ещё звёздочки */
-        background-repeat: repeat;
-        background-size: 200px 200px;
-        opacity: 0.1; /* Полупрозрачные, чтобы не отвлекали */
-        z-index: -1;
-        animation: twinkle 4s ease-in-out infinite alternate; /* Лёгкая анимация мерцания */
-      }
-      @keyframes twinkle {
-        from { opacity: 0.1; }
-        to { opacity: 0.3; }
-      }
-      /* Яркое звездное небо только в хедере */
-      .header-sky::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-          radial-gradient(2px 2px at 10% 20%, #fbbf24, transparent),
-          radial-gradient(2px 2px at 30% 60%, #fbbf24, transparent),
-          radial-gradient(1px 1px at 50% 30%, #fbbf24, transparent),
-          radial-gradient(1px 1px at 70% 80%, #fbbf24, transparent),
-          radial-gradient(2px 2px at 90% 40%, #fbbf24, transparent);
-        background-repeat: repeat;
-        background-size: 200px 200px;
-        opacity: 0.5;              /* ярче, чем у body */
-        z-index: -1;
-        animation: header-twinkle 3s ease-in-out infinite alternate;
-      }
+    font-family: "Source Serif 4", "Times New Roman", Georgia, Times, serif !important;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+  }
 
-      @keyframes header-twinkle {
-        from { opacity: 0.35; transform: translateY(0px); }
-        to   { opacity: 0.7;  transform: translateY(-2px); }
-      }
+    .font-mono { font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; }
 
-      :root {
-      --link-color: #a1aae0;  /* Синий как blue-600, или #fbbf24 для золотистого в твоей теме */
-      }
-      /* Фикс: Золотистый hover для всех ссылок в nav (sidebar) */
-      nav a {
-        transition: color 0.2s ease;  /* Плавный переход */
-      }
-      nav a:hover {
-        color: #fbbf24 !important;  /* amber-300, переопределяет всё */
-      }
-      nav a.active {  /* Для активных — остаётся amber, но hover не меняет */
-        color: #fbbf24;
-      }
-    </style>
-  </head>
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: -1;
+      background-image: radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),
+                        radial-gradient(2px 2px at 40px 70px, #fbbf24, transparent),
+                        radial-gradient(1px 1px at 90px 40px, #fbbf24, transparent),
+                        radial-gradient(1px 1px at 130px 80px, #fbbf24, transparent),
+                        radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent);
+      background-repeat: repeat; background-size: 200px 200px; opacity: 0.1;
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.3; } }
 
-  <body class="min-h-screen text-slate-100 flex flex-col">  <!-- text-slate-100: светлый текст на тёмном фоне -->
+    .header-sky::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background-image: radial-gradient(2px 2px at 10% 20%, #fbbf24, transparent),
+                        radial-gradient(2px 2px at 30% 60%, #fbbf24, transparent),
+                        radial-gradient(1px 1px at 50% 30%, #fbbf24, transparent),
+                        radial-gradient(1px 1px at 70% 80%, #fbbf24, transparent),
+                        radial-gradient(2px 2px at 90% 40%, #fbbf24, transparent);
+      background-repeat: repeat; background-size: 200px 200px; opacity: 0.5;
+      animation: header-twinkle 3s ease-in-out infinite alternate;
+    }
+    @keyframes header-twinkle { from { opacity: 0.35; } to { opacity: 0.7; } }
 
-    <header class="relative flex items-end w-full border-b overflow-hidden header-sky">
-      <div class="w-48 mr-2">
-        <img src="/static/logo1.png" alt="Logo: Buddhist monk under the Moon"
-            class="w-full h-auto object-contain">
-      </div>
+    :root { --link-color: #a1aae0; }
+    nav a:hover { color: #fbbf24 !important; }
+    nav a.active { color: #fbbf24; }
+  </style>
+</head>
 
-      <a href="/" class="font-semibold text-2xl ml-6 mb-[5rem] text-slate-100 hover:text-amber-300">
-        Ārśi-Candrakānta
-      </a>
-      <div class="ml-auto mr-[6rem] flex items-end gap-[3rem]">
-        <img src="/static/logo4.png" alt="Logo: Hunter"
-            class="h-[8rem] w-auto object-contain">
-        <img src="/static/logo3.png" alt="Logo: Six-Tusked Elephant"
-            class="h-[9.5rem] w-auto self-end object-contain">
-      </div>
-    </header>
+<body class="min-h-screen text-slate-100 flex flex-col" x-data>
 
-    <!-- LAYOUT: sidebar + content -->
-    <div class="flex flex-1 w-full">
+  <!-- Кнопка-гамбургер (только на мобильных) -->
+  <button @click="sidebarOpen = !sidebarOpen"
+          class="fixed top-4 left-4 z-50 md:hidden p-3 rounded-lg bg-slate-800/90 backdrop-blur hover:bg-slate-700 transition">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path x-show="!sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"/>
+      <path x-show="sidebarOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
 
-      <!-- SIDEBAR: Тёмная, с градиентом -->
-      <aside class="w-48 border-r bg-slate-800/50 backdrop-blur-sm p-4 pt-6 text-base flex-shrink-0">  <!-- Полупрозрачный тёмный -->
-        <nav class="space-y-1">
-          <a href="/"
-             class="block px-3 py-2 rounded hover:bg-slate-700/50 
-                    {% if active == 'intro' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
-            Introduction
-          </a>
+  <!-- Тёмный оверлей при открытом меню -->
+  <div x-show="sidebarOpen" @click="sidebarOpen = false"
+       class="fixed inset-0 bg-black/70 z-40 md:hidden"
+       x-transition.opacity></div>
 
-          <a href="/lexemes"
-             class="block px-3 py-2 rounded hover:bg-slate-700/50
-                    {% if active == 'lexemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
-            Lexemes
-          </a>
-
-          <a href="/morphemes"
-             class="block px-3 py-2 rounded hover:bg-slate-700/50
-                    {% if active == 'morphemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
-            Morphemes
-          </a>
-
-          <a href="/rules"
-             class="block px-3 py-2 rounded hover:bg-slate-700/50
-                    {% if active == 'rules' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">
-            Rules
-          </a>
-        </nav>
-      </aside>
-
-      <!-- MAIN CONTENT: Тёмный фон, светлый текст -->
-      <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20">  <!-- Полупрозрачный тёмный -->
-        {% block content %}{% endblock %}
-      </main>
+  <!-- Header -->
+  <header class="relative flex items-end w-full border-b overflow-hidden header-sky">
+    <div class="w-48 mr-2">
+      <img src="/static/logo1.png" alt="Buddhist monk under the Moon" class="w-full h-auto object-contain">
     </div>
+    <a href="/" class="font-semibold text-2xl ml-6 mb-[5rem] text-slate-100 hover:text-amber-300">
+      Ārśi-Candrakānta
+    </a>
+    <div class="ml-auto mr-[6rem] flex items-end gap-[3rem]">
+      <img src="/static/logo4.png" alt="Hunter" class="h-[8rem] w-auto object-contain">
+      <img src="/static/logo3.png" alt="Six-Tusked Elephant" class="h-[9.5rem] w-auto self-end object-contain">
+    </div>
+  </header>
 
-    <!-- VARIANT VISIBILITY SCRIPT -->
-    <script>
-      function applyVariantVisibility() {
-        const showAll = document.body.dataset.showAllVariants === '1';
-        document.querySelectorAll('.variant-pill').forEach(el => {
-          const isCanonical = el.dataset.canonical === '1';
-          el.style.display = (showAll || isCanonical) ? 'inline-flex' : 'none';
+  <!-- Основная обёртка -->
+  <div class="flex flex-1 w-full">
+
+    <!-- САЙДБАР: выдвижной на мобильных, фиксированный на десктопе -->
+    <aside x-data="{ sidebarOpen: false }"
+           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+           class="fixed inset-y-0 left-0 w-48 bg-slate-800/50 backdrop-blur-sm border-r p-4 pt-6 z-40
+                  transition-transform duration-300 ease-in-out
+                  md:translate-x-0 md:static md:z-auto flex-shrink-0">
+      <nav class="space-y-1">
+        <a href="/" class="block px-3 py-2 rounded hover:bg-slate-700/50 {% if active == 'intro' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">Introduction</a>
+        <a href="/lexemes" class="block px-3 py-2 rounded hover:bg-slate-700/50 {% if active == 'lexemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">Lexemes</a>
+        <a href="/morphemes" class="block px-3 py-2 rounded hover:bg-slate-700/50 {% if active == 'morphemes' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">Morphemes</a>
+        <a href="/rules" class="block px-3 py-2 rounded hover:bg-slate-700/50 {% if active == 'rules' %}bg-slate-600 text-amber-300 font-semibold active{% endif %}">Rules</a>
+      </nav>
+    </aside>
+
+    <!-- Основной контент -->
+    <main class="flex-1 px-8 py-6 overflow-y-auto bg-slate-900/20 md:ml-0">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <!-- Скрипт для переключения видимости вариантов -->
+  <script>
+    function applyVariantVisibility() {
+      const showAll = document.body.dataset.showAllVariants === '1';
+      document.querySelectorAll('.variant-pill').forEach(el => {
+        const isCanonical = el.dataset.canonical === '1';
+        el.style.display = (showAll || isCanonical) ? 'inline-flex' : 'none';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', applyVariantVisibility);
+    document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
+    document.addEventListener('change', e => { if (e.target?.id === 'toggle-all-variants') applyVariantVisibility(); });
+  </script>
+
+  <!-- Автоматически открывать сайдбар на десктопе -->
+  <script>
+    document.addEventListener('alpine:init', () => {
+      if (window.innerWidth >= 768) {
+        Alpine.nextTick(() => {
+          const aside = document.querySelector('aside');
+          if (aside) aside.__x.$data.sidebarOpen = true;
         });
       }
-
-      document.addEventListener('DOMContentLoaded', applyVariantVisibility);
-      document.body.addEventListener('htmx:afterSwap', applyVariantVisibility);
-      document.addEventListener('change', (e) => {
-        if (e.target && e.target.id === 'toggle-all-variants') applyVariantVisibility();
-      });
-    </script>
-
-  </body>
+    });
+  </script>
+</body>
 </html>

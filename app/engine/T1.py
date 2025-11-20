@@ -864,7 +864,7 @@ def apply(form: "Form", r: str) -> "Form":
                     redup = "ā" if var.m[j2].shape[idx_v] not in "äă" else "a"
                     if var.m[j2] == "bärk":
                         redup = "o"
-                    if var.m[j2] in ["läṅk","kon","ag","salu"]:
+                    if var.m[j2] in ["läṅk","kon","ag","salu","ālăk"]:
                         redup = "y"
                     if idx_v == 0:
                         redup += "n"
