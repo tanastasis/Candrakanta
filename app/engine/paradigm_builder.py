@@ -346,7 +346,7 @@ class DoubleProfile(Profile):
             rows.append({"kind":"sublexeme", "tag":"BAH1"})
         if has_group("Ag")(lex):
             rows.append({"kind":"sublexeme", "tag":"BAH1"})
-        if lex.name in ["D_kanwe","D_kloz","D_päśśă"]:
+        if has_group("Kloz")(lex):
             rows.append({"kind":"sublexeme", "tag":"ADJ"})            
         return rows
 
@@ -465,7 +465,7 @@ class AdjectiveProfile(Profile):
         if lex.Category == "qualitative" or \
             has_group("Riṣak")(lex) or lex.name in ["V_knās+PPM"] or lex.name.endswith("NMZ+BAH1"):
                 rows.append({"kind":"sublexeme", "tag":"NMZ"})
-                return rows
+        return rows
 
 # профили по категориям
 PROFILES = {
@@ -590,7 +590,7 @@ def export_paradigm_nominal(lex, *, save_to: str|None=None):
                         }
                     })     
                     
-                elif lex.name in ["D_kanwe","D_kloz"] and tag == "ADJ" and "DU" in cols:
+                elif has_group("Kloz")(lex) and tag == "ADJ" and "DU" in cols:
                     sub_big = sublexeme(lex, ["DU", "ADJ"])
                     label_big = dictionary_form(sub_big, every=True)
                     cells.append({
@@ -659,7 +659,6 @@ DEIXES   = ["DIST","MED","PROX"]
 NUMBERS  = ["SG","DU","PL"]
 GENDERS  = ["M","F"]
 
-
 def _build_p3_columns() -> List[str]:
     cols: List[str] = []
     for d in DEIXES:
@@ -690,10 +689,13 @@ def export_paradigm_p3(lex, *, save_to: str | None = None) -> Dict:
 
     lex_name = getattr(lex, "name", "LEX")
 
-    cols = _build_p3_columns()
+    cols = ["—"] + _build_p3_columns()
+    
     axes = [
-        {"id": "case", "label": "Case", "values": [{"id": c, "label": c} for c in CASES_PLUS_ADV]},
-        {"id": "col",  "label": "Deixis · Number · Gender", "values": [{"id": c, "label": c} for c in cols]},
+        {"id": "case", "label": "Case",
+         "values": [{"id": c, "label": c} for c in CASES_PLUS_ADV]},
+        {"id": "col",  "label": "Deixis · Number · Gender",
+         "values": [{"id": c, "label": c} for c in cols]},
     ]
     layout = {"rows": "case", "cols": "col", "pages": None}
 
@@ -701,7 +703,7 @@ def export_paradigm_p3(lex, *, save_to: str | None = None) -> Dict:
     all_derivations: List[Dict] = []
 
     for case in CASES_PLUS_ADV:
-        for col in cols:
+        for col in cols[1:]:
             if case == "ADV" and col not in ["DIST","PROX","MED"]:
                 continue
             if case == "ABL3" and col != "DIST":
@@ -745,7 +747,7 @@ def export_paradigm_p3(lex, *, save_to: str | None = None) -> Dict:
         row_id = f"{num_tag}+OBL"
         axes[0]["values"].append({"id": row_id, "label": row_id})
     
-        gr = Grammeme([am[num_tag],am["OBL"]])
+        gr = Grammeme([am[num_tag], am["OBL"]])
         form = phonol(buildForm(lex, gr))
     
         cell_json, derivs = form_to_json(
@@ -755,15 +757,14 @@ def export_paradigm_p3(lex, *, save_to: str | None = None) -> Dict:
             form_obj=form,
             cell_label=None,
         )
+    
         for d in derivs:
             d["lexeme_id"] = lex.name
-            d["gr_obj"]    = gr
+            d["gr_obj"] = gr
         all_derivations.extend(derivs)
     
-        first_col_id = axes[1]["values"][0]["id"]
-    
         cells.append({
-            "coords": {"case": row_id, "col": first_col_id},
+            "coords": {"case": row_id, "col": "—"},   # ← КЛАДЁМ В ОСОБУЮ КОЛОНКУ
             "content": {
                 "type": "form",
                 "form_id": cell_json["form_id"],
