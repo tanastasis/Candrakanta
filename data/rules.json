@@ -1518,7 +1518,7 @@
       "0~Suffix~äq"
     ],
     "optional": [],
-    "wording": "Add -äq to p before ~case"
+    "wording": "Add -äq to p before (DU+)case"
   },
   "II.8.5": {
     "id": "II.8.5",
@@ -3161,10 +3161,10 @@
     ],
     "unlesses": [],
     "operations": [
-      "0~Shape~mäśäw"
+      "0~Shape~mäśśäw"
     ],
     "optional": [],
-    "wording": "INAN3 → mäśäw after sey~"
+    "wording": "INAN3 → mäśśäw after sey~"
   },
   "II.15.14": {
     "id": "II.15.14",
@@ -4654,7 +4654,7 @@
       "0~Shape~r"
     ],
     "optional": [],
-    "wording": "MID → är after PrsEnd~"
+    "wording": "MID → r after PrsEnd~"
   },
   "III.4.4": {
     "id": "III.4.4",
@@ -8245,7 +8245,7 @@
       "0~Prefix~pä"
     ],
     "optional": [],
-    "wording": "Add pä- before ~IMP"
+    "wording": "Add pä- to verb before ~IMP"
   },
   "IV.15.2": {
     "id": "IV.15.2",
@@ -9840,7 +9840,7 @@
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "ä → drops before ` + vowel"
+    "wording": "ä drops before “` + vowel”"
   },
   "VII.2.1": {
     "id": "VII.2.1",
@@ -9890,7 +9890,7 @@
       "0~Prefix~`"
     ],
     "optional": [],
-    "wording": "C → C` before p/w/r"
+    "wording": "C → C` before “p/w/r + `”"
   },
   "VII.3.2": {
     "id": "VII.3.2",
@@ -10086,7 +10086,7 @@
       "0~Prefix~ä"
     ],
     "optional": [],
-    "wording": "Att ä- to bha t, ṣ after m,λ,ñ"
+    "wording": "Add ä- to bha t, ṣ after m,λ,ñ"
   },
   "VII.5.7": {
     "id": "VII.5.7",
@@ -10185,7 +10185,7 @@
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "ä drops unless what’s after it after deletion of all ` starts with “consonant not before vowel”"
+    "wording": "ä not before “consonant not before vowel”"
   },
   "VII.9.1": {
     "id": "VII.9.1",
