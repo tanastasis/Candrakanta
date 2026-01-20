@@ -282,7 +282,7 @@ def satisfy_phon(variant: "Variant", i: int, condition: Any, *, unless: bool = F
         if cluster in ["rmnt","mncs","ṣln","ynty"]:
             return True
         subclaster = cluster[1:-1]
-        if re.search(r"[rly]",subclaster):
+        if re.search(r"[rlλy]",subclaster):
             return False
         return len(cluster) < 4
     elif what == "PermissibleClusterLast":
