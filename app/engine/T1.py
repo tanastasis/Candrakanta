@@ -1176,7 +1176,7 @@ def add_dictionary_form_to_json(json_path: str, output_path: str | None = None):
 
 # print('lala')
 # a = "lala"
-add_dictionary_form_to_json("./data/lexemes.json")
+# add_dictionary_form_to_json("./data/lexemes.json")
 
 
 # a = lx["W_kār"]
