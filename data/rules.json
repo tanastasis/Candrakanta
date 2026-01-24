@@ -11210,7 +11210,7 @@
     "ifs": [
       "0~Shape~ä",
       "0~After~^r$",
-      "0~PermissibleClusterLast~"
+      "0~PermissibleCluster~"
     ],
     "unlesses": [
       "-1~Shape~r"
