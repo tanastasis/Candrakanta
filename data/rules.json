@@ -11209,7 +11209,8 @@
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
-      "0~After~^r$"
+      "0~After~^r$",
+      "0~PermissibleClusterLast~"
     ],
     "unlesses": [
       "-1~Shape~r"
