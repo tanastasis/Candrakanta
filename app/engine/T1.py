@@ -246,7 +246,7 @@ def satisfy_phon(variant: "Variant", i: int, condition: Any, *, unless: bool = F
             return True
         if l[j].morpheme == l[j+1].morpheme:
             return False
-        if ((l[j+1].morpheme in ["INS","GEN","ADV","PLUS","ADJ","PL"] or l[j+1].morpheme.wagon == 0) and re.search(r"^[ynṣpt]",l[j+1].morpheme.shape)) or l[j+1].morpheme == "EMPH":
+        if ((l[j+1].morpheme in ["INS","GEN","ADV","PLUS","ADJ","PL","DU"] or l[j+1].morpheme.wagon == 0) and re.search(r"^[ynṣpt]",l[j+1].morpheme.shape)) or l[j+1].morpheme == "EMPH":
             return True
         return False
     elif what == "Root":
