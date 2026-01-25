@@ -10512,7 +10512,7 @@
     "id": "VII.15.4",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~PL",
+      "0~Morpheme~PL,DU",
       "0~Pattern~nt[{_V}w]",
       "0~Before~[{_V}][{_C}]*[{_long}][lryw]$"
     ],
@@ -10525,7 +10525,7 @@
     "optional": [
       "+"
     ],
-    "wording": "Optionally in PL änt → nt before vowel/w after “long +  l,r,y,w preceded by at least one syllable”"
+    "wording": "Optionally in DU/PL änt → nt before vowel/w after “long +  l,r,y,w preceded by at least one syllable”"
   },
   "VII.16.1": {
     "id": "VII.16.1",
@@ -10534,7 +10534,7 @@
       "0~Bha~",
       "0~Shape~y",
       "-1~Shape~e,i",
-      "1~Morpheme~PL"
+      "1~Morpheme~PL,DU"
     ],
     "unlesses": [
       "0~Category~verb"
@@ -10545,7 +10545,7 @@
     "optional": [
       "+"
     ],
-    "wording": "Bha y → Ø after e/i not in verb optionally before PL"
+    "wording": "Bha y → Ø after e/i not in verb optionally before DU/PL"
   },
   "VII.16.2": {
     "id": "VII.16.2",
@@ -10571,7 +10571,7 @@
       "0~Bhe~",
       "0~Morpheme~vān,vä,DU",
       "-1~Shape~e,u",
-      "-2~Shape~w,v"
+      "-2~Shape~w"
     ],
     "unlesses": [
       "-3~Shape~n"
@@ -10580,7 +10580,7 @@
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "Bhe nasal → Ø in vān, vä, DU after ve/vu/we/wu not after n"
+    "wording": "Bhe nasal → Ø in vān, vä, DU after we/wu not after n"
   },
   "VII.18.1": {
     "id": "VII.18.1",
@@ -11222,7 +11222,7 @@
     "optional": [
       "+"
     ],
-    "wording": "är → rä (not after r) optionally at word-end"
+    "wording": "är → rä (not after r) optionally at word-end if the resulting cluster is permissible"
   },
   "VIII.11.1": {
     "id": "VIII.11.1",
