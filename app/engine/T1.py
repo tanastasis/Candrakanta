@@ -1,17 +1,10 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from .T_LoadMorphemes import AbstractMorpheme, ContextMorpheme, Letter, am
 from .T_LoadLexemes import Lexeme, lx
 from .T_LoadRules import rules
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Any
 from copy import deepcopy
-import uuid
-# loader.py
-import importlib
-from pprint import pprint
-import pandas as pd
 import re
-import traceback
-import pickle
 from pathlib import Path
 import json
 
@@ -977,8 +970,6 @@ def apply(form: "Form", r: str) -> "Form":
     
 
 def standard(v: "Variant") -> bool:
-    # if v.m and v.m[-1].wagon == 0:
-    #     return False
     return not any(x[1] in ["M","V","Post"] for x in v.yes_options) and not any(x[1] in ["P","Pr"] for x in v.no_options)
 
 def showvar(v: "Variant") -> str:
@@ -1174,17 +1165,4 @@ def add_dictionary_form_to_json(json_path: str, output_path: str | None = None):
 
     print(f"Saved updated JSON to: {out}")
 
-# print('lala')
-# a = "lala"
 add_dictionary_form_to_json("./data/lexemes.json")
-
-
-# a = lx["W_kār"]
-# b = sublexeme(a,["DU"])
-# g = Grammeme([am["NOM"]])
-# g = Grammeme([am["PL"],am["ABL"]])
-# f = buildForm(b, g)
-# phonol(f)
-# pprint(b)
-# print(f.Variants[0].m[1].wagon)
-# print(f)

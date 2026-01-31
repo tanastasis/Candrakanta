@@ -6779,7 +6779,7 @@
       "0~Ablaut~`ä"
     ],
     "optional": [],
-    "wording": "In ṣtäm e-ablaut before V+INAN4"
+    "wording": "In ṣtäm `ä-ablaut before V+INAN4"
   },
   "IV.3.5": {
     "id": "IV.3.5",
@@ -8065,7 +8065,7 @@
     "id": "IV.14.2",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~tärk",
+      "0~Morpheme~tärk,spārtv",
       "2~Morpheme~INAN1"
     ],
     "unlesses": [],
@@ -8073,7 +8073,7 @@
       "0~PalatInit~"
     ],
     "optional": [],
-    "wording": "In tärk initial palatalization before ~INAN1"
+    "wording": "In tärk, spārtv initial palatalization before ~INAN1"
   },
   "IV.14.3": {
     "id": "IV.14.3",
@@ -11155,6 +11155,21 @@
       "P"
     ],
     "wording": "äñ → iñ preferably in kapśăñyā,cäñcäră"
+  },
+  "VIII.7.3": {
+    "id": "VIII.7.3",
+    "kind": "morphological",
+    "ifs": [
+      "0~Morpheme~bältäk"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Change~äl→il"
+    ],
+    "optional": [
+      "+"
+    ],
+    "wording": "äl → il optionally in bältäk"
   },
   "VIII.8.1": {
     "id": "VIII.8.1",
