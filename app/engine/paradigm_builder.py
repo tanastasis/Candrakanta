@@ -5,10 +5,11 @@ from datetime import datetime, timezone
 from .T1 import (
     Form, Variant, showvar, lx, am,
     Grammeme, Postfixeme, phonol, buildForm, standard, sublexeme,
-    Lexeme, dictionary_form, show_form
+    Lexeme, dictionary_form, rules, show_form
 )
 
 from typing import Dict, List, Tuple
+from pprint import pprint
 
 def _norm_surface(s: str) -> str:
     s = unicodedata.normalize("NFC", s)
