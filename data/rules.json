@@ -5895,7 +5895,7 @@
     "ifs": [
       "0~Morpheme~PL",
       "0~wagon~2",
-      "0~Before~[pmw]e$",
+      "0~Before~[pmwv]e$",
       "1~Morpheme~NOM,ACC"
     ],
     "unlesses": [],
@@ -5905,7 +5905,7 @@
     "optional": [
       "M"
     ],
-    "wording": "PL → yu marginally in stem after “p/m/w+e” before NOM/ACC"
+    "wording": "PL → yu marginally in stem after “p/m/w/v+e” before NOM/ACC"
   },
   "III.9.25": {
     "id": "III.9.25",
