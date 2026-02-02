@@ -1715,6 +1715,22 @@
     "optional": [],
     "wording": "Add -e` to pracăr, ANIM2 before PL"
   },
+  "II.8.19": {
+    "id": "II.8.19",
+    "kind": "morphological",
+    "ifs": [
+      "0~Morpheme~āre",
+      "1~Morpheme~PL"
+    ],
+    "unlesses": [
+      "2~Morpheme~NOM"
+    ],
+    "operations": [
+      "0~Suffix~sā"
+    ],
+    "optional": [],
+    "wording": "Add -sā to āre before PL not before NOM"
+  },
   "II.9.1": {
     "id": "II.9.1",
     "kind": "morphological",
@@ -5112,7 +5128,7 @@
       "0~Shape~y"
     ],
     "optional": [],
-    "wording": "F → y after ś/z and GER1/GER2 before SG+NOM"
+    "wording": "F → y between ś/z/GER and SG+NOM"
   },
   "III.6.11": {
     "id": "III.6.11",
