@@ -74,7 +74,7 @@ class Variant:
     def __init__(self, m: list["ContextMorpheme"], l: list["Letter"]):
         self.m = m
         self.l = l
-        self.letter_ids = [lt.id for lt in l]
+     #   self.letter_ids = [lt.id for lt in l]
         self.rules = []
         self.yes_options = []
         self.no_options = []
@@ -982,7 +982,7 @@ def showvar(v: "Variant") -> str:
 
 
 def phonol(form: "Form") -> "Form":
-    for r, _ in rules.items():
+    for r in rules:
         apply(form, r)
     seen = []
     idxs = []
@@ -997,8 +997,11 @@ def phonol(form: "Form") -> "Form":
                 indices_to_delete.append(i)
                 continue
             # THIS IS NEW! For kinds of letaṣ: less optional prevail
-            elif len(form.Variants[j].yes_options)  > len(form.Variants[i].yes_options):
+            elif len(form.Variants[j].yes_options) > len(form.Variants[i].yes_options):
                 indices_to_delete.append(j)
+            elif len(form.Variants[i].yes_options) > len(form.Variants[j].yes_options):
+                indices_to_delete.append(i)
+                continue
             elif len(form.Variants[j].rules) > len(form.Variants[i].rules):
                 indices_to_delete.append(j)
             else:
@@ -1172,6 +1175,6 @@ add_dictionary_form_to_json("./data/lexemes.json")
 
 # lex = lx["V_läyt"]
 # gr = Grammeme([am["CON"],am["3"],am["SG"],am["ACT"]])
-# # print(lex)
+# print(lex)
 # form = phonol(buildForm(lex, gr))
 # print(form.Variants[0].yes_options)
