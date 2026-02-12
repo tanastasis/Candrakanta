@@ -996,6 +996,9 @@ def phonol(form: "Form") -> "Form":
             elif not standard(form.Variants[i]) and standard(form.Variants[j]):
                 indices_to_delete.append(i)
                 continue
+            # THIS IS NEW! For kinds of letaṣ: less optional prevail
+            elif len(form.Variants[j].yes_options)  > len(form.Variants[i].yes_options):
+                indices_to_delete.append(j)
             elif len(form.Variants[j].rules) > len(form.Variants[i].rules):
                 indices_to_delete.append(j)
             else:
@@ -1166,3 +1169,9 @@ def add_dictionary_form_to_json(json_path: str, output_path: str | None = None):
     print(f"Saved updated JSON to: {out}")
 
 add_dictionary_form_to_json("./data/lexemes.json")
+
+# lex = lx["V_läyt"]
+# gr = Grammeme([am["CON"],am["3"],am["SG"],am["ACT"]])
+# # print(lex)
+# form = phonol(buildForm(lex, gr))
+# print(form.Variants[0].yes_options)
