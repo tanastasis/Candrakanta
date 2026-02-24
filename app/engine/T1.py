@@ -272,7 +272,7 @@ def satisfy_phon(variant: "Variant", i: int, condition: Any, *, unless: bool = F
             cluster = cluster[:-1]
         if len(cluster) == 2:
             return True
-        if cluster in ["rmnt","mncs","ṣln","ynty"]:
+        if cluster in ["rmnt","mncs","mptr","ṣln","ynty"]:
             return True
         subclaster = cluster[1:-1]
         if re.search(r"[rlλy]",subclaster):

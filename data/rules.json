@@ -2736,7 +2736,7 @@
       "0~Change~ă→Ø"
     ],
     "optional": [],
-    "wording": "GER1, GER2 lose ă before NMZ, ADJ, PL not in W_śwāl, W_rkäl, W_el"
+    "wording": "GER lose ă before NMZ, ADJ, PL not in W_śwāl, W_rkäl, W_el"
   },
   "II.12.14": {
     "id": "II.12.14",
@@ -5955,7 +5955,7 @@
       "2~Shape~Ø"
     ],
     "optional": [],
-    "wording": "Add -n after ă/a of qualitatives/ṣomă/sasăk before F+PL, and thep PL drops"
+    "wording": "Add -n after ă/a of qualitatives/ṣomă/sasăk before F+PL, and then PL drops"
   },
   "III.10.2": {
     "id": "III.10.2",
@@ -6194,7 +6194,7 @@
       "0~Shape~āp"
     ],
     "optional": [],
-    "wording": "GEN → āp after masculine genders/strongs/names (not Ñäkta, -ā`,u,ū) + SG"
+    "wording": "GEN → āp after masculine gender/strong/name (not Ñäkta, -ā`,u,ū) + SG"
   },
   "III.13.3": {
     "id": "III.13.3",
@@ -6277,7 +6277,7 @@
       "0~Shape~es"
     ],
     "optional": [],
-    "wording": "GEN → es after ă/a of names/strongs/creatures + SG except oṅkă"
+    "wording": "GEN → es after ă/a of name/strong/creature + SG except oṅkă"
   },
   "III.13.8": {
     "id": "III.13.8",
@@ -9688,15 +9688,16 @@
     "ifs": [
       "0~Morpheme~läyp",
       "1~Morpheme~K",
-      "2~Morpheme~PPP",
-      "*3~Category~gender—2~Category~weak"
+      "2~Morpheme~PPP"
     ],
-    "unlesses": [],
+    "unlesses": [
+      "3~Category~case"
+    ],
     "operations": [
       "0~Change~äy→ä"
     ],
     "optional": [],
-    "wording": "äy → ä in läyp before K+PPP+gender"
+    "wording": "äy → ä in läyp before K+PPP not before case"
   },
   "VI.23.2": {
     "id": "VI.23.2",
@@ -11901,6 +11902,20 @@
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
+      "0~Before~^q$"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~u"
+    ],
+    "optional": [],
+    "wording": "qä- → qu-"
+  },
+  "VIII.20.2": {
+    "id": "VIII.20.2",
+    "kind": "phonological",
+    "ifs": [
+      "0~Shape~ä",
       "0~After~[{_C}]*q"
     ],
     "unlesses": [],
@@ -11910,8 +11925,8 @@
     "optional": [],
     "wording": "ä → u before “any number of C + q”"
   },
-  "VIII.20.2": {
-    "id": "VIII.20.2",
+  "VIII.20.3": {
+    "id": "VIII.20.3",
     "kind": "phonological",
     "ifs": [
       "0~Shape~ä",
@@ -11926,8 +11941,8 @@
     ],
     "wording": "ä → u after q optionally"
   },
-  "VIII.20.3": {
-    "id": "VIII.20.3",
+  "VIII.20.4": {
+    "id": "VIII.20.4",
     "kind": "phonological",
     "ifs": [
       "0~Shape~q",
@@ -11940,8 +11955,8 @@
     "optional": [],
     "wording": "Cq- → Cᵤk-"
   },
-  "VIII.20.4": {
-    "id": "VIII.20.4",
+  "VIII.20.5": {
+    "id": "VIII.20.5",
     "kind": "phonological",
     "ifs": [
       "0~Shape~q",
@@ -11954,20 +11969,6 @@
     ],
     "optional": [],
     "wording": "qC- → kᵤC-"
-  },
-  "VIII.20.5": {
-    "id": "VIII.20.5",
-    "kind": "phonological",
-    "ifs": [
-      "0~Shape~ä",
-      "0~Before~^q$"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~u"
-    ],
-    "optional": [],
-    "wording": "qä- → qu-"
   },
   "VIII.20.6": {
     "id": "VIII.20.6",

@@ -427,7 +427,7 @@ class AdjectiveProfile(Profile):
         if lex.name == "R_p":
             return ["—","M.SG","F.SG","DU","M.DU","F.DU","M.PL","F.PL"]
         if lex.Morphemes[-1].name in ["PPP","ālăk"] or (lex.Morphemes[-1].name == "ADJ" and lex.Morphemes[-2].name == "päqälā") \
-            or lex.name in ["Q_mkältāwr","N_vä+ORD"]:
+            or lex.name in ["Q_mkältāwr","N_vä+ORD","N_täräy+ORD"]:
             return ["—","M.SG","F.SG","M.PL","F.PL"]
         if has_group("Ṣomă")(lex):
             return ["—","M.SG","F.SG","M.PL","F.PL"]
@@ -448,6 +448,8 @@ class AdjectiveProfile(Profile):
                 else:
                     return None
             if lex.name == "N_vä+ORD" and case != "PER":
+                return None
+            if lex.name == "N_täräy+ORD" and case != "INS":
                 return None
             if (lex.Morphemes[-1].name == "ADJ" and lex.Morphemes[-2].name in "päqälā") and case not in ['ABL','ACC']:
                 return None
