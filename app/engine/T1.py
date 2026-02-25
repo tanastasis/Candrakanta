@@ -6,7 +6,8 @@ from typing import List, Optional, Any
 from copy import deepcopy
 import re
 from pathlib import Path
-import json
+import json, os
+from pprint import pprint
 
 
 def _last_base_char(token: str) -> str:
@@ -74,7 +75,6 @@ class Variant:
     def __init__(self, m: list["ContextMorpheme"], l: list["Letter"]):
         self.m = m
         self.l = l
-     #   self.letter_ids = [lt.id for lt in l]
         self.rules = []
         self.yes_options = []
         self.no_options = []
@@ -1043,12 +1043,29 @@ def show_form(form: "Form", *, st = True):
 
 def get_paradigm(lexeme: str):
     lex = lx[lexeme]
-    cat = lex.CategoryMorphemeCategories
-    paradigm = {}
-    if cat == "indeclinable":
-        gr = Grammeme([])
-        form = phonol(buildForm(lex,gr))
-        paradigm["—"] = form
+    cat = lex.Category
+    paradigm = []
+    _PERSONS = ["1", "2", "3"]
+    _NUMBERS = ["SG", "PL"]
+    _VOICES  = ["ACT", "MID"]
+    _TENSES  = ["PRS", "IPF", "CON", "OPT", "PRT", "IMP"]
+    if cat == "verb":
+        for tense in _TENSES:
+            for voice in _VOICES:
+                for number in _NUMBERS:
+                    for person in _PERSONS:
+                        if tense != "IMP" or person == "2": 
+                            gr = Grammeme([am[tense], am[person], am[number], am[voice]])
+                            form = phonol(buildForm(lex, gr))
+                            paradigm.append(form)
+                            # for post_number in _NUMBERS:
+                            #     for post_person in _PERSONS:
+                            #         post = Postfixeme([am[post_person],am[post_number],am['OBL']])
+                            #         form_post = phonol(buildForm(lex, gr, post))
+                            #         paradigm.append(form_post)
+                            # post = Postfixeme([am['EMPH'],am['NOM']])
+                            # emph_form = phonol(buildForm(lex,gr,post))
+                            # paradigm.append(emph_form)
     return paradigm
 
 def _append_last_index_to_maps(lex: "Lexeme"):
@@ -1171,10 +1188,123 @@ def add_dictionary_form_to_json(json_path: str, output_path: str | None = None):
 
     print(f"Saved updated JSON to: {out}")
 
+
+class ThesaurusBuilder:
+    """
+    Builder для thesaurus.json
+
+    Использование:
+
+        tb = ThesaurusBuilder()
+        tb.add_form(f)
+        tb.save()
+    """
+
+    def __init__(self, path="thesaurus.json"):
+        self.path = path
+        self.data = {}
+
+        # если файл уже существует — загружаем
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as fp:
+                self.data = json.load(fp)
+
+    # --------------------------------------------------
+    # Универсальная сериализация
+    # --------------------------------------------------
+    def _serialize(self, obj):
+        if isinstance(obj, (str, int, float, bool)) or obj is None:
+            return obj
+
+        if isinstance(obj, list):
+            return [self._serialize(i) for i in obj]
+
+        if isinstance(obj, dict):
+            return {k: self._serialize(v) for k, v in obj.items()}
+
+        # твои Rule/Morpheme объекты обычно имеют name
+        if hasattr(obj, "name"):
+            return obj.name
+
+        if hasattr(obj, "__dict__"):
+            return {
+                k: self._serialize(v)
+                for k, v in obj.__dict__.items()
+                if not k.startswith("_")
+            }
+
+        return str(obj)
+
+    # --------------------------------------------------
+    # Добавление одного Form
+    # --------------------------------------------------
+    def add_form(self, f):
+
+        grammeme = ".".join(m.name for m in f.Grammeme.Morphemes)
+
+        postfixeme = ""
+        lexeme = f.Lexeme.name
+        pre_form_id = f'{lexeme}+{grammeme}'
+        if getattr(f, "Postfixeme", None):
+            postfixeme = ".".join(m.name for m in f.Postfixeme.Morphemes)
+            pre_form_id += f'+{postfixeme}'
+
+        for v in f.Variants:
+
+            key = showvar(v)
+
+            entry = {
+                "var_id": f'{key}, {pre_form_id}',
+                "lexeme": lexeme,
+                "lexeme_meaning": f.Lexeme.Meaning,
+                "grammeme": grammeme,
+                "postfixeme": postfixeme,
+                "rules": self._serialize(v.rules),
+                "yes_options": self._serialize(v.yes_options),
+                "no_options": self._serialize(v.no_options),
+            }
+
+            # если нет ключа — создаём список
+            self.data.setdefault(key, []).append(entry)
+
+    # --------------------------------------------------
+    # Добавление списка Form (ускоряет bulk build)
+    # --------------------------------------------------
+    def add_forms(self, forms):
+        for f in forms:
+            self.add_form(f)
+
+    # --------------------------------------------------
+    # Сохранение JSON
+    # --------------------------------------------------
+    def save(self):
+        with open(self.path, "w", encoding="utf-8") as fp:
+            json.dump(self.data, fp, ensure_ascii=False, indent=2)
+
+    # --------------------------------------------------
+    # Очистка
+    # --------------------------------------------------
+    def clear(self):
+        self.data = {}
+
 add_dictionary_form_to_json("./data/lexemes.json")
 
-# lex = lx["V_läyt"]
-# gr = Grammeme([am["CON"],am["3"],am["SG"],am["ACT"]])
-# print(lex)
+# lex = lx["W_wsāl"]
+# gr = Grammeme([am["PL"],am["NOM"]])
+# # gr = Grammeme([am["CON"],am["2"],am["PL"],am["ACT"]])
 # form = phonol(buildForm(lex, gr))
-# print(form.Variants[0].yes_options)
+# var = form.Variants[0]
+
+tb = ThesaurusBuilder("thesaurus.json")
+
+par = get_paradigm('V_yām')
+
+for form in par:
+    tb.add_form(form)
+
+tb.save()
+
+with open("thesaurus.json", encoding="utf-8") as f:
+    data = json.load(f)
+
+print(len(data))

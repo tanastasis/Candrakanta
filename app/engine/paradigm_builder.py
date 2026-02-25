@@ -455,6 +455,8 @@ class AdjectiveProfile(Profile):
                 return None
         elif case == "ABL3":
             return None
+        elif lex.name == "R_p" and 'SG' in col and case == 'NOM':
+            return None
         g, n = parse_col(col)
         gr = build_gram(case, g, n)
         return {"type":"form","gr":gr}
