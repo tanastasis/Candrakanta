@@ -1295,16 +1295,16 @@ add_dictionary_form_to_json("./data/lexemes.json")
 # form = phonol(buildForm(lex, gr))
 # var = form.Variants[0]
 
-tb = ThesaurusBuilder("thesaurus.json")
+# tb = ThesaurusBuilder("thesaurus.json")
 
-par = get_paradigm('V_yām')
+# par = get_paradigm('V_yām')
 
-for form in par:
-    tb.add_form(form)
+# for form in par:
+#     tb.add_form(form)
 
-tb.save()
+# tb.save()
 
-with open("thesaurus.json", encoding="utf-8") as f:
-    data = json.load(f)
+# with open("thesaurus.json", encoding="utf-8") as f:
+#     data = json.load(f)
 
-print(len(data))
+# print(len(data))
