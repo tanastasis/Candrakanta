@@ -1483,14 +1483,13 @@
       "1~Category~gender"
     ],
     "unlesses": [
-      "*2~Morpheme~SG—3~Morpheme~NOM",
       "2~Morpheme~DU"
     ],
     "operations": [
       "0~Suffix~ont"
     ],
     "optional": [],
-    "wording": "Add -ont to p before gender not before DU / SG+NOM"
+    "wording": "Add -ont to p before gender not before DU"
   },
   "II.8.4": {
     "id": "II.8.4",
@@ -1510,21 +1509,6 @@
     "id": "II.8.5",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~p",
-      "2~Morpheme~SG",
-      "3~Morpheme~NOM"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Suffix~äq"
-    ],
-    "optional": [],
-    "wording": "Add -äq to p before ~SG+NOM"
-  },
-  "II.8.6": {
-    "id": "II.8.6",
-    "kind": "morphological",
-    "ifs": [
       "0~Morpheme~qä",
       "1~Morpheme~NOM"
     ],
@@ -1535,8 +1519,8 @@
     "optional": [],
     "wording": "Add -s to qä before NOM"
   },
-  "II.8.7": {
-    "id": "II.8.7",
+  "II.8.6": {
+    "id": "II.8.6",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~qä"
@@ -1550,8 +1534,8 @@
     "optional": [],
     "wording": "Add -c to qä not before NOM/GEN"
   },
-  "II.8.8": {
-    "id": "II.8.8",
+  "II.8.7": {
+    "id": "II.8.7",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ywār"
@@ -1565,8 +1549,8 @@
     "optional": [],
     "wording": "Add -c to ywār not before NOM"
   },
-  "II.8.9": {
-    "id": "II.8.9",
+  "II.8.8": {
+    "id": "II.8.8",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ywār"
@@ -1581,8 +1565,8 @@
     "optional": [],
     "wording": "Add -k to ywār before any morpheme except NOM"
   },
-  "II.8.10": {
-    "id": "II.8.10",
+  "II.8.9": {
+    "id": "II.8.9",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~tāpär"
@@ -1596,8 +1580,8 @@
     ],
     "wording": "Add -k to tāpär preferably"
   },
-  "II.8.11": {
-    "id": "II.8.11",
+  "II.8.10": {
+    "id": "II.8.10",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ksär"
@@ -1613,8 +1597,8 @@
     ],
     "wording": "Add -k to ksär marginally"
   },
-  "II.8.12": {
-    "id": "II.8.12",
+  "II.8.11": {
+    "id": "II.8.11",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ksär",
@@ -1627,8 +1611,8 @@
     "optional": [],
     "wording": "Add -k to ksär before ADJ"
   },
-  "II.8.13": {
-    "id": "II.8.13",
+  "II.8.12": {
+    "id": "II.8.12",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~kāze",
@@ -1641,8 +1625,8 @@
     "optional": [],
     "wording": "Add -k to kāze before INDECL"
   },
-  "II.8.14": {
-    "id": "II.8.14",
+  "II.8.13": {
+    "id": "II.8.13",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~neṣ",
@@ -1655,8 +1639,8 @@
     "optional": [],
     "wording": "Add -āw to neṣ before NMZ"
   },
-  "II.8.15": {
-    "id": "II.8.15",
+  "II.8.14": {
+    "id": "II.8.14",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~neṣ",
@@ -1671,8 +1655,8 @@
     ],
     "wording": "Marginally add -āw to neṣ before NOM"
   },
-  "II.8.16": {
-    "id": "II.8.16",
+  "II.8.15": {
+    "id": "II.8.15",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~umpar",
@@ -1687,8 +1671,8 @@
     "optional": [],
     "wording": "Add -ñ to umpar before gender not before SG+NOM"
   },
-  "II.8.17": {
-    "id": "II.8.17",
+  "II.8.16": {
+    "id": "II.8.16",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~ratg,olăr",
@@ -1701,8 +1685,8 @@
     "optional": [],
     "wording": "Add -`äy to olăr, ratg before PL"
   },
-  "II.8.18": {
-    "id": "II.8.18",
+  "II.8.17": {
+    "id": "II.8.17",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~pracăr,ANIM2",
@@ -1715,8 +1699,8 @@
     "optional": [],
     "wording": "Add -e` to pracăr, ANIM2 before PL"
   },
-  "II.8.19": {
-    "id": "II.8.19",
+  "II.8.18": {
+    "id": "II.8.18",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~āre",
@@ -6683,7 +6667,7 @@
       "0~AblautGenderF~"
     ],
     "optional": [],
-    "wording": "Change ă to gender’s form before k + FEM (not in ālăk), and then gender optionally → Ø"
+    "wording": "Change ă to gender’s form before k + F (not in ālăk), and then gender optionally → Ø"
   },
   "IV.2.2": {
     "id": "IV.2.2",
@@ -6700,7 +6684,7 @@
       "0~AblautGenderF~"
     ],
     "optional": [],
-    "wording": "Change ă to gender’s form in ālăk before FEM+SG+NOM, and then gender optionally → Ø"
+    "wording": "Change ă to gender’s form in ālăk before F+SG+NOM, and then gender optionally → Ø"
   },
   "IV.2.3": {
     "id": "IV.2.3",
@@ -6884,7 +6868,7 @@
       "0~Ablaut~`a"
     ],
     "optional": [],
-    "wording": "In green/red verbs `a-ablaut before _+Ipf"
+    "wording": "In green/red verbs `a-ablaut before ~Ipf"
   },
   "IV.3.11": {
     "id": "IV.3.11",
@@ -8103,7 +8087,7 @@
       "0~PalatInit~"
     ],
     "optional": [],
-    "wording": "In läq, läwtk initial palatalization before _+Imp/Opt"
+    "wording": "In läq, läwtk initial palatalization before ~Imp/Opt"
   },
   "IV.14.4": {
     "id": "IV.14.4",
@@ -8705,7 +8689,7 @@
       "0~Change~^`→Ø"
     ],
     "optional": [],
-    "wording": "drops after k, ḍ"
+    "wording": "The ` drops after k, ḍ"
   },
   "V.12.1": {
     "id": "V.12.1",
@@ -9560,7 +9544,7 @@
   },
   "VI.20.1": {
     "id": "VI.20.1",
-    "kind": "phonological_right",
+    "kind": "phonological",
     "ifs": [
       "0~Shape~ă",
       "0~Before~[{_V}]",
@@ -9578,7 +9562,7 @@
   },
   "VI.20.2": {
     "id": "VI.20.2",
-    "kind": "phonological_right",
+    "kind": "phonological",
     "ifs": [
       "0~Shape~ă",
       "0~Before~[{_V}]",
@@ -9598,7 +9582,7 @@
   },
   "VI.20.3": {
     "id": "VI.20.3",
-    "kind": "phonological_right",
+    "kind": "phonological",
     "ifs": [
       "0~Shape~ă",
       "0~Before~[{_V}]",
@@ -9615,7 +9599,7 @@
   },
   "VI.20.4": {
     "id": "VI.20.4",
-    "kind": "phonological_right",
+    "kind": "phonological",
     "ifs": [
       "0~Shape~ă"
     ],

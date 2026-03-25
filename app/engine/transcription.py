@@ -1,8 +1,10 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Feb 25 15:44:44 2026
+import re
 
-@author: sergeimalyshev
-"""
+def transcribe(word):
+    word = re.sub('lc̱a','lcä',word)
+    word = re.sub('a̱','ä',word)
+    word = re.sub('⸜','',word)
+    word = word.replace("\u0331", "")
+    return word
 
+print(transcribe('pᵤḵa̱ḻ⸜'))

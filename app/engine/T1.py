@@ -978,6 +978,8 @@ def showvar(v: "Variant") -> str:
         if let.morpheme.wagon == 0 and v.l[i-1].morpheme.wagon != 0:
             ans += "="
         ans += let.shape
+    if v.m[-1].Category not in ["case","voice"]:
+        ans += "-"
     return ans
 
 
@@ -1041,7 +1043,7 @@ def show_form(form: "Form", *, st = True):
     else:
         return ["".join([let.shape for let in v.l]) for v in form.Variants]
 
-def get_paradigm(lexeme: str):
+def get_paradigm(lexeme: str, *, full = True):
     lex = lx[lexeme]
     cat = lex.Category
     paradigm = []
@@ -1049,6 +1051,9 @@ def get_paradigm(lexeme: str):
     _NUMBERS = ["SG", "PL"]
     _VOICES  = ["ACT", "MID"]
     _TENSES  = ["PRS", "IPF", "CON", "OPT", "PRT", "IMP"]
+    _GENDERS = ["M", "F"]
+    _CASES_ADJ = ["NOM","ACC"]
+    _CASES_NOM = ["NOM","ACC","GEN","INS","ALL","LOC","COM","PER","ABL"]
     if cat == "verb":
         for tense in _TENSES:
             for voice in _VOICES:
@@ -1056,16 +1061,70 @@ def get_paradigm(lexeme: str):
                     for person in _PERSONS:
                         if tense != "IMP" or person == "2": 
                             gr = Grammeme([am[tense], am[person], am[number], am[voice]])
-                            form = phonol(buildForm(lex, gr))
-                            paradigm.append(form)
-                            # for post_number in _NUMBERS:
-                            #     for post_person in _PERSONS:
-                            #         post = Postfixeme([am[post_person],am[post_number],am['OBL']])
-                            #         form_post = phonol(buildForm(lex, gr, post))
-                            #         paradigm.append(form_post)
-                            # post = Postfixeme([am['EMPH'],am['NOM']])
-                            # emph_form = phonol(buildForm(lex,gr,post))
-                            # paradigm.append(emph_form)
+                            # form = phonol(buildForm(lex, gr))
+                            # paradigm.append(form)
+                            if full:
+                                for post_number in _NUMBERS:
+                                    for post_person in _PERSONS:
+                                        post = Postfixeme([am[post_person],am[post_number],am['OBL']])
+                                        form_post = phonol(buildForm(lex, gr, post))
+                                        paradigm.append(form_post)
+                                # post = Postfixeme([am['EMPH'],am['NOM']])
+                                # emph_form = phonol(buildForm(lex,gr,post))
+                                # paradigm.append(emph_form)
+        # for sec in ["PPA","PPP","GER1","GER2"]:
+        #     for gender in _GENDERS:
+        #         for number in _NUMBERS:
+        #             for case in _CASES_ADJ:
+        #                 gr = Grammeme([am[sec], am[gender], am[number], am[case]])
+        #                 form = phonol(buildForm(lex, gr))
+        #                 paradigm.append(form)
+        #     if sec == "PPP":
+        #         for case in ["PER","ABL"]:
+        #             gr = Grammeme([am[sec], am[case]])
+        #             form = phonol(buildForm(lex, gr))
+        #             paradigm.append(form)
+        #     elif sec == "GER1":
+        #         gr = Grammeme([am[sec], am["NOM"]])
+        #         form = phonol(buildForm(lex, gr))
+        #         paradigm.append(form)
+        #     elif sec == "GER2":
+        #         for number in _NUMBERS:
+        #             for case in _CASES_NOM:
+        #                 gr = Grammeme([am[sec], am['NMZ'], am[number], am[case]])
+        #                 form = phonol(buildForm(lex, gr))
+        #                 paradigm.append(form)
+                # for gender in _GENDERS:
+                #     for number in _NUMBERS:
+                #         for case in _CASES_ADJ:
+                #             gr = Grammeme([am[sec], am['NMZ'], am['ADJ'], am[gender], am[number], am[case]])
+                #             form = phonol(buildForm(lex, gr))
+                #             paradigm.append(form)
+    elif cat in ['qualitative','relative']:
+        for gender in _GENDERS:
+            for number in _NUMBERS:
+                for case in _CASES_ADJ:
+                    gr = Grammeme([am[gender], am[number], am[case]])
+                    form = phonol(buildForm(lex, gr))
+                    paradigm.append(form)
+        if cat == 'qualitative':
+            for number in _NUMBERS:
+                for case in _CASES_NOM:
+                    gr = Grammeme([am['NMZ'], am[number], am[case]])
+                    form = phonol(buildForm(lex, gr))
+                    paradigm.append(form)
+    elif cat in ['name']:
+        for case in _CASES_NOM:
+            gr = Grammeme([am['SG'],am[case]])
+            form = phonol(buildForm(lex, gr))
+            paradigm.append(form)  
+    elif cat in ['weak','middle','strong','creature']:
+        for number in _NUMBERS:
+            for case in _CASES_NOM:
+                gr = Grammeme([am[number],am[case]])
+                form = phonol(buildForm(lex, gr))
+                paradigm.append(form)          
+    print(lexeme)
     return paradigm
 
 def _append_last_index_to_maps(lex: "Lexeme"):
@@ -1287,13 +1346,51 @@ class ThesaurusBuilder:
     def clear(self):
         self.data = {}
 
+def transcribe(word):
+    word = re.sub('lc̱a','lcä',word)
+    word = re.sub('a̱','ä',word)
+    word = re.sub('⸜','',word)
+    word = word.replace("\u0331", "")
+    return word
+
+# @dataclass(slots=True)
+# class Characteristic:
+#     Transcription: str
+#     Language: str
+#     Lexeme: str
+#     Grammeme: str
+#     Postfixeme: Optional(str)
+#     Poetry: str
+
+# @dataclass(slots=True)
+# class TextForm:
+#     Transliteration: str
+#     Manuscript: str
+#     LineStart: str
+#     LineEnd: str
+#     Break: Optional[int]
+#     Type: str
+#     Characteristic: Optional[List(Characteristic)]
+    
+
 add_dictionary_form_to_json("./data/lexemes.json")
 
+# tb = ThesaurusBuilder("thesaurus.json")
+
+# for key in lx:
+#     if key.startswith(('W_','M_','S_','C_')):
+#         par = get_paradigm(key)
+#         for form in par:
+#             tb.add_form(form)
+#         tb.save()
+        
+
 # lex = lx["W_wsāl"]
-# gr = Grammeme([am["PL"],am["NOM"]])
-# # gr = Grammeme([am["CON"],am["2"],am["PL"],am["ACT"]])
+# gr = Grammeme([])
+# # # gr = Grammeme([am["CON"],am["2"],am["PL"],am["ACT"]])
 # form = phonol(buildForm(lex, gr))
 # var = form.Variants[0]
+# pprint(showvar(var))
 
 # tb = ThesaurusBuilder("thesaurus.json")
 
@@ -1307,4 +1404,4 @@ add_dictionary_form_to_json("./data/lexemes.json")
 # with open("thesaurus.json", encoding="utf-8") as f:
 #     data = json.load(f)
 
-# print(len(data))
+# pprint(data["ākālntu"])
