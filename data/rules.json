@@ -4174,6 +4174,20 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
+      "-1~Morpheme~wärz"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~one"
+    ],
+    "optional": [],
+    "wording": "NMZ → one after wärz"
+  },
+  "II.18.17": {
+    "id": "II.18.17",
+    "kind": "morphological",
+    "ifs": [
+      "0~Morpheme~NMZ",
       "-1~Morpheme~ārāntā,buddha`"
     ],
     "unlesses": [],
@@ -4183,8 +4197,8 @@
     "optional": [],
     "wording": "NMZ → iśparn after ārāntā, buddha`"
   },
-  "II.18.17": {
-    "id": "II.18.17",
+  "II.18.18": {
+    "id": "II.18.18",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~QUAL1",
@@ -4199,8 +4213,8 @@
     ],
     "wording": "QUAL1 äśănäw → äśänäw in verse"
   },
-  "II.18.18": {
-    "id": "II.18.18",
+  "II.18.19": {
+    "id": "II.18.19",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4214,8 +4228,8 @@
     "optional": [],
     "wording": "BAH1+NMZ drop"
   },
-  "II.18.19": {
-    "id": "II.18.19",
+  "II.18.20": {
+    "id": "II.18.20",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4231,8 +4245,8 @@
     ],
     "wording": "BAH2+NMZ optionally drop"
   },
-  "II.18.20": {
-    "id": "II.18.20",
+  "II.18.21": {
+    "id": "II.18.21",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4248,8 +4262,8 @@
     ],
     "wording": "NMZ drops between ortā and BAH1 optionally"
   },
-  "II.18.21": {
-    "id": "II.18.21",
+  "II.18.22": {
+    "id": "II.18.22",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4266,8 +4280,8 @@
     ],
     "wording": "NMZ drops after Kāsäwă optionally not before PL"
   },
-  "II.18.22": {
-    "id": "II.18.22",
+  "II.18.23": {
+    "id": "II.18.23",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -5951,9 +5965,7 @@
       "1~Morpheme~F",
       "2~Morpheme~PL"
     ],
-    "unlesses": [
-      "0~Morpheme~wärză"
-    ],
+    "unlesses": [],
     "operations": [
       "0~Suffix~n",
       "2~Shape~Ø"
