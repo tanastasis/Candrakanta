@@ -4082,6 +4082,24 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~BAH2",
+      "-1~Morpheme~yokh",
+      "1~Morpheme~M",
+      "2~Morpheme~SG"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~Ø"
+    ],
+    "optional": [
+      "M"
+    ],
+    "wording": "BAH2 marginally drops between yokh and M+SG"
+  },
+  "II.18.11": {
+    "id": "II.18.11",
+    "kind": "morphological",
+    "ifs": [
+      "0~Morpheme~BAH2",
       "-1~Pattern~m$"
     ],
     "unlesses": [],
@@ -4092,8 +4110,8 @@
     "optional": [],
     "wording": "m+BAH2 → Ø+m"
   },
-  "II.18.11": {
-    "id": "II.18.11",
+  "II.18.12": {
+    "id": "II.18.12",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4107,8 +4125,8 @@
     "optional": [],
     "wording": "NMZ → ñe after purccamāw, which loses -āw"
   },
-  "II.18.12": {
-    "id": "II.18.12",
+  "II.18.13": {
+    "id": "II.18.13",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4121,8 +4139,8 @@
     "optional": [],
     "wording": "NMZ → rñe after w"
   },
-  "II.18.13": {
-    "id": "II.18.13",
+  "II.18.14": {
+    "id": "II.18.14",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4136,8 +4154,8 @@
     "optional": [],
     "wording": "NMZ → re after Q_parno"
   },
-  "II.18.14": {
-    "id": "II.18.14",
+  "II.18.15": {
+    "id": "II.18.15",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4151,8 +4169,8 @@
     "optional": [],
     "wording": "NMZ → ne after pās+V+PPP"
   },
-  "II.18.15": {
-    "id": "II.18.15",
+  "II.18.16": {
+    "id": "II.18.16",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4165,8 +4183,8 @@
     "optional": [],
     "wording": "NMZ → iśparn after ārāntā, buddha`"
   },
-  "II.18.16": {
-    "id": "II.18.16",
+  "II.18.17": {
+    "id": "II.18.17",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~QUAL1",
@@ -4181,8 +4199,8 @@
     ],
     "wording": "QUAL1 äśănäw → äśänäw in verse"
   },
-  "II.18.17": {
-    "id": "II.18.17",
+  "II.18.18": {
+    "id": "II.18.18",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4196,8 +4214,8 @@
     "optional": [],
     "wording": "BAH1+NMZ drop"
   },
-  "II.18.18": {
-    "id": "II.18.18",
+  "II.18.19": {
+    "id": "II.18.19",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4213,8 +4231,8 @@
     ],
     "wording": "BAH2+NMZ optionally drop"
   },
-  "II.18.19": {
-    "id": "II.18.19",
+  "II.18.20": {
+    "id": "II.18.20",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4230,8 +4248,8 @@
     ],
     "wording": "NMZ drops between ortā and BAH1 optionally"
   },
-  "II.18.20": {
-    "id": "II.18.20",
+  "II.18.21": {
+    "id": "II.18.21",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -4248,8 +4266,8 @@
     ],
     "wording": "NMZ drops after Kāsäwă optionally not before PL"
   },
-  "II.18.21": {
-    "id": "II.18.21",
+  "II.18.22": {
+    "id": "II.18.22",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~NMZ",
@@ -5933,7 +5951,9 @@
       "1~Morpheme~F",
       "2~Morpheme~PL"
     ],
-    "unlesses": [],
+    "unlesses": [
+      "0~Morpheme~wärză"
+    ],
     "operations": [
       "0~Suffix~n",
       "2~Shape~Ø"
