@@ -3101,20 +3101,6 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~INAN1",
-      "-2~Group~Käln"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~ă"
-    ],
-    "optional": [],
-    "wording": "INAN1 → ă after Käln~"
-  },
-  "II.15.10": {
-    "id": "II.15.10",
-    "kind": "morphological",
-    "ifs": [
-      "0~Morpheme~INAN1",
       "-2~Group~Pāś"
     ],
     "unlesses": [],
@@ -3123,6 +3109,20 @@
     ],
     "optional": [],
     "wording": "INAN1 → `e after Pāś~"
+  },
+  "II.15.10": {
+    "id": "II.15.10",
+    "kind": "morphological",
+    "ifs": [
+      "0~Morpheme~INAN1",
+      "-2~Group~Käln"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~ă"
+    ],
+    "optional": [],
+    "wording": "INAN1 → ă after Käln~"
   },
   "II.15.11": {
     "id": "II.15.11",
@@ -4068,14 +4068,14 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~BAH2",
-      "-1~Pattern~[{_long}]$"
+      "-1~Pattern~[{_long}$|äy$]"
     ],
     "unlesses": [],
     "operations": [
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "BAH2 drops after long vowels"
+    "wording": "BAH2 drops after long vowels and äy"
   },
   "II.18.10": {
     "id": "II.18.10",
@@ -6849,7 +6849,7 @@
       "2~Pattern~^ă|^z|^[{_long}]"
     ],
     "unlesses": [
-      "0~Morpheme~päwtk,läg,täṅk",
+      "0~Morpheme~läg",
       "0~Group~Bäl,Pāś",
       "0~Pattern~ä[{_L}][{_T}]",
       "2~Group~Ipf,Prt"
@@ -6858,7 +6858,7 @@
       "0~Ablaut~a"
     ],
     "optional": [],
-    "wording": "a-ablaut not in Bäl, Pāś, läg, päwtk, täṅk and verbs with “ä + liquid + stop” if the morpheme (not Ipf/Prt) after causativity starts with z or vowel except ä"
+    "wording": "a-ablaut not in Bäl, Pāś, läg and verbs with “ä + liquid + stop” if the morpheme (not Ipf/Prt) after causativity starts with z or vowel except ä"
   },
   "IV.3.8": {
     "id": "IV.3.8",

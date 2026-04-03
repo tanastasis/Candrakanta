@@ -1968,6 +1968,7 @@
     ],
     "Groups": [
       "Räy",
+      "Käln",
       "Pāś"
     ],
     "MorphemeCategories": {},
@@ -4568,13 +4569,13 @@
     "MorphemeGroups": {},
     "DictionaryForm": "sikālune"
   },
-  "K_ās": {
-    "name": "K_ās",
+  "K_ās1": {
+    "name": "K_ās1",
     "Meaning": "be dry (K)",
     "Category": "verb",
     "Gender": null,
     "Morphemes": [
-      "ās",
+      "ās1",
       "K"
     ],
     "Groups": [],
@@ -4582,13 +4583,13 @@
     "MorphemeGroups": {},
     "DictionaryForm": "āsäṣlune"
   },
-  "V_ās": {
-    "name": "V_ās",
+  "V_ās1": {
+    "name": "V_ās1",
     "Meaning": "be dry",
     "Category": "verb",
     "Gender": null,
     "Morphemes": [
-      "ās",
+      "ās1",
       "V"
     ],
     "Groups": [],
@@ -10997,7 +10998,9 @@
     "Morphemes": [
       "ārśi"
     ],
-    "Groups": [],
+    "Groups": [
+      "Ywār"
+    ],
     "MorphemeCategories": {},
     "MorphemeGroups": {},
     "DictionaryForm": "ārśi"
@@ -14614,7 +14617,7 @@
   },
   "M_käñā": {
     "name": "M_käñā",
-    "Meaning": "brick",
+    "Meaning": "coal?",
     "Category": "middle",
     "Gender": null,
     "Morphemes": [
@@ -19408,6 +19411,19 @@
     "MorphemeGroups": {},
     "DictionaryForm": "maitreyasamitināṭak"
   },
+  "W_maitreyāvadānavyākaraṇ": {
+    "name": "W_maitreyāvadānavyākaraṇ",
+    "Meaning": "Maitreyāvadānavyākaraṇa",
+    "Category": "weak",
+    "Gender": null,
+    "Morphemes": [
+      "maitreyāvadānavyākaraṇ"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "maitreyāvadānavyākaraṃ"
+  },
   "W_ārṣkrānt": {
     "name": "W_ārṣkrānt",
     "Meaning": "Ārṣagrantha",
@@ -20692,7 +20708,10 @@
     "Morphemes": [
       "āśāwe"
     ],
-    "Groups": [],
+    "Groups": [
+      "Riṣak",
+      "Omälă"
+    ],
     "MorphemeCategories": {},
     "MorphemeGroups": {},
     "DictionaryForm": "āśāwe"
@@ -24566,6 +24585,190 @@
     "MorphemeGroups": {},
     "DictionaryForm": "āre"
   },
+  "W_maithun": {
+    "name": "W_maithun",
+    "Meaning": "coitus",
+    "Category": "weak",
+    "Gender": "n?",
+    "Morphemes": [
+      "maithun"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "maithuṃ"
+  },
+  "A_mokṣagupte": {
+    "name": "A_mokṣagupte",
+    "Meaning": "Mokṣagupta",
+    "Category": "name",
+    "Gender": "m",
+    "Morphemes": [
+      "mokṣagupte"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "mokṣagupte"
+  },
+  "A_ārjun": {
+    "name": "A_ārjun",
+    "Meaning": "Arjuna",
+    "Category": "name",
+    "Gender": "m",
+    "Morphemes": [
+      "ārjun"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "ārjuṃ"
+  },
+  "W_āryamārg": {
+    "name": "W_āryamārg",
+    "Meaning": "noble path",
+    "Category": "weak",
+    "Gender": "?",
+    "Morphemes": [
+      "āryamārg"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "āryamārg"
+  },
+  "A_ārslān": {
+    "name": "A_ārslān",
+    "Meaning": "Arslan",
+    "Category": "name",
+    "Gender": "m",
+    "Morphemes": [
+      "ārslān"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "ārslāṃ"
+  },
+  "I_ālaśi": {
+    "name": "I_ālaśi",
+    "Meaning": "indifferent(?)",
+    "Category": "indeclinable",
+    "Gender": null,
+    "Morphemes": [
+      "ālaśi"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "ālaśi"
+  },
+  "W_āvikār": {
+    "name": "W_āvikār",
+    "Meaning": "?",
+    "Category": "weak",
+    "Gender": "?",
+    "Morphemes": [
+      "āvikār"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "āvikār"
+  },
+  "S_āśăryā": {
+    "name": "S_āśăryā",
+    "Meaning": "teacher",
+    "Category": "strong",
+    "Gender": "m",
+    "Morphemes": [
+      "āśăryā"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "āśari"
+  },
+  "C_ās2": {
+    "name": "C_ās2",
+    "Meaning": "goat",
+    "Category": "creature",
+    "Gender": "?",
+    "Morphemes": [
+      "ās2"
+    ],
+    "Groups": [
+      "Ñäkta"
+    ],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "ās"
+  },
+  "C_kapyār": {
+    "name": "C_kapyār",
+    "Meaning": "monastery servant",
+    "Category": "creature",
+    "Gender": "m",
+    "Morphemes": [
+      "kapyār"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "kapyār"
+  },
+  "M_āskācā": {
+    "name": "M_āskācā",
+    "Meaning": "kuśa grass",
+    "Category": "middle",
+    "Gender": "f",
+    "Morphemes": [
+      "āskācā"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "āskāc"
+  },
+  "W_āsrap": {
+    "name": "W_āsrap",
+    "Meaning": "evil",
+    "Category": "weak",
+    "Gender": "n?",
+    "Morphemes": [
+      "āsrap"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "āsrap"
+  },
+  "W_indranil": {
+    "name": "W_indranil",
+    "Meaning": "sapphire",
+    "Category": "weak",
+    "Gender": "n?",
+    "Morphemes": [
+      "indranil"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "indranil"
+  },
+  "A_ugre": {
+    "name": "A_ugre",
+    "Meaning": "Ugra",
+    "Category": "name",
+    "Gender": "m",
+    "Morphemes": [
+      "ugre"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "ugre"
+  },
   "P_änzaṃ": {
     "name": "P_änzaṃ",
     "Meaning": "which?",
@@ -24628,9 +24831,9 @@
       "ANIM1"
     ],
     "Groups": [
-      "Lānt",
       "Opt",
-      "Con"
+      "Con",
+      "Lānt"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -24638,13 +24841,13 @@
       ]
     },
     "MorphemeGroups": {
-      "Lānt": [
-        1
-      ],
       "Opt": [
         1
       ],
       "Con": [
+        1
+      ],
+      "Lānt": [
         1
       ]
     },
@@ -24717,9 +24920,9 @@
       "ANIM1"
     ],
     "Groups": [
-      "Lānt",
       "Opt",
-      "Con"
+      "Con",
+      "Lānt"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -24727,13 +24930,13 @@
       ]
     },
     "MorphemeGroups": {
-      "Lānt": [
-        2
-      ],
       "Opt": [
         2
       ],
       "Con": [
+        2
+      ],
+      "Lānt": [
         2
       ]
     },
@@ -24837,9 +25040,9 @@
       "ANIM1"
     ],
     "Groups": [
-      "Lānt",
       "Opt",
-      "Con"
+      "Con",
+      "Lānt"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -24847,13 +25050,13 @@
       ]
     },
     "MorphemeGroups": {
-      "Lānt": [
-        2
-      ],
       "Opt": [
         2
       ],
       "Con": [
+        2
+      ],
+      "Lānt": [
         2
       ]
     },
@@ -25103,9 +25306,9 @@
       "ANIM1"
     ],
     "Groups": [
-      "Lānt",
       "Opt",
-      "Con"
+      "Con",
+      "Lānt"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -25113,13 +25316,13 @@
       ]
     },
     "MorphemeGroups": {
-      "Lānt": [
-        1
-      ],
       "Opt": [
         1
       ],
       "Con": [
+        1
+      ],
+      "Lānt": [
         1
       ]
     },
@@ -25164,8 +25367,8 @@
       "ANIM2"
     ],
     "Groups": [
-      "Kāsäwă",
-      "Riṣak"
+      "Riṣak",
+      "Kāsäwă"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -25173,10 +25376,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kāsäwă": [
+      "Riṣak": [
         2
       ],
-      "Riṣak": [
+      "Kāsäwă": [
         2
       ]
     },
@@ -25210,10 +25413,10 @@
       "ñäkta"
     ],
     "Groups": [
-      "Asurā",
-      "Lānt",
       "Ñäkta",
-      "Riṣak"
+      "Riṣak",
+      "Asurā",
+      "Lānt"
     ],
     "MorphemeCategories": {
       "creature": [
@@ -25221,16 +25424,16 @@
       ]
     },
     "MorphemeGroups": {
-      "Asurā": [
-        1
-      ],
-      "Lānt": [
-        1
-      ],
       "Ñäkta": [
         1
       ],
       "Riṣak": [
+        1
+      ],
+      "Asurā": [
+        1
+      ],
+      "Lānt": [
         1
       ]
     },
@@ -25455,11 +25658,11 @@
       "GER1"
     ],
     "Groups": [
-      "Ṣomă",
+      "Prs",
       "Ipf",
       "Kāsäwă",
-      "Prs",
-      "Sewā"
+      "Sewā",
+      "Ṣomă"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -25467,7 +25670,7 @@
       ]
     },
     "MorphemeGroups": {
-      "Ṣomă": [
+      "Prs": [
         2
       ],
       "Ipf": [
@@ -25476,10 +25679,10 @@
       "Kāsäwă": [
         2
       ],
-      "Prs": [
+      "Sewā": [
         2
       ],
-      "Sewā": [
+      "Ṣomă": [
         2
       ]
     },
@@ -25678,10 +25881,10 @@
       "GER2"
     ],
     "Groups": [
-      "Kṣur",
       "Pälzäk",
       "Opt",
-      "Con"
+      "Con",
+      "Kṣur"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -25689,9 +25892,6 @@
       ]
     },
     "MorphemeGroups": {
-      "Kṣur": [
-        2
-      ],
       "Pälzäk": [
         2
       ],
@@ -25699,6 +25899,9 @@
         2
       ],
       "Con": [
+        2
+      ],
+      "Kṣur": [
         2
       ]
     },
@@ -25812,8 +26015,8 @@
     "Groups": [
       "Kñuk",
       "Opt",
-      "Prār",
-      "Con"
+      "Con",
+      "Prār"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -25827,10 +26030,10 @@
       "Opt": [
         2
       ],
-      "Prār": [
+      "Con": [
         2
       ],
-      "Con": [
+      "Prār": [
         2
       ]
     },
@@ -26372,8 +26575,8 @@
       "INAN1"
     ],
     "Groups": [
-      "Kñuk",
-      "Pälzäk"
+      "Pälzäk",
+      "Kñuk"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -26381,10 +26584,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kñuk": [
+      "Pälzäk": [
         2
       ],
-      "Pälzäk": [
+      "Kñuk": [
         2
       ]
     },
@@ -26749,8 +26952,8 @@
       "INAN1"
     ],
     "Groups": [
-      "Kñuk",
-      "Pälzäk"
+      "Pälzäk",
+      "Kñuk"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -26758,10 +26961,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kñuk": [
+      "Pälzäk": [
         2
       ],
-      "Pälzäk": [
+      "Kñuk": [
         2
       ]
     },
@@ -28168,8 +28371,8 @@
     ],
     "Groups": [
       "Imp",
-      "Ppp",
-      "Indri"
+      "Indri",
+      "Ppp"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -28180,10 +28383,10 @@
       "Imp": [
         2
       ],
-      "Ppp": [
+      "Indri": [
         2
       ],
-      "Indri": [
+      "Ppp": [
         2
       ]
     },
@@ -28301,9 +28504,9 @@
       "PREF"
     ],
     "Groups": [
-      "Yärśārā",
       "Ksär",
-      "Ñäkta"
+      "Ñäkta",
+      "Yärśārā"
     ],
     "MorphemeCategories": {
       "indeclinable": [
@@ -28311,13 +28514,13 @@
       ]
     },
     "MorphemeGroups": {
-      "Yärśārā": [
-        1
-      ],
       "Ksär": [
         1
       ],
       "Ñäkta": [
+        1
+      ],
+      "Yärśārā": [
         1
       ]
     },
@@ -28734,25 +28937,6 @@
     "MorphemeGroups": {},
     "DictionaryForm": "pkäm"
   },
-  "Q_āsam": {
-    "name": "Q_āsam",
-    "Meaning": "dry",
-    "Category": "qualitative",
-    "Gender": null,
-    "Morphemes": [
-      "ās",
-      "V",
-      "QUAL1"
-    ],
-    "Groups": [],
-    "MorphemeCategories": {
-      "qualitative": [
-        2
-      ]
-    },
-    "MorphemeGroups": {},
-    "DictionaryForm": "āsam"
-  },
   "Q_klyom": {
     "name": "Q_klyom",
     "Meaning": "noble",
@@ -28978,10 +29162,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kñuk": [
+      "Pälzäk": [
         2
       ],
-      "Pälzäk": [
+      "Kñuk": [
         2
       ]
     },
@@ -29044,9 +29228,6 @@
       ]
     },
     "MorphemeGroups": {
-      "Kṣur": [
-        2
-      ],
       "Pälzäk": [
         2
       ],
@@ -29054,6 +29235,9 @@
         2
       ],
       "Con": [
+        2
+      ],
+      "Kṣur": [
         2
       ]
     },
@@ -29129,6 +29313,34 @@
     },
     "DictionaryForm": "kälṣam"
   },
+  "Q_śtwarāz": {
+    "name": "Q_śtwarāz",
+    "Meaning": "fourfold",
+    "Category": "qualitative",
+    "Gender": null,
+    "Morphemes": [
+      "śtwarā",
+      "QUAL2"
+    ],
+    "Groups": [
+      "Prs",
+      "Ipf"
+    ],
+    "MorphemeCategories": {
+      "qualitative": [
+        1
+      ]
+    },
+    "MorphemeGroups": {
+      "Prs": [
+        1
+      ],
+      "Ipf": [
+        1
+      ]
+    },
+    "DictionaryForm": "śtwarāz"
+  },
   "Q_oktaz": {
     "name": "Q_oktaz",
     "Meaning": "eightfold",
@@ -29169,8 +29381,8 @@
     ],
     "Groups": [
       "Prs",
-      "Ipf",
-      "Ṣomă"
+      "Ṣomă",
+      "Ipf"
     ],
     "MorphemeCategories": {
       "qualitative": [
@@ -29181,10 +29393,10 @@
       "Prs": [
         2
       ],
-      "Ipf": [
+      "Ṣomă": [
         2
       ],
-      "Ṣomă": [
+      "Ipf": [
         2
       ]
     },
@@ -29574,25 +29786,6 @@
     "MorphemeGroups": {},
     "DictionaryForm": "tārśonwāz"
   },
-  "Q_āsar": {
-    "name": "Q_āsar",
-    "Meaning": "dry",
-    "Category": "qualitative",
-    "Gender": null,
-    "Morphemes": [
-      "ās",
-      "V",
-      "QUAL3"
-    ],
-    "Groups": [],
-    "MorphemeCategories": {
-      "qualitative": [
-        2
-      ]
-    },
-    "MorphemeGroups": {},
-    "DictionaryForm": "āsar"
-  },
   "Q_māntälwāz": {
     "name": "Q_māntälwāz",
     "Meaning": "angry",
@@ -29738,10 +29931,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kñuk": [
+      "Pälzäk": [
         2
       ],
-      "Pälzäk": [
+      "Kñuk": [
         2
       ]
     },
@@ -30820,8 +31013,8 @@
       "PPP"
     ],
     "Groups": [
-      "Asurā",
       "Imp",
+      "Asurā",
       "Ppp"
     ],
     "MorphemeCategories": {
@@ -30830,10 +31023,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Asurā": [
+      "Imp": [
         3
       ],
-      "Imp": [
+      "Asurā": [
         3
       ],
       "Ppp": [
@@ -31183,5 +31376,24 @@
       ]
     },
     "DictionaryForm": "zpokaz"
+  },
+  "W_putäk": {
+    "name": "W_putäk",
+    "Meaning": "discord",
+    "Category": "weak",
+    "Gender": null,
+    "Morphemes": [
+      "päwtk",
+      "V",
+      "INAN1"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {
+      "weak": [
+        2
+      ]
+    },
+    "MorphemeGroups": {},
+    "DictionaryForm": "putäk"
   }
 }
