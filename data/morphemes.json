@@ -4692,8 +4692,8 @@
     "Language": null,
     "Groups": []
   },
-  "ās1": {
-    "name": "ās1",
+  "ās": {
+    "name": "ās",
     "num": "301.0",
     "shape": "ās",
     "meaning": "be dry",
@@ -25647,10 +25647,10 @@
     "Language": null,
     "Groups": []
   },
-  "ās2": {
-    "name": "ās2",
+  "āās": {
+    "name": "āās",
     "num": "1751.0",
-    "shape": "ās",
+    "shape": "āās",
     "meaning": "goat",
     "Category": "creature",
     "Color": null,
@@ -25864,6 +25864,48 @@
     "num": null,
     "shape": "enṣke",
     "meaning": "while",
+    "Category": "indeclinable",
+    "Color": null,
+    "Transitivity": null,
+    "Voice": null,
+    "Causativity": null,
+    "Gender": null,
+    "Language": null,
+    "Groups": []
+  },
+  "ek": {
+    "name": "ek",
+    "num": null,
+    "shape": "ek",
+    "meaning": "fodder",
+    "Category": "indeclinable",
+    "Color": null,
+    "Transitivity": null,
+    "Voice": null,
+    "Causativity": null,
+    "Gender": null,
+    "Language": null,
+    "Groups": []
+  },
+  "enākă": {
+    "name": "enākă",
+    "num": null,
+    "shape": "enākă",
+    "meaning": "bad",
+    "Category": "qualitative",
+    "Color": null,
+    "Transitivity": null,
+    "Voice": null,
+    "Causativity": null,
+    "Gender": null,
+    "Language": null,
+    "Groups": []
+  },
+  "ehe": {
+    "name": "ehe",
+    "num": null,
+    "shape": "ehe",
+    "meaning": "ah!",
     "Category": "indeclinable",
     "Color": null,
     "Transitivity": null,

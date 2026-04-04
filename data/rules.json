@@ -2550,48 +2550,6 @@
     "id": "II.12.2",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~PREF",
-      "*-1~Morpheme~kon—-2~Morpheme~bärk"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~ā"
-    ],
-    "optional": [],
-    "wording": "PREF → ā after bärk~, kon"
-  },
-  "II.12.3": {
-    "id": "II.12.3",
-    "kind": "morphological",
-    "ifs": [
-      "0~Morpheme~PREF",
-      "-2~Morpheme~läṅk"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~an"
-    ],
-    "optional": [],
-    "wording": "PREF → an after läṅk~"
-  },
-  "II.12.4": {
-    "id": "II.12.4",
-    "kind": "morphological",
-    "ifs": [
-      "0~Morpheme~PREF",
-      "-2~Morpheme~täṅk"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~ac"
-    ],
-    "optional": [],
-    "wording": "PREF → ac after täṅk~"
-  },
-  "II.12.5": {
-    "id": "II.12.5",
-    "kind": "morphological",
-    "ifs": [
       "0~Morpheme~INDECL",
       "-1~Morpheme~DU"
     ],
@@ -2602,8 +2560,8 @@
     "optional": [],
     "wording": "INDECL → ārc after DU"
   },
-  "II.12.6": {
-    "id": "II.12.6",
+  "II.12.3": {
+    "id": "II.12.3",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~INDECL",
@@ -2616,8 +2574,8 @@
     "optional": [],
     "wording": "INDECL → men after śpāl"
   },
-  "II.12.7": {
-    "id": "II.12.7",
+  "II.12.4": {
+    "id": "II.12.4",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~INDECL",
@@ -2631,8 +2589,8 @@
     "optional": [],
     "wording": "INDECL → älā` after yäw+V"
   },
-  "II.12.8": {
-    "id": "II.12.8",
+  "II.12.5": {
+    "id": "II.12.5",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~INDECL",
@@ -2646,8 +2604,8 @@
     "optional": [],
     "wording": "INDECL → ār after läytk+V"
   },
-  "II.12.9": {
-    "id": "II.12.9",
+  "II.12.6": {
+    "id": "II.12.6",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PPP",
@@ -2660,8 +2618,8 @@
     "optional": [],
     "wording": "PPP drops before POS"
   },
-  "II.12.10": {
-    "id": "II.12.10",
+  "II.12.7": {
+    "id": "II.12.7",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PPP,mkältāwr",
@@ -2674,8 +2632,8 @@
     "optional": [],
     "wording": "PPP, mkältāwr lose r before gender/NMZ/DU/PL and when strong"
   },
-  "II.12.11": {
-    "id": "II.12.11",
+  "II.12.8": {
+    "id": "II.12.8",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PPP",
@@ -2689,8 +2647,8 @@
     "optional": [],
     "wording": "PPP loses r after K before NOM/ACC"
   },
-  "II.12.12": {
-    "id": "II.12.12",
+  "II.12.9": {
+    "id": "II.12.9",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PPP",
@@ -2705,8 +2663,8 @@
     "optional": [],
     "wording": "PPP loses r after K before SG+NOM/ACC"
   },
-  "II.12.13": {
-    "id": "II.12.13",
+  "II.12.10": {
+    "id": "II.12.10",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~GER1,GER2",
@@ -2722,8 +2680,8 @@
     "optional": [],
     "wording": "GER lose ă before NMZ, ADJ, PL not in W_śwāl, W_rkäl, W_el"
   },
-  "II.12.14": {
-    "id": "II.12.14",
+  "II.12.11": {
+    "id": "II.12.11",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PPP",

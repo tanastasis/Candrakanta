@@ -855,7 +855,7 @@ def apply(form: "Form", r: str) -> "Form":
                 idx_v = first_vowel_index(var.m[j2].shape)
                 if idx_v is not None:
                     redup = "ā" if var.m[j2].shape[idx_v] not in "äă" else "a"
-                    if var.m[j2] == "bärk":
+                    if var.m[j2] in ["bärk","klop"]:
                         redup = "o"
                     if var.m[j2] in ["läṅk","kon","ag","salu","ālăk"]:
                         redup = "y"
