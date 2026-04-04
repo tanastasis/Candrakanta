@@ -293,15 +293,15 @@ class IndeclinableProfile(Profile):
             cases.extend(["INS"])
         if lex.name in ["I_ywār","I_el"]:
             cases.extend(["LOC","PER"])
-        if lex.name in ["I_ṣolār", "I_ylaṅkaṃ"]:
+        if lex.name in ["I_ṣolār", "I_ylaṅk"]:
             cases.extend(["LOC"])
-        if lex.name in ["I_neṣ","I_snepal","I_ykonā","I_opärkā"]:
+        if lex.name in ["I_neṣ","I_snepal","I_ykon","I_opärk"]:
             cases.extend(["PER"])
         if lex.name in ["I_antu","I_λutār","I_ś`äw"]:
             cases.append("ABL")
         if lex.name == "I_korp":
             cases.extend(["ALL","PER"])
-        if lex.name in ["I_atäṅkac","I_oklop"]:
+        if lex.name in ["I_atäṅk","I_oklop"]:
             cases.extend(["ALL"])
         if has_group("Ṣurmă")(lex):
             cases.append("ABL2")
