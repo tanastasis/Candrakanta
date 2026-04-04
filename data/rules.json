@@ -6836,15 +6836,15 @@
     "id": "IV.3.9",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~bäl,säl,pälzk",
-      "2~Morpheme~REL3,INAN4"
+      "0~Morpheme~bäl,säl,pälzk,läṅk",
+      "2~Morpheme~REL3,INAN4,PREF"
     ],
     "unlesses": [],
     "operations": [
       "0~Ablaut~a"
     ],
     "optional": [],
-    "wording": "a-ablaut in pälzk,bäl,säl before ~INAN4/REL3"
+    "wording": "a-ablaut in pälzk,bäl,säl,läṅk before ~INAN4/REL3/PREF"
   },
   "IV.3.10": {
     "id": "IV.3.10",
@@ -7392,13 +7392,13 @@
       "-1~Color~pink,yellow"
     ],
     "unlesses": [
-      "1~Morpheme~INAN1,INAN2,INAN3,INAN4,QUAL1,REL1"
+      "1~Morpheme~INAN1,INAN2,INAN3,INAN4,QUAL1,REL1,PREF"
     ],
     "operations": [
       "0~Shape~ă"
     ],
     "optional": [],
-    "wording": "Causativity → ă after pink/yellow verbs not before INAN/QUAL1/REL1"
+    "wording": "Causativity → ă after pink/yellow verbs not before INAN/QUAL1/REL1/PREF"
   },
   "IV.6.5": {
     "id": "IV.6.5",
@@ -7408,13 +7408,13 @@
       "-1~Color~gray"
     ],
     "unlesses": [
-      "1~Morpheme~INAN1,INAN2,INAN3,INAN4,QUAL1,REL1"
+      "1~Morpheme~INAN1,INAN2,INAN3,INAN4,QUAL1,REL1,PREF"
     ],
     "operations": [
       "0~Shape~äsă"
     ],
     "optional": [],
-    "wording": "Causativity → äsă after gray verbs not before INAN/QUAL1/REL1"
+    "wording": "Causativity → äsă after gray verbs not before INAN/QUAL1/REL1/PREF"
   },
   "IV.6.6": {
     "id": "IV.6.6",
@@ -7454,13 +7454,13 @@
       "-1~Group~Kās"
     ],
     "unlesses": [
-      "1~Morpheme~INAN1"
+      "1~Morpheme~INAN1,INAN2,INAN3,INAN4,QUAL1,REL1,PREF"
     ],
     "operations": [
       "0~Shape~äññă"
     ],
     "optional": [],
-    "wording": "Causativity → äññă after Kās not before INAN1"
+    "wording": "Causativity → äññă after Kās not before INAN/QUAL1/REL1/PREF"
   },
   "IV.6.9": {
     "id": "IV.6.9",
