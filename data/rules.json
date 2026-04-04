@@ -8449,16 +8449,16 @@
     "id": "V.2.4",
     "kind": "phonological",
     "ifs": [
-      "0~Shape~e,i,o",
-      "1~Class~[{_V}]",
-      "*1~Category~case—0~After~^änt|^um|^äw"
+      "0~Before~e$|i$|o$|ā`$",
+      "0~Class~[{_V}]",
+      "*0~Category~case—-1~After~^änt|^um|^äw"
     ],
     "unlesses": [],
     "operations": [
-      "0~Suf~yä"
+      "-1~Suffix~yä"
     ],
     "optional": [],
-    "wording": "Add -yä to -e, -i, -o before vowel of case, um, äw, änt"
+    "wording": "Add -yä to -e, -i, -o, -ā` before vowel of case, um, äw, änt"
   },
   "V.3.1": {
     "id": "V.3.1",
