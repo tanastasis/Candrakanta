@@ -24895,6 +24895,19 @@
     "MorphemeGroups": {},
     "DictionaryForm": "urbilwā"
   },
+  "I_enṣke": {
+    "name": "I_enṣke",
+    "Meaning": "while",
+    "Category": "indeclinable",
+    "Gender": null,
+    "Morphemes": [
+      "enṣke"
+    ],
+    "Groups": [],
+    "MorphemeCategories": {},
+    "MorphemeGroups": {},
+    "DictionaryForm": "eṃṣke"
+  },
   "P_änzaṃ": {
     "name": "P_änzaṃ",
     "Meaning": "which?",
@@ -24957,8 +24970,8 @@
       "ANIM1"
     ],
     "Groups": [
-      "Con",
       "Lānt",
+      "Con",
       "Opt"
     ],
     "MorphemeCategories": {
@@ -24967,10 +24980,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Con": [
+      "Lānt": [
         1
       ],
-      "Lānt": [
+      "Con": [
         1
       ],
       "Opt": [
@@ -25046,8 +25059,8 @@
       "ANIM1"
     ],
     "Groups": [
-      "Con",
       "Lānt",
+      "Con",
       "Opt"
     ],
     "MorphemeCategories": {
@@ -25056,10 +25069,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Con": [
+      "Lānt": [
         2
       ],
-      "Lānt": [
+      "Con": [
         2
       ],
       "Opt": [
@@ -25166,8 +25179,8 @@
       "ANIM1"
     ],
     "Groups": [
-      "Con",
       "Lānt",
+      "Con",
       "Opt"
     ],
     "MorphemeCategories": {
@@ -25176,10 +25189,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Con": [
+      "Lānt": [
         2
       ],
-      "Lānt": [
+      "Con": [
         2
       ],
       "Opt": [
@@ -25256,8 +25269,8 @@
       "ANIM1"
     ],
     "Groups": [
-      "Con",
       "Riṣak",
+      "Con",
       "Opt"
     ],
     "MorphemeCategories": {
@@ -25266,10 +25279,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Con": [
+      "Riṣak": [
         1
       ],
-      "Riṣak": [
+      "Con": [
         1
       ],
       "Opt": [
@@ -25432,8 +25445,8 @@
       "ANIM1"
     ],
     "Groups": [
-      "Con",
       "Lānt",
+      "Con",
       "Opt"
     ],
     "MorphemeCategories": {
@@ -25442,10 +25455,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Con": [
+      "Lānt": [
         1
       ],
-      "Lānt": [
+      "Con": [
         1
       ],
       "Opt": [
@@ -25493,8 +25506,8 @@
       "ANIM2"
     ],
     "Groups": [
-      "Kāsäwă",
-      "Riṣak"
+      "Riṣak",
+      "Kāsäwă"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -25502,10 +25515,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kāsäwă": [
+      "Riṣak": [
         2
       ],
-      "Riṣak": [
+      "Kāsäwă": [
         2
       ]
     },
@@ -25539,10 +25552,10 @@
       "ñäkta"
     ],
     "Groups": [
-      "Ñäkta",
-      "Asurā",
       "Riṣak",
-      "Lānt"
+      "Lānt",
+      "Asurā",
+      "Ñäkta"
     ],
     "MorphemeCategories": {
       "creature": [
@@ -25550,16 +25563,16 @@
       ]
     },
     "MorphemeGroups": {
-      "Ñäkta": [
+      "Riṣak": [
+        1
+      ],
+      "Lānt": [
         1
       ],
       "Asurā": [
         1
       ],
-      "Riṣak": [
-        1
-      ],
-      "Lānt": [
+      "Ñäkta": [
         1
       ]
     },
@@ -25784,11 +25797,11 @@
       "GER1"
     ],
     "Groups": [
-      "Kāsäwă",
       "Ṣomă",
-      "Prs",
+      "Kāsäwă",
+      "Sewā",
       "Ipf",
-      "Sewā"
+      "Prs"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -25796,19 +25809,19 @@
       ]
     },
     "MorphemeGroups": {
-      "Kāsäwă": [
-        2
-      ],
       "Ṣomă": [
         2
       ],
-      "Prs": [
+      "Kāsäwă": [
+        2
+      ],
+      "Sewā": [
         2
       ],
       "Ipf": [
         2
       ],
-      "Sewā": [
+      "Prs": [
         2
       ]
     },
@@ -26009,8 +26022,8 @@
     "Groups": [
       "Kṣur",
       "Con",
-      "Pälzäk",
-      "Opt"
+      "Opt",
+      "Pälzäk"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -26024,10 +26037,10 @@
       "Con": [
         2
       ],
-      "Pälzäk": [
+      "Opt": [
         2
       ],
-      "Opt": [
+      "Pälzäk": [
         2
       ]
     },
@@ -26074,8 +26087,8 @@
     ],
     "Groups": [
       "Con",
-      "Pälzäk",
-      "Opt"
+      "Opt",
+      "Pälzäk"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -26086,10 +26099,10 @@
       "Con": [
         2
       ],
-      "Pälzäk": [
+      "Opt": [
         2
       ],
-      "Opt": [
+      "Pälzäk": [
         2
       ]
     },
@@ -26106,8 +26119,8 @@
       "GER2"
     ],
     "Groups": [
-      "Kñuk",
       "Con",
+      "Kñuk",
       "Opt"
     ],
     "MorphemeCategories": {
@@ -26116,10 +26129,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Kñuk": [
+      "Con": [
         2
       ],
-      "Con": [
+      "Kñuk": [
         2
       ],
       "Opt": [
@@ -26139,10 +26152,10 @@
       "GER2"
     ],
     "Groups": [
-      "Prār",
       "Con",
-      "Kñuk",
-      "Opt"
+      "Prār",
+      "Opt",
+      "Kñuk"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -26150,16 +26163,16 @@
       ]
     },
     "MorphemeGroups": {
-      "Prār": [
-        2
-      ],
       "Con": [
         2
       ],
-      "Kñuk": [
+      "Prār": [
         2
       ],
       "Opt": [
+        2
+      ],
+      "Kñuk": [
         2
       ]
     },
@@ -28497,8 +28510,8 @@
     ],
     "Groups": [
       "Indri",
-      "Imp",
-      "Ppp"
+      "Ppp",
+      "Imp"
     ],
     "MorphemeCategories": {
       "weak": [
@@ -28509,10 +28522,10 @@
       "Indri": [
         2
       ],
-      "Imp": [
+      "Ppp": [
         2
       ],
-      "Ppp": [
+      "Imp": [
         2
       ]
     },
@@ -28630,9 +28643,9 @@
       "PREF"
     ],
     "Groups": [
-      "Ñäkta",
+      "Ksär",
       "Yärśārā",
-      "Ksär"
+      "Ñäkta"
     ],
     "MorphemeCategories": {
       "indeclinable": [
@@ -28640,13 +28653,13 @@
       ]
     },
     "MorphemeGroups": {
-      "Ñäkta": [
+      "Ksär": [
         1
       ],
       "Yärśārā": [
         1
       ],
-      "Ksär": [
+      "Ñäkta": [
         1
       ]
     },
@@ -29360,10 +29373,10 @@
       "Con": [
         2
       ],
-      "Pälzäk": [
+      "Opt": [
         2
       ],
-      "Opt": [
+      "Pälzäk": [
         2
       ]
     },
@@ -29506,9 +29519,9 @@
       "QUAL2"
     ],
     "Groups": [
+      "Ṣomă",
       "Ipf",
-      "Prs",
-      "Ṣomă"
+      "Prs"
     ],
     "MorphemeCategories": {
       "qualitative": [
@@ -29516,13 +29529,13 @@
       ]
     },
     "MorphemeGroups": {
+      "Ṣomă": [
+        2
+      ],
       "Ipf": [
         2
       ],
       "Prs": [
-        2
-      ],
-      "Ṣomă": [
         2
       ]
     },
@@ -30635,7 +30648,7 @@
         3
       ]
     },
-    "DictionaryForm": "wraske"
+    "DictionaryForm": "wraskeyu"
   },
   "R_yokeyu": {
     "name": "R_yokeyu",
@@ -30664,7 +30677,7 @@
         3
       ]
     },
-    "DictionaryForm": "yoke"
+    "DictionaryForm": "yokeyu"
   },
   "R_yoṣmoṣnu": {
     "name": "R_yoṣmoṣnu",
@@ -31140,8 +31153,8 @@
     ],
     "Groups": [
       "Asurā",
-      "Imp",
-      "Ppp"
+      "Ppp",
+      "Imp"
     ],
     "MorphemeCategories": {
       "strong": [
@@ -31152,10 +31165,10 @@
       "Asurā": [
         3
       ],
-      "Imp": [
+      "Ppp": [
         3
       ],
-      "Ppp": [
+      "Imp": [
         3
       ]
     },
@@ -31171,8 +31184,8 @@
       "păl"
     ],
     "Groups": [
-      "Ac",
-      "Pälzäk"
+      "Pälzäk",
+      "Ac"
     ],
     "MorphemeCategories": {
       "indeclinable": [
@@ -31180,10 +31193,10 @@
       ]
     },
     "MorphemeGroups": {
-      "Ac": [
+      "Pälzäk": [
         1
       ],
-      "Pälzäk": [
+      "Ac": [
         1
       ]
     },

@@ -1385,9 +1385,9 @@ add_dictionary_form_to_json("./data/lexemes.json")
 #         tb.save()
         
 
-# lex = lx["W_wsāl"]
-# gr = Grammeme([])
-# # # gr = Grammeme([am["CON"],am["2"],am["PL"],am["ACT"]])
+# lex = lx["W_urbilwā`"]
+# # gr = Grammeme([])
+# gr = Grammeme([am["SG"],am["GEN"]])
 # form = phonol(buildForm(lex, gr))
 # var = form.Variants[0]
 # pprint(showvar(var))
