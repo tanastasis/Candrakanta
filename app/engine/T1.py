@@ -1373,7 +1373,7 @@ def transcribe(word):
 #     Characteristic: Optional[List(Characteristic)]
     
 
-add_dictionary_form_to_json("./data/lexemes.json")
+# add_dictionary_form_to_json("./data/lexemes.json")
 
 # tb = ThesaurusBuilder("thesaurus.json")
 

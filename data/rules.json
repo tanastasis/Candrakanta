@@ -4068,14 +4068,14 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~BAH2",
-      "-1~Pattern~[{_long}$|äy$]"
+      "-1~Pattern~[{_long}$|w$|y$|v$]"
     ],
     "unlesses": [],
     "operations": [
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "BAH2 drops after long vowels and äy"
+    "wording": "BAH2 drops after long vowels and glides"
   },
   "II.18.10": {
     "id": "II.18.10",
