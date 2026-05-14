@@ -297,7 +297,7 @@ class IndeclinableProfile(Profile):
             cases.extend(["LOC"])
         if lex.name in ["I_neṣ","I_snepal","I_ykon","I_opärk"]:
             cases.extend(["PER"])
-        if lex.name in ["I_antu","I_λutār","I_ś`äw"]:
+        if lex.name in ["I_antu","I_λutār","I_ś`äw","I_lokă"]:
             cases.append("ABL")
         if lex.name == "I_korp":
             cases.extend(["ALL","PER"])
