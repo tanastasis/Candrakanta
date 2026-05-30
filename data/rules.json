@@ -4026,7 +4026,7 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~BAH2",
-      "-1~Pattern~[{_long}$|w$|y$|v$]"
+      "-1~Pattern~[{_long}wyv]$"
     ],
     "unlesses": [],
     "operations": [
@@ -5967,20 +5967,6 @@
     "id": "III.11.1",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~NOM",
-      "-1~Morpheme~bāt,śāl"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~`yās"
-    ],
-    "optional": [],
-    "wording": "NOM → `yās after bāt/śāl"
-  },
-  "III.11.2": {
-    "id": "III.11.2",
-    "kind": "morphological",
-    "ifs": [
       "0~Morpheme~OBL",
       "-1~Morpheme~PL"
     ],
@@ -5991,8 +5977,8 @@
     "optional": [],
     "wording": "OBL → äm after PL"
   },
-  "III.11.3": {
-    "id": "III.11.3",
+  "III.11.2": {
+    "id": "III.11.2",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~OBL",
