@@ -4467,7 +4467,7 @@
       "0~Shape~r"
     ],
     "optional": [],
-    "wording": "3 → r before PL+ACT after PrtEnd"
+    "wording": "3 → r between PrtEnd and PL+ACT"
   },
   "III.2.10": {
     "id": "III.2.10",
@@ -5535,7 +5535,7 @@
       "0~Shape~Ø"
     ],
     "optional": [],
-    "wording": "PL drops after 2/3 before ACT"
+    "wording": "PL drops after 2/3 before voice"
   },
   "III.9.3": {
     "id": "III.9.3",
@@ -5695,6 +5695,21 @@
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
+      "-1~Morpheme~kursär",
+      "1~Morpheme~INS"
+    ],
+    "unlesses": [],
+    "operations": [
+      "0~Shape~wā`"
+    ],
+    "optional": [],
+    "wording": "PL → wā` after kursär before INS"
+  },
+  "III.9.14": {
+    "id": "III.9.14",
+    "kind": "morphological",
+    "ifs": [
+      "0~Morpheme~PL",
       "0~wagon~2",
       "0~Before~ă$|a$",
       "1~Morpheme~NOM,ACC,INS",
@@ -5711,8 +5726,8 @@
     "optional": [],
     "wording": "PL → nt in stem after ă/a of nouns (not Säqă) before NOM/ACC/INS except W_zpok before INS"
   },
-  "III.9.14": {
-    "id": "III.9.14",
+  "III.9.15": {
+    "id": "III.9.15",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5732,8 +5747,8 @@
     ],
     "wording": "PL → nt optionally in stem before INS after weak lă/ră (not Säqă)"
   },
-  "III.9.15": {
-    "id": "III.9.15",
+  "III.9.16": {
+    "id": "III.9.16",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5748,8 +5763,8 @@
     "optional": [],
     "wording": "PL → äwā after W_cmol before NOM/ACC/ADJ"
   },
-  "III.9.16": {
-    "id": "III.9.16",
+  "III.9.17": {
+    "id": "III.9.17",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5767,8 +5782,8 @@
     ],
     "wording": "PL → äwā optionally after W_cmol"
   },
-  "III.9.17": {
-    "id": "III.9.17",
+  "III.9.18": {
+    "id": "III.9.18",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5784,8 +5799,8 @@
     "optional": [],
     "wording": "PL → `äy in ending before NOM not after F"
   },
-  "III.9.18": {
-    "id": "III.9.18",
+  "III.9.19": {
+    "id": "III.9.19",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5798,8 +5813,8 @@
     "optional": [],
     "wording": "PL → e after qä"
   },
-  "III.9.19": {
-    "id": "III.9.19",
+  "III.9.20": {
+    "id": "III.9.20",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5814,8 +5829,8 @@
     "optional": [],
     "wording": "PL → ñ in ending before NOM after V(`)/y"
   },
-  "III.9.20": {
-    "id": "III.9.20",
+  "III.9.21": {
+    "id": "III.9.21",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5829,8 +5844,8 @@
     "optional": [],
     "wording": "PL drops after nt+F not before GEN"
   },
-  "III.9.21": {
-    "id": "III.9.21",
+  "III.9.22": {
+    "id": "III.9.22",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5847,8 +5862,8 @@
     "optional": [],
     "wording": "PL drops after non-weak native e`/o`/s`/t before ~NOM"
   },
-  "III.9.22": {
-    "id": "III.9.22",
+  "III.9.23": {
+    "id": "III.9.23",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5861,8 +5876,8 @@
     "optional": [],
     "wording": "PL drops before OBL"
   },
-  "III.9.23": {
-    "id": "III.9.23",
+  "III.9.24": {
+    "id": "III.9.24",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5879,8 +5894,8 @@
     ],
     "wording": "PL → yu optionally after pe"
   },
-  "III.9.24": {
-    "id": "III.9.24",
+  "III.9.25": {
+    "id": "III.9.25",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",
@@ -5897,8 +5912,8 @@
     ],
     "wording": "PL → yu marginally in stem after “p/m/w/v+e” before NOM/ACC"
   },
-  "III.9.25": {
-    "id": "III.9.25",
+  "III.9.26": {
+    "id": "III.9.26",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~PL",

@@ -17150,10 +17150,10 @@
     "Language": "Sanskrit",
     "Groups": []
   },
-  "nikṣāntär": {
-    "name": "nikṣāntär",
+  "nikṣātr": {
+    "name": "nikṣātr",
     "num": "1164",
-    "shape": "nikṣāntär",
+    "shape": "nikṣātr",
     "meaning": "constellation",
     "Category": "weak",
     "Color": null,
@@ -23334,6 +23334,7 @@
     "Gender": null,
     "Language": null,
     "Groups": [
+      "Ac",
       "Ñäkta",
       "Ksär"
     ]
@@ -23412,7 +23413,10 @@
     "Causativity": null,
     "Gender": null,
     "Language": null,
-    "Groups": []
+    "Groups": [
+      "Ac",
+      "Ksär"
+    ]
   },
   "ac": {
     "name": "ac",

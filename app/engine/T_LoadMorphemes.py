@@ -1,7 +1,6 @@
 from dataclasses import dataclass, asdict, field
 from typing import List, Optional, Dict, Any
 import pandas as pd
-import pickle
 import json
 import os
 import uuid
@@ -116,32 +115,34 @@ def _parse_groups(cell_val: Any) -> List[str]:
 
 def load_or_create_morphemes(
     excel_path: Path = DATA_DIR / "morphemes.xlsx",
-    pickle_path: Path = DATA_DIR / "morphemes.pickle",
     json_path: Path = DATA_DIR / "morphemes.json",
     force_create: bool = False
 ) -> Dict[str, AbstractMorpheme]:
     """
-    Если pickle_path существует и force_create == False -> загружает am из pickle и возвращает.
-    Иначе читает excel_path, создаёт морфемы и сохраняет в pickle_path и json_path, затем возвращает.
+    Если json_path существует и force_create == False -> загружает am из json и возвращает.
+    Иначе читает excel_path, создаёт морфемы и сохраняет в json_path, затем возвращает.
     """
 
-    if (not force_create) and os.path.exists(pickle_path):
+    if (not force_create) and os.path.exists(json_path):
         try:
-            with open(pickle_path, "rb") as f:
-                am = pickle.load(f)
-            if isinstance(am, dict):
-                # print(f"Loaded {len(am)} morphemes from pickle '{pickle_path}'.")
+            with open(json_path, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, dict):
+                am = {
+                    name: AbstractMorpheme(**data)
+                    for name, data in raw.items()
+                }
+                # print(f"Loaded {len(am)} morphemes from json '{json_path}'.")
                 return am
             else:
-                print(f"Warning: pickle '{pickle_path}' не содержит dict, пересоздаём из excel.")
+                print(f"Warning: json '{json_path}' не содержит dict, пересоздаём из excel.")
         except Exception as e:
-            print(f"Warning: не удалось загрузить pickle '{pickle_path}': {e}. Пересоздаём из excel.")
+            print(f"Warning: не удалось загрузить json '{json_path}': {e}. Пересоздаём из excel.")
 
     xls = pd.read_excel(excel_path, sheet_name=None, header=0)
-    # xls — OrderedDict {sheet_name: DataFrame}
+    sheet_names = list(xls.keys())
 
     entries = []
-    sheet_names = list(xls.keys())
 
     for sheet_index, sheet_name in enumerate(sheet_names):
         df = xls[sheet_name]
@@ -157,7 +158,6 @@ def load_or_create_morphemes(
             num = _clean_cell(row.iloc[0])  
             shape = _clean_cell(row.iloc[1])  
             meaning = _clean_cell(row.iloc[2])  
-
 
             props = {}
             for colname in ["Category", "Gender", "Language", "Groups", "Color",
@@ -236,13 +236,6 @@ def load_or_create_morphemes(
     print(f"Created {len(am)} morphemes from Excel '{excel_path}' (sheets: {len(sheet_names)}).")
 
     try:
-        with open(pickle_path, "wb") as f:
-            pickle.dump(am, f)
-        print(f"Saved pickle to '{pickle_path}'.")
-    except Exception as e:
-        print(f"Error saving pickle '{pickle_path}': {e}")
-
-    try:
         am_jsonable = {name: obj.to_dict() for name, obj in am.items()}
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(am_jsonable, f, ensure_ascii=False, indent=2)
@@ -250,22 +243,10 @@ def load_or_create_morphemes(
     except Exception as e:
         print(f"Error saving JSON '{json_path}': {e}")
 
-    try:
-        with open(pickle_path, "rb") as f:
-            loaded = pickle.load(f)
-        if isinstance(loaded, dict):
-            print(f"Verified pickle by re-loading: {len(loaded)} items.")
-            return loaded
-        else:
-            print("Pickle verification: содержимое не dict, возвращаем созданный am.")
-            return am
-    except Exception as e:
-        print(f"Не удалось перезагрузить pickle после сохранения: {e}. Возвращаем созданный am.")
-        return am
+    return am
 
 
 excel_file = DATA_DIR / "morphemes.xlsx"
-pickle_file = DATA_DIR / "morphemes.pickle"
 json_file = DATA_DIR / "morphemes.json"
 
-am = load_or_create_morphemes(excel_file, pickle_file, json_file, force_create=False)
+am = load_or_create_morphemes(excel_file, json_file, force_create=False)

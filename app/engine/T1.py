@@ -1385,10 +1385,11 @@ def transcribe(word):
 #         tb.save()
         
 
-# lex = lx["W_urbilwā`"]
+# lex = lx["W_spārtv"]
 # # gr = Grammeme([])
-# gr = Grammeme([am["SG"],am["GEN"]])
+# gr = Grammeme([am["PL"],am["INS"]])
 # form = phonol(buildForm(lex, gr))
+# pprint(form)
 # var = form.Variants[0]
 # pprint(showvar(var))
 

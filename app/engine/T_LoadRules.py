@@ -1,7 +1,6 @@
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Any, Optional
 import pandas as pd
-import pickle
 import json
 import os
 import re
@@ -11,7 +10,6 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = BASE_DIR / "data"
 
 def clean_cell(cell):
-
     if pd.isna(cell):
         return None
     if not isinstance(cell, str):
@@ -38,10 +36,6 @@ class Rule:
         return asdict(self)
 
 def _split_cell(cell: Optional[str]) -> List[str]:
-    """
-    Split cell by ';', strip items and drop empties.
-    Accepts None/NaN.
-    """
     if pd.isna(cell):
         return []
     s = str(cell).strip()
@@ -51,9 +45,6 @@ def _split_cell(cell: Optional[str]) -> List[str]:
     return [p for p in parts if p != ""]
 
 def _unique_id(base_id: str, existing: Dict[str, Any]) -> str:
-    """
-    Если base_id уже в existing — добавляет суффикс _1, _2, ... для уникальности.
-    """
     if base_id not in existing:
         return base_id
     i = 1
@@ -66,9 +57,8 @@ def _unique_id(base_id: str, existing: Dict[str, Any]) -> str:
 _leading_quote_re = re.compile(r"^[\s\uFEFF\u00A0]*['\u2019\u2018\`]+\s*")  
 
 def load_rules_from_excel(
-    excel_path: Path = DATA_DIR /  "rules.xlsx",
-    pickle_path: Path = DATA_DIR /  "rules.pickle",
-    json_path: Path = DATA_DIR /  "rules.json",
+    excel_path: Path = DATA_DIR / "rules.xlsx",
+    json_path: Path = DATA_DIR / "rules.json",
     sheet_name: int = 0,
     type_col: int = 0,
     id_col: int = 1,
@@ -81,15 +71,18 @@ def load_rules_from_excel(
     force_create: bool = False
 ) -> Dict[str, Rule]:
 
-    if (not force_create) and os.path.exists(pickle_path):
+    if (not force_create) and os.path.exists(json_path):
         try:
-            with open(pickle_path, "rb") as f:
-                rules_loaded = pickle.load(f)
-            return rules_loaded
+            with open(json_path, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, dict):
+                rules = {rid: Rule(**data) for rid, data in raw.items()}
+                return rules
+            else:
+                print(f"Warning: json '{json_path}' не содержит dict, пересоздаём из excel.")
         except Exception as e:
-            print(f"Warning: failed to load rules from pickle '{pickle_path}': {e}. Rebuilding from Excel.")
+            print(f"Warning: failed to load rules from json '{json_path}': {e}. Rebuilding from Excel.")
 
-    # Reading excel
     try:
         df = pd.read_excel(excel_path, sheet_name=sheet_name, header=None)
     except Exception as e:
@@ -159,13 +152,6 @@ def load_rules_from_excel(
 
         except Exception as e:
             print(f"Error parsing row: {e}. Row data: {row}")
-
-    try:
-        with open(pickle_path, "wb") as f:
-            pickle.dump(rules, f)
-        print(f"Saved {len(rules)} rules to pickle '{pickle_path}'.")
-    except Exception as e:
-        print(f"Warning: failed to save rules pickle '{pickle_path}': {e}")
 
     try:
         rules_jsonable = {rid: rule.to_dict() for rid, rule in rules.items()}

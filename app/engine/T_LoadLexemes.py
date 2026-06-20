@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any, Callable, Iterable
-import pickle
 import json
 import os
 import pandas as pd
@@ -61,7 +60,6 @@ class Lexeme:
         }
 
     def clone(self) -> "Lexeme":
-
         new = object.__new__(Lexeme)  
         new.Meaning  = self.Meaning
         new.Category = self.Category
@@ -80,12 +78,10 @@ class Lexeme:
         return c
 
 def _safe_get(am_dict: Dict[str, "AbstractMorpheme"], key: str):
-    """Возвращает am_dict[key] если есть, иначе None (и не кидает)."""
     return am_dict.get(key)
 
 
 def _unique_name(base: str, existing: Dict[str, Any]) -> str:
-    """Если base занято в existing — добавляет число 1,2,... чтобы получить уникальное имя."""
     if base not in existing:
         return base
     i = 1
@@ -100,28 +96,40 @@ def is_root(m):
 
 def build_lexemes_from_am(
     am: Dict[str, "AbstractMorpheme"],
-    pickle_path: Path = DATA_DIR /  "lexemes.pickle",
-    json_path: Path = DATA_DIR /  "lexemes.json",
+    json_path: Path = DATA_DIR / "lexemes.json",
     force_create: bool = False,
 ) -> Dict[str, Lexeme]:
 
-    if (not force_create) and os.path.exists(pickle_path):
+    if (not force_create) and os.path.exists(json_path):
         try:
-            with open(pickle_path, "rb") as f:
-                lx_loaded = pickle.load(f)
-            if isinstance(lx_loaded, dict):
-                print(f"Loaded {len(lx_loaded)} lexemes from pickle '{pickle_path}'.")
-                return lx_loaded
+            with open(json_path, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, dict):
+                print(f"Loaded {len(raw)} lexemes from json '{json_path}'.")
+                # Reconstruct Lexeme objects from json
+                lx: Dict[str, Lexeme] = {}
+                for name, data in raw.items():
+                    morphemes = [am[m] for m in (data.get("Morphemes") or []) if m in am]
+                    lex = Lexeme(Morphemes=morphemes)
+                    lex.name = data.get("name", name)
+                    lex.Meaning = data.get("Meaning", "")
+                    lex.Category = data.get("Category")
+                    lex.Gender = data.get("Gender")
+                    lex.Groups = data.get("Groups") or []
+                    lex.MorphemeCategories = data.get("MorphemeCategories") or {}
+                    lex.MorphemeGroups = data.get("MorphemeGroups") or {}
+                    lex.DictionaryForm = data.get("DictionaryForm")
+                    lx[name] = lex
+                return lx
             else:
-                print("Warning: pickle does not contain dict, recreating.")
+                print("Warning: json does not contain dict, recreating.")
         except Exception as e:
-            print(f"Warning: failed to load pickle '{pickle_path}': {e}. Recreating lexemes.")
+            print(f"Warning: failed to load json '{json_path}': {e}. Recreating lexemes.")
 
     lx: Dict[str, Lexeme] = {}
 
     for key, morph in am.items():
         try:
-            # skip None entries
             if morph is None:
                 continue
 
@@ -129,25 +137,17 @@ def build_lexemes_from_am(
                 if key not in ["1","2","3","LOC","ABL","ALL","INS"]:
                     continue
 
-            # Category must be not None (user requirement)
             cat = getattr(morph, "Category", None)
             if cat is None:
                 continue
 
-            # Handle verbs specially
             if str(cat).lower() == "verb":
                 caus = getattr(morph, "Causativity", None)
                 if caus is None:
-                    # no causativity — make single lexeme like other categories
-                    # fallthrough to single-morpheme creation below
                     pass
                 else:
-                    # normalize (string)
                     cs = str(caus)
-                    # For 'K' -> use am["K"], for 'V' -> am["V"], 'VK' -> both (order K then V maybe)
-                    # We'll uppercase to be safe
                     cs_up = cs.upper()
-                    # Build K variant if requested"
                     if "K" in cs_up:
                         addon = _safe_get(am, "K")
                         if addon is not None:
@@ -157,11 +157,8 @@ def build_lexemes_from_am(
                                 lex.Meaning = f"{getattr(morph,'meaning', '')} (K)"
                             else:
                                 lex.Meaning = f"{getattr(morph,'meaning', '')}"
-                            # Category already set in __post_init__ from last morpheme (addon)
                             lx[lex.name] = lex
                         else:
-                            # if addon is missing — still can create mono lexeme or skip; we'll emit a mono lexeme with name K_...
-                            # create a single morpheme lexeme as fallback, but with K_ prefix so caller sees intention
                             lex = Lexeme(Morphemes=[morph])
                             lex.name = _unique_name(f"K_{morph.name}", lx)
                             if cs == "VK":
@@ -170,14 +167,12 @@ def build_lexemes_from_am(
                                 lex.Meaning = f"{getattr(morph,'meaning', '')}"
                             lx[lex.name] = lex
 
-                    # Build V variant if requested
                     if "V" in cs_up:
                         addon = _safe_get(am, "V")
                         if addon is not None:
                             lex = Lexeme(Morphemes=[morph, addon])
                             lex.name = _unique_name(f"V_{morph.name}", lx)
                             lex.Meaning = getattr(morph, "meaning", "")
-                            # user didn't request special suffix for Meaning in V-case, so keep base meaning
                             lx[lex.name] = lex
                         else:
                             lex = Lexeme(Morphemes=[morph])
@@ -185,13 +180,10 @@ def build_lexemes_from_am(
                             lex.Meaning = f"{getattr(morph,'meaning','')} (V) [missing V morpheme]"
                             lx[lex.name] = lex
 
-                    # If causativity was present, we've produced all requested variants — move to next morph
                     if cs_up:
                         continue
 
-            # Non-verb or verb without causativity => simple lexeme with single morpheme
             lex = Lexeme(Morphemes=[morph])
-            # Prefix letter
             cat_str = str(cat)
             if cat_str.lower() == "name":
                 pref = "A"
@@ -206,18 +198,10 @@ def build_lexemes_from_am(
             else:
                 pref = "X"
             lex.name = _unique_name(f"{pref}_{morph.name}", lx)
-            # Meaning handled in __post_init__
             lx[lex.name] = lex
 
         except Exception as e:
             print(f"Error while processing morpheme '{key}': {e}")
-
-    try:
-        with open(pickle_path, "wb") as f:
-            pickle.dump(lx, f)
-        print(f"Saved {len(lx)} lexemes to pickle '{pickle_path}'.")
-    except Exception as e:
-        print(f"Error saving lexemes pickle '{pickle_path}': {e}")
 
     try:
         lx_jsonable = {name: lex.to_jsonable() for name, lex in lx.items()}
@@ -230,9 +214,7 @@ def build_lexemes_from_am(
     return lx
 
 
-# ---------- helper for groups ----------
 def _parse_groups(cell: Optional[str]) -> List[str]:
-
     if cell is None:
         return []
     s = str(cell).strip()
@@ -245,8 +227,7 @@ def load_extra_lexemes_from_excel(
     excel_path: str,
     am: Dict[str, Any],
     lx: Dict[str, Any],
-    pickle_path: Path = DATA_DIR /  "lexemes.pickle",
-    json_path: Path = DATA_DIR /  "lexemes.json",
+    json_path: Path = DATA_DIR / "lexemes.json",
     sheet_name=0,
     name_col=0,
     meaning_col=1,
@@ -256,8 +237,6 @@ def load_extra_lexemes_from_excel(
     overwrite_existing: bool = True
 ) -> Dict[str, Any]:
 
-
-    # Mapping first-letter -> Category
     first_letter_category = {
         "C": "creature",
         "D": "double",
@@ -275,7 +254,6 @@ def load_extra_lexemes_from_excel(
     }
 
     def _norm_key_lookup_in_dict(d: Dict[str, Any], key: str):
-        """Попытается вернуть d[key], если нет — сделает case-insensitive поиск."""
         if key in d:
             return d[key]
         key_norm = key.strip().lower()
@@ -289,7 +267,6 @@ def load_extra_lexemes_from_excel(
                 continue
         return None
 
-    # Read sheet (no header)
     df = pd.read_excel(excel_path, sheet_name=sheet_name, header=None)
 
     rows_by_name: Dict[str, Dict[str, Any]] = {}
@@ -312,7 +289,6 @@ def load_extra_lexemes_from_excel(
             except Exception:
                 morph_cells.append(None)
 
-
         groups_list: List[str] = []
         if groups_col is not None:
             try:
@@ -323,7 +299,7 @@ def load_extra_lexemes_from_excel(
 
         rows_by_name[name] = {
             "meaning": meaning,
-            "morph_cells": morph_cells,  # left-to-right as read from sheet
+            "morph_cells": morph_cells,
             "gender": gender,
             "Groups": groups_list,
             "row_index": idx
@@ -332,10 +308,6 @@ def load_extra_lexemes_from_excel(
     visiting = set()
 
     def _is_lexeme_ref_token(token: str) -> bool:
-        """
-        Возвращает True если token начинается с заглавной буквы и сразу затем '_' (например 'N_word').
-        Любые другие случаи — False (в частности 'INAN4' -> False).
-        """
         if not token:
             return False
         token = str(token)
@@ -378,17 +350,13 @@ def load_extra_lexemes_from_excel(
                 ref_str = str(ref).strip()
     
                 if _is_lexeme_ref_token(ref_str):
-
                     base_lex = (lx.get(ref_str) or
                                 (build_lexeme(ref_str) if ref_str in rows_by_name else _norm_key_lookup_in_dict(lx, ref_str)))
                     if base_lex is None:
                         print(f"Error: referenced lexeme '{ref_str}' for '{name}' not found.")
                         visiting.discard(name); return None
     
-                    base_len_before = len(accum_morphs)
                     accum_morphs.extend(base_lex.Morphemes)
-    
-
                     _merge_map(accum_cats,   base_lex.MorphemeCategories)
                     _merge_map(accum_groups, base_lex.MorphemeGroups)
     
@@ -444,15 +412,6 @@ def load_extra_lexemes_from_excel(
         if built is None:
             print(f"Warning: lexeme '{name}' could not be built from excel (see errors).")
 
-    # Save pickle
-    try:
-        with open(pickle_path, "wb") as f:
-            pickle.dump(lx, f)
-        print(f"Saved updated lexemes to pickle '{pickle_path}'.")
-    except Exception as e:
-        print(f"Error saving pickle '{pickle_path}': {e}")
-
-    # Save json
     try:
         lx_jsonable = {}
         for k, v in lx.items():
@@ -471,31 +430,44 @@ def load_extra_lexemes_from_excel(
     except Exception as e:
         print(f"Error saving json '{json_path}': {e}")
 
+    return lx
+
 def get_or_build_lexemes(
     am: Dict[str, Any],
-    lexeme_pickle: Path = DATA_DIR /  "lexemes.pickle",
-    lexeme_json: Path = DATA_DIR /  "lexemes.json",
+    lexeme_json: Path = DATA_DIR / "lexemes.json",
     excel_extra_path: Optional[str] = None,
     excel_sheet: int = 0,
-    groups_col: int=6,
+    groups_col: int = 6,
     force_create: bool = False,
     overwrite_existing: bool = True,
-    # pass-through args for builder functions if needed:
     morpheme_builder_kwargs: Optional[dict] = None,
     extra_loader_kwargs: Optional[dict] = None,
 ) -> Dict[str, Any]:
-  
-    if (not force_create) and os.path.exists(lexeme_pickle):
+
+    if (not force_create) and os.path.exists(lexeme_json):
         try:
-            with open(lexeme_pickle, "rb") as f:
-                lx_loaded = pickle.load(f)
-        #    print(f"Loaded {len(lx_loaded)} lexemes from pickle '{lexeme_pickle}'.")
-            return lx_loaded
+            with open(lexeme_json, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, dict):
+                lx: Dict[str, Any] = {}
+                for name, data in raw.items():
+                    morphemes = [am[m] for m in (data.get("Morphemes") or []) if m in am]
+                    lex = Lexeme(Morphemes=morphemes)
+                    lex.name = data.get("name", name)
+                    lex.Meaning = data.get("Meaning", "")
+                    lex.Category = data.get("Category")
+                    lex.Gender = data.get("Gender")
+                    lex.Groups = data.get("Groups") or []
+                    lex.MorphemeCategories = data.get("MorphemeCategories") or {}
+                    lex.MorphemeGroups = data.get("MorphemeGroups") or {}
+                    lex.DictionaryForm = data.get("DictionaryForm")
+                    lx[name] = lex
+                # print(f"Loaded {len(lx)} lexemes from json '{lexeme_json}'.")
+                return lx
         except Exception as e:
-            print(f"Warning: failed to load lexemes from pickle '{lexeme_pickle}': {e}. Will rebuild.")
+            print(f"Warning: failed to load lexemes from json '{lexeme_json}': {e}. Will rebuild.")
 
     mb_kwargs = morpheme_builder_kwargs.copy() if morpheme_builder_kwargs else {}
-    mb_kwargs.setdefault("pickle_path", lexeme_pickle)
     mb_kwargs.setdefault("json_path", lexeme_json)
     mb_kwargs.setdefault("force_create", True)
 
@@ -507,7 +479,6 @@ def get_or_build_lexemes(
         el_kwargs = extra_loader_kwargs.copy() if extra_loader_kwargs else {}
         el_kwargs.setdefault("am", am)
         el_kwargs.setdefault("lx", lx)
-        el_kwargs.setdefault("pickle_path", lexeme_pickle)
         el_kwargs.setdefault("json_path", lexeme_json)
         el_kwargs.setdefault("sheet_name", excel_sheet)
         el_kwargs.setdefault("groups_col", groups_col)
@@ -516,13 +487,6 @@ def get_or_build_lexemes(
         result = load_extra_lexemes_from_excel(excel_extra_path, **el_kwargs)
         if result is not None:
             lx = result
-
-    try:
-        with open(lexeme_pickle, "wb") as f:
-            pickle.dump(lx, f)
-        print(f"Saved {len(lx)} lexemes to pickle '{lexeme_pickle}'.")
-    except Exception as e:
-        print(f"Warning: failed to save lexemes pickle '{lexeme_pickle}': {e}")
 
     try:
         lx_jsonable = {}
@@ -536,7 +500,6 @@ def get_or_build_lexemes(
                     "Category": getattr(lex, "Category", None),
                     "Morphemes": [getattr(m, "name", None) for m in getattr(lex, "Morphemes", [])],
                     "Gender": getattr(lex, "Gender", "") if hasattr(lex, "Gender") else getattr(lex, "Gender", ""),
-                    # include groups if present:
                     **({"Groups": getattr(lex, "Groups")} if hasattr(lex, "Groups") else {}),
                 }
         with open(lexeme_json, "w", encoding="utf-8") as f:
@@ -549,9 +512,8 @@ def get_or_build_lexemes(
 
 lx = get_or_build_lexemes(
     am,
-    lexeme_pickle = DATA_DIR / "lexemes.pickle",
-    lexeme_json = DATA_DIR / "lexemes.json",
-    excel_extra_path = DATA_DIR / "lexemes.xlsx",
+    lexeme_json=DATA_DIR / "lexemes.json",
+    excel_extra_path=DATA_DIR / "lexemes.xlsx",
     excel_sheet=0,
     groups_col=6,
     force_create=False,
