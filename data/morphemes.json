@@ -25930,5 +25930,19 @@
     "Gender": null,
     "Language": null,
     "Groups": []
+  },
+  "tuṭă": {
+    "name": "tuṭă",
+    "num": "1771",
+    "shape": "tuṭă",
+    "meaning": "yellow",
+    "Category": "qualitative",
+    "Color": null,
+    "Transitivity": null,
+    "Voice": null,
+    "Causativity": null,
+    "Gender": null,
+    "Language": null,
+    "Groups": []
   }
 }

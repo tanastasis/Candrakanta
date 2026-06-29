@@ -1353,6 +1353,9 @@ def transcribe(word):
     word = word.replace("\u0331", "")
     return word
 
+# add_dictionary_form_to_json("./data/lexemes.json")
+
+
 # @dataclass(slots=True)
 # class Characteristic:
 #     Transcription: str
@@ -1373,7 +1376,6 @@ def transcribe(word):
 #     Characteristic: Optional[List(Characteristic)]
     
 
-# add_dictionary_form_to_json("./data/lexemes.json")
 
 # tb = ThesaurusBuilder("thesaurus.json")
 
@@ -1395,7 +1397,8 @@ def transcribe(word):
 
 # tb = ThesaurusBuilder("thesaurus.json")
 
-# par = get_paradigm('V_yām')
+# par = get_paradigm('Q_tuṭă')
+# pprint(par)
 
 # for form in par:
 #     tb.add_form(form)
