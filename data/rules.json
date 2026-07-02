@@ -2421,20 +2421,6 @@
     "id": "II.11.15",
     "kind": "morphological",
     "ifs": [
-      "0~Morpheme~lānt",
-      "1~Morpheme~ñäkta"
-    ],
-    "unlesses": [],
-    "operations": [
-      "0~Shape~v`älāñ"
-    ],
-    "optional": [],
-    "wording": "lānt → v`älāñ before ñäkta"
-  },
-  "II.11.16": {
-    "id": "II.11.16",
-    "kind": "morphological",
-    "ifs": [
       "0~Morpheme~buddha`",
       "1~Morpheme~ñäkta"
     ],
@@ -2445,8 +2431,8 @@
     "optional": [],
     "wording": "buddha` → pättāñ before ñäkta"
   },
-  "II.11.17": {
-    "id": "II.11.17",
+  "II.11.16": {
+    "id": "II.11.16",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~śri",
@@ -2459,8 +2445,8 @@
     "optional": [],
     "wording": "śri → śriñ before ñäkta"
   },
-  "II.11.18": {
-    "id": "II.11.18",
+  "II.11.17": {
+    "id": "II.11.17",
     "kind": "morphological",
     "ifs": [
       "1~Morpheme~ñäkta"
@@ -2474,8 +2460,8 @@
     ],
     "wording": "ñ optionally drops before ñäkta"
   },
-  "II.11.19": {
-    "id": "II.11.19",
+  "II.11.18": {
+    "id": "II.11.18",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~kon",
@@ -2488,8 +2474,8 @@
     "optional": [],
     "wording": "kon → konă when final"
   },
-  "II.11.20": {
-    "id": "II.11.20",
+  "II.11.19": {
+    "id": "II.11.19",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~kunti",
@@ -2502,8 +2488,8 @@
     "optional": [],
     "wording": "kunti → kuntis when final"
   },
-  "II.11.21": {
-    "id": "II.11.21",
+  "II.11.20": {
+    "id": "II.11.20",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~mā",
@@ -2518,8 +2504,8 @@
     "optional": [],
     "wording": "mā → a before roots"
   },
-  "II.11.22": {
-    "id": "II.11.22",
+  "II.11.21": {
+    "id": "II.11.21",
     "kind": "morphological",
     "ifs": [
       "0~Morpheme~mā",

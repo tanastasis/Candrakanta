@@ -1355,7 +1355,7 @@ def transcribe(word):
 
 # print(transcribe("kaṟ⸜•"))
 
-# add_dictionary_form_to_json("./data/lexemes.json")
+add_dictionary_form_to_json("./data/lexemes.json")
 
 
 # @dataclass(slots=True)
@@ -1389,11 +1389,11 @@ def transcribe(word):
 #         tb.save()
         
 
-lex = lx["W_spārtv"]
-# gr = Grammeme([])
-gr = Grammeme([am["PL"],am["INS"]])
-form = phonol(buildForm(lex, gr))
-pprint(form.Variants[0].rules)
+# lex = lx["W_spārtv"]
+# # gr = Grammeme([])
+# gr = Grammeme([am["PL"],am["INS"]])
+# form = phonol(buildForm(lex, gr))
+# pprint(form.Variants[0].rules)
 # var = form.Variants[0]
 # pprint(showvar(var))
 
