@@ -1193,9 +1193,7 @@ def dictionary_form(lex: Lexeme, *, every: bool=False) -> str:
         g = Grammeme([am["DIST"],am['NOM']])
     elif lex.name == "P_änzaṃ":
         g = Grammeme([am["M"],am["SG"],am["MED"],am['NOM']])
-    elif lex.name in ["N_ṣomă","P_1"] or lex.Category in ["qualitative","relative"]:
-        if lex.name == "R_arkănt":
-            return "arkant-"
+    elif lex.name in ["N_ṣomă","P_1"] or lex.Category in ["qualitative","relative"] and lex.name != 'R_p':
         g = Grammeme([am["M"],am['SG'],am['NOM']])
     elif lex.name in ["N_vä","N_täräy"]:
         g = Grammeme([am["M"],am['NOM']])
