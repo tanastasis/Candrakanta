@@ -3,3 +3,4 @@ ipython.html
 data/lexemes_RESERVE.xlsx
 thesaurus*
 .DS_Store
+app/engine/TochCorpus.py
